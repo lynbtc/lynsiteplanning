@@ -32,6 +32,8 @@ Site qualification tool for LYN modular sauna system.
 
 Delivery + installation: €7,777 (estimate)
 
+All prices indicative. Final pricing confirmed in site review.
+
 ## Stack
 
 - Single HTML file
