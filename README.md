@@ -1,94 +1,50 @@
 # LYN Site Planning Tool
 
-Site qualification tool for bitcoin-heated saunas.
+Site qualification tool for LYN modular sauna system.
 
-## Concept
+**one of twentyonehundred**
 
-Bitcoin mining hardware generates heat as a byproduct.
-Same electricity — used twice. Heat for the space, bitcoin for the treasury.
+## Live
 
-This tool helps potential buyers understand if a LYN sauna
-fits their site and whether thermal integration (M4) makes sense.
+[lynsiteplanning.netlify.app](https://lynsiteplanning.netlify.app)
 
-Two audiences:
-- **Private**: personal residence, single unit
-- **Professional**: developer, architect, operator
+## Flow
 
-## The Sauna
+1. Audience: private / professional
+2. Site type: outdoor / indoor
+3. Constraints: crane access, power, foundation (outdoor) or project details (indoor)
+4. Modules: select from 7 modules
+5. M4 thermal: bitcoin mining as heat source
+6. Summary: configuration and indicative pricing
+7. Lead capture: request site review
 
-One sauna. 7 modules. 2,100 sites. Ever.
+## Modules
 
-| Module | Description |
-|--------|-------------|
-| M1 | sauna — the core |
-| M2 | swimming bridge — water access |
-| M3 | changing room — transitional space |
-| M4 | thermal module — bitcoin mining as heat source |
-| M5 | outdoor shower |
-| M6 | storage |
-| M7 | cold plunge |
+| Module | Description | Price |
+|--------|-------------|-------|
+| m1 sauna | the core. panoramic glass. organic wood interior. | €55,555 |
+| m2 swimming bridge | direct access to natural cold water. | €11,111 |
+| m3 changing room | transitional space. skylit. prepped for thermal module. | €15,111 |
+| m4 thermal module | bitcoin mining hardware as heat source. | €3,111 |
+| m5 outdoor shower | wall-mounted. cooling rinse. | €3,111 |
+| m6 storage | robes. towels. slippers. | €2,111 |
+| m7 cold plunge | self-contained. no water access required. | €12,111 |
 
-Design by Morten Bo Jensen. Manufacture by Koerner.
+Delivery + installation: €7,777 (estimate)
 
-## Deploy
+## Stack
 
-Static HTML. No build step.
+- Single HTML file
+- Vanilla JS
+- Netlify Forms
+- No dependencies
 
-1. Fork this repo
-2. Connect to Netlify (or any static host)
-3. Deploy
+## Credits
 
-Form submissions go to Netlify Forms by default.
-To use a different endpoint, edit the `CONFIG.formEndpoint` in `index.html`.
-
-## Customize
-
-**Prices**: Edit the `CONFIG.prices` object at top of `index.html`
-
-```javascript
-const CONFIG = {
-    prices: {
-        m1: 55555,
-        m2: 11125,
-        m3: 15000,
-        m4: 3000,
-        m5: 3625,
-        m6: 2438,
-        m7: 12250
-    },
-    deliveryInstall: 4700,
-    currency: '€',
-    formEndpoint: null // Set to override Netlify Forms
-};
-```
-
-**Images**: Replace files in `/images`
-
-**Copy**: Edit directly in HTML
-
-## Structure
-
-```
-lyn-site-planning-tool/
-├── index.html          # the tool (single file, no dependencies)
-├── images/
-│   ├── hero.png        # hero image
-│   ├── m1-sauna.png    # module images
-│   ├── m2-bridge.png
-│   ├── m3-changing.png
-│   ├── m4-thermal.png
-│   ├── m5-shower.png
-│   ├── m6-storage.png
-│   ├── m7-plunge.png
-│   └── config-preview.png
-├── README.md
-└── LICENSE
-```
+- Design: [Groundwork Studio](https://www.studiogroundwork.com/)
+- Manufacture: [Koerner Sauna](https://www.sauna-koerner.de/en/)
+- Tool: [LYN](https://lynbitcoin.com)
 
 ## License
 
 MIT
-
-## Links
-
-- [lynbitcoin.com](https://lynbitcoin.com)
