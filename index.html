@@ -750,7 +750,7 @@
                 <div class="hero">
                     <img src="./images/hero.png" alt="LYN sauna by the coast" class="hero-image">
                     <h1 class="hero-title">one sauna. 7 modules. 2,100 sites.</h1>
-                    <p class="hero-tagline">design by <a href="https://www.studiogroundwork.com/" target="_blank">morten bo jensen</a> · manufacture by <a href="https://www.sauna-koerner.de/en/" target="_blank">koerner</a></p>
+                    <p class="hero-tagline">design by <a href="https://www.studiogroundwork.com/" target="_blank">groundwork studio</a> · manufacture by <a href="https://www.sauna-koerner.de/en/" target="_blank">koerner sauna</a></p>
                 </div>
                 
                 <div class="choices">
@@ -815,6 +815,7 @@
                         <div class="constraint-option" data-value="concrete">concrete</div>
                         <div class="constraint-option" data-value="deck">deck</div>
                         <div class="constraint-option" data-value="paving">paving</div>
+                        <div class="constraint-option" data-value="water">water</div>
                         <div class="constraint-option" data-value="grass/soil">grass/soil</div>
                     </div>
                 </div>
@@ -825,8 +826,33 @@
                 </nav>
             </section>
             
-            <!-- Step 2b: Indoor Context -->
-            <section class="step" data-step="2b">
+            <!-- Step 2b: Indoor Context (Private) -->
+            <section class="step" data-step="2b-private">
+                <h2 class="step-title">tell us about the project</h2>
+                <p class="step-description">indoor installations are bespoke. same materials. same design. built into your architecture.</p>
+                
+                <div class="constraint-group">
+                    <label class="constraint-label">project type</label>
+                    <div class="constraint-options" data-constraint="project-type">
+                        <div class="constraint-option" data-value="house">house</div>
+                        <div class="constraint-option" data-value="apartment">apartment</div>
+                        <div class="constraint-option" data-value="other">other</div>
+                    </div>
+                </div>
+                
+                <div class="form-row mt-xl">
+                    <label class="form-label">brief description (optional)</label>
+                    <textarea class="form-input" id="project-description-private" placeholder="tell us about the space..."></textarea>
+                </div>
+                
+                <nav class="nav">
+                    <span class="nav-back" onclick="goBack()">← back</span>
+                    <button class="btn btn-primary" onclick="nextStep()">continue</button>
+                </nav>
+            </section>
+            
+            <!-- Step 2b: Indoor Context (Professional) -->
+            <section class="step" data-step="2b-professional">
                 <h2 class="step-title">tell us about the project</h2>
                 <p class="step-description">indoor installations are bespoke. same materials. same design. built into your architecture.</p>
                 
@@ -842,7 +868,7 @@
                 
                 <div class="form-row mt-xl">
                     <label class="form-label">brief description (optional)</label>
-                    <textarea class="form-input" id="project-description" placeholder="tell us about the space..."></textarea>
+                    <textarea class="form-input" id="project-description-professional" placeholder="tell us about the space..."></textarea>
                 </div>
                 
                 <nav class="nav">
@@ -878,7 +904,7 @@
                                 <span class="module-check">✓</span>
                             </div>
                             <p class="module-description">transitional space. skylit. prepped for thermal module.</p>
-                            <div class="module-price">€15,000</div>
+                            <div class="module-price">€15,111</div>
                         </div>
                     </div>
                     
@@ -890,7 +916,7 @@
                                 <span class="module-check">✓</span>
                             </div>
                             <p class="module-description">direct access to natural cold water.</p>
-                            <div class="module-price">€11,125</div>
+                            <div class="module-price">€11,111</div>
                         </div>
                     </div>
                     
@@ -902,7 +928,7 @@
                                 <span class="module-check">✓</span>
                             </div>
                             <p class="module-description">self-contained. no water access required.</p>
-                            <div class="module-price">€12,250</div>
+                            <div class="module-price">€12,111</div>
                         </div>
                     </div>
                     
@@ -914,7 +940,7 @@
                                 <span class="module-check">✓</span>
                             </div>
                             <p class="module-description">wall-mounted. cooling rinse.</p>
-                            <div class="module-price">€3,625</div>
+                            <div class="module-price">€3,111</div>
                         </div>
                     </div>
                     
@@ -926,7 +952,7 @@
                                 <span class="module-check">✓</span>
                             </div>
                             <p class="module-description">robes. towels. slippers.</p>
-                            <div class="module-price">€2,438</div>
+                            <div class="module-price">€2,111</div>
                         </div>
                     </div>
                 </div>
@@ -950,7 +976,7 @@
                     </div>
                     <div class="thermal-actions">
                         <button class="btn btn-ghost" onclick="skipThermal()">skip</button>
-                        <button class="btn btn-primary" onclick="addThermal()">add m4 · €3,000</button>
+                        <button class="btn btn-primary" onclick="addThermal()">add m4 · €3,111</button>
                     </div>
                 </div>
                 
@@ -1087,11 +1113,11 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
-                <p>design by <a href="https://www.studiogroundwork.com/" target="_blank">morten bo jensen</a> · manufacture by <a href="https://www.sauna-koerner.de/en/" target="_blank">koerner</a></p>
+                <p>design by <a href="https://www.studiogroundwork.com/" target="_blank">groundwork studio</a> · manufacture by <a href="https://www.sauna-koerner.de/en/" target="_blank">koerner sauna</a></p>
                 <p>LYN. · <a href="mailto:sauna@lynbitcoin.com">sauna@lynbitcoin.com</a></p>
                 <div class="footer-links">
                     <a href="https://lynbitcoin.com">lynbitcoin.com</a>
-                    <a href="https://github.com/lynbtc/lyn-site-planning-tool">open source</a>
+                    <a href="https://github.com/lynbtc/lynsiteplanning">open source</a>
                 </div>
             </div>
         </footer>
@@ -1109,12 +1135,12 @@
         const CONFIG = {
             prices: {
                 m1: 55555,
-                m2: 11125,
-                m3: 15000,
-                m4: 3000,
-                m5: 3625,
-                m6: 2438,
-                m7: 12250
+                m2: 11111,
+                m3: 15111,
+                m4: 3111,
+                m5: 3111,
+                m6: 2111,
+                m7: 12111
             },
             deliveryInstall: 4700,
             currency: '€',
@@ -1180,7 +1206,12 @@
             if (state.siteType === 'outdoor') {
                 steps.push(2, 3, 4, 5, 6);
             } else if (state.siteType === 'indoor') {
-                steps.push('2b', 4, 5, 6);
+                // Different indoor step based on audience
+                if (state.audience === 'private') {
+                    steps.push('2b-private', 4, 5, 6);
+                } else {
+                    steps.push('2b-professional', 4, 5, 6);
+                }
             }
             
             return steps;
@@ -1372,8 +1403,14 @@
                             state.currentStep = 2;
                             showStep(2);
                         } else {
-                            state.currentStep = '2b';
-                            showStep('2b');
+                            // Show different indoor step based on audience
+                            if (state.audience === 'private') {
+                                state.currentStep = '2b-private';
+                                showStep('2b-private');
+                            } else {
+                                state.currentStep = '2b-professional';
+                                showStep('2b-professional');
+                            }
                         }
                     }, 150);
                 });
@@ -1421,10 +1458,17 @@
                 });
             });
             
-            // Project description
-            const descInput = document.getElementById('project-description');
-            if (descInput) {
-                descInput.addEventListener('input', function() {
+            // Project description (both private and professional)
+            const descInputPrivate = document.getElementById('project-description-private');
+            if (descInputPrivate) {
+                descInputPrivate.addEventListener('input', function() {
+                    state.constraints.projectDescription = this.value;
+                });
+            }
+            
+            const descInputProfessional = document.getElementById('project-description-professional');
+            if (descInputProfessional) {
+                descInputProfessional.addEventListener('input', function() {
                     state.constraints.projectDescription = this.value;
                 });
             }
