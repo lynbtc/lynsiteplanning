@@ -599,7 +599,7 @@
                         <p>bitcoin mining hardware as heat source.</p>
                         <p>same electricity — used twice.<br>
                         <span id="thermal-benefit">heat for the space. bitcoin for your savings.</span></p>
-                        <p>the bench is prepped. bespoke integration also possible.</p>
+                        <p id="thermal-integration">hidden within the m3 bench. or bespoke integration.</p>
                         <p>we assess feasibility in the site review.</p>
                     </div>
                     <div class="thermal-actions">
@@ -835,11 +835,20 @@
         }
         
         function updateThermalCopy() {
-            const el = document.getElementById('thermal-benefit');
-            if (el) {
-                el.textContent = state.audience === 'professional'
+            // Update benefit line based on audience
+            const benefitEl = document.getElementById('thermal-benefit');
+            if (benefitEl) {
+                benefitEl.textContent = state.audience === 'professional'
                     ? 'heat for the space. revenue for the project.'
                     : 'heat for the space. bitcoin for your savings.';
+            }
+            
+            // Update integration line based on site type
+            const integrationEl = document.getElementById('thermal-integration');
+            if (integrationEl) {
+                integrationEl.textContent = state.siteType === 'outdoor'
+                    ? 'hidden within the m3 bench. or bespoke integration.'
+                    : 'integrated into your architecture.';
             }
         }
         
