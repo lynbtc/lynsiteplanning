@@ -1,51 +1,54 @@
 # LYN Site Planning Tool
 
-Site qualification tool for LYN modular sauna system.
+Site qualification tool for bitcoin-heated saunas.
 
-**one of twentyonehundred**
+**[lynsiteplanning.netlify.app](https://lynsiteplanning.netlify.app)**
 
-## Live
+---
 
-[lynsiteplanning.netlify.app](https://lynsiteplanning.netlify.app)
+## Concept
 
-## Flow
+One sauna. Seven modules. 2,100 sites. Ever.
 
-1. Audience: private / professional
-2. Site type: outdoor / indoor
-3. Constraints: crane access, power, foundation (outdoor) or project details (indoor)
-4. Modules: select from 7 modules
-5. M4 thermal: bitcoin mining as heat source
-6. Summary: configuration and indicative pricing
-7. Lead capture: request site review
+Design by [Groundwork Studio](https://www.studiogroundwork.com/). Manufacture by [Koerner Sauna](https://www.sauna-koerner.de/en/).
+
+---
 
 ## Modules
 
 | Module | Description | Price |
 |--------|-------------|-------|
-| m1 sauna | the core. panoramic glass. organic wood interior. | €55,555 |
-| m2 swimming bridge | direct access to natural cold water. | €11,111 |
-| m3 changing room | transitional space. skylit. prepped for thermal module. | €15,111 |
-| m4 thermal module | bitcoin mining hardware as heat source. | €3,111 |
-| m5 outdoor shower | wall-mounted. cooling rinse. | €3,111 |
-| m6 storage | robes. towels. slippers. | €2,111 |
-| m7 cold plunge | self-contained. no water access required. | €12,111 |
+| M1 | sauna — the core | €55,555 |
+| M2 | swimming bridge — water access | €11,111 |
+| M3 | changing room — transitional space | €15,111 |
+| M4 | thermal module — bitcoin mining as heat source | €3,111 |
+| M5 | outdoor shower — cooling rinse | €3,111 |
+| M6 | storage — robes, towels, slippers | €2,111 |
+| M7 | cold plunge — self-contained | €12,111 |
 
 Delivery + installation: €7,777 (estimate)
 
-All prices indicative. Final pricing confirmed in site review.
+---
 
-## Stack
+## Code Principles
 
-- Single HTML file
-- Vanilla JS
-- Netlify Forms
-- No dependencies
+Every line does work. If you add code, delete something else.
 
-## Credits
+- Single file, no dependencies
+- No build step
+- Names say what things are
+- Comments explain why, not what
+- Configuration at the top
 
-- Design: [Groundwork Studio](https://www.studiogroundwork.com/)
-- Manufacture: [Koerner Sauna](https://www.sauna-koerner.de/en/)
-- Tool: [LYN](https://lynbitcoin.com)
+---
+
+## Deploy
+
+Static HTML. Fork, connect to Netlify, deploy.
+
+Forms submit to Netlify Forms by default. To use a custom endpoint, edit `CONFIG.formEndpoint` in `index.html`.
+
+---
 
 ## License
 
