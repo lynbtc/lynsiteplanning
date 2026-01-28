@@ -7,39 +7,38 @@
     <meta name="description" content="Site qualification tool for bitcoin-heated saunas. one sauna. seven modules. twentyonehundred sites.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><rect width='100%' height='100%' fill='white'/></svg>">
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
-        /* =================================================================
-           LYN Site Planning Tool
-           MIT License - https://github.com/lynbtc/lyn-site-planning-tool
-           ================================================================= */
+        /*
+         * LYN Site Planning Tool
+         * https://github.com/lynbtc/lynsiteplanning
+         * MIT License
+         *
+         * Design principle: every line does work.
+         * If you add code, delete something else.
+         */
         
-        /* ─────────────────────────────────────────────────────────────────
-           Configuration - Edit these values to customize
-           ───────────────────────────────────────────────────────────────── */
+        /* === CONFIGURATION ===
+         * Edit these values to customize colors, spacing, pricing.
+         * Everything else should rarely need to change.
+         */
         :root {
-            /* Colors */
-            --color-black: #0a0a0a;
-            --color-white: #fafafa;
-            --color-gray-100: #f5f5f5;
-            --color-gray-200: #e5e5e5;
-            --color-gray-300: #d4d4d4;
-            --color-gray-400: #a3a3a3;
-            --color-gray-500: #737373;
-            --color-gray-600: #525252;
-            --color-gray-700: #404040;
-            --color-gray-800: #262626;
-            --color-gray-900: #171717;
+            --black: #0a0a0a;
+            --white: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
             
-            /* Typography */
             --font-sans: 'IBM Plex Sans', -apple-system, sans-serif;
             --font-mono: 'IBM Plex Mono', monospace;
             
-            /* Spacing */
             --space-xs: 0.25rem;
             --space-sm: 0.5rem;
             --space-md: 1rem;
@@ -49,535 +48,256 @@
             --space-3xl: 4rem;
             --space-4xl: 6rem;
             
-            /* Layout */
             --max-width: 960px;
-            --border-radius: 2px;
-            
-            /* Transitions */
-            --transition-fast: 150ms ease;
-            --transition-base: 250ms ease;
+            --transition: 150ms ease;
         }
         
-        /* ─────────────────────────────────────────────────────────────────
-           Reset & Base
-           ───────────────────────────────────────────────────────────────── */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        /* === RESET === */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         
-        html {
-            font-size: 16px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+        /* === BASE === */
+        html { font-size: 16px; -webkit-font-smoothing: antialiased; }
         
         body {
             font-family: var(--font-sans);
             font-weight: 300;
             line-height: 1.6;
-            color: var(--color-black);
-            background-color: var(--color-white);
+            color: var(--black);
+            background: var(--white);
             min-height: 100vh;
         }
         
-        /* ─────────────────────────────────────────────────────────────────
-           Typography
-           ───────────────────────────────────────────────────────────────── */
-        h1, h2, h3, h4 {
-            font-weight: 400;
-            line-height: 1.2;
-        }
+        h1, h2, h3 { font-weight: 400; line-height: 1.2; }
+        h1 { font-size: 1.5rem; letter-spacing: -0.02em; }
+        h2 { font-size: 1.125rem; letter-spacing: -0.01em; }
+        h3 { font-size: 1rem; }
         
-        h1 {
-            font-size: 1.5rem;
-            letter-spacing: -0.02em;
-        }
+        p { color: var(--gray-600); }
+        a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+        a:hover { color: var(--gray-500); }
+        small { font-size: 0.875rem; color: var(--gray-500); }
         
-        h2 {
-            font-size: 1.125rem;
-            letter-spacing: -0.01em;
-        }
-        
-        h3 {
-            font-size: 1rem;
-        }
-        
-        p {
-            color: var(--color-gray-600);
-        }
-        
-        a {
-            color: inherit;
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-        
-        a:hover {
-            color: var(--color-gray-500);
-        }
-        
-        small {
-            font-size: 0.875rem;
-            color: var(--color-gray-500);
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Layout
-           ───────────────────────────────────────────────────────────────── */
+        /* === LAYOUT === */
         .container {
             width: 100%;
             max-width: var(--max-width);
             margin: 0 auto;
             padding: var(--space-lg);
         }
-        
         @media (min-width: 768px) {
-            .container {
-                padding: var(--space-2xl);
-            }
+            .container { padding: var(--space-2xl); }
         }
         
-        /* ─────────────────────────────────────────────────────────────────
-           Header
-           ───────────────────────────────────────────────────────────────── */
+        /* === HEADER === */
         .header {
             padding: var(--space-xl) 0;
-            border-bottom: 1px solid var(--color-gray-200);
+            border-bottom: 1px solid var(--gray-200);
             margin-bottom: var(--space-2xl);
         }
-        
         .logo {
             font-family: var(--font-sans);
             font-weight: 500;
             font-size: 1.25rem;
             letter-spacing: -0.03em;
             text-decoration: none;
-            color: var(--color-black);
+            color: var(--black);
         }
-        
-        .logo:hover {
-            color: var(--color-black);
-        }
-        
+        .logo:hover { color: var(--black); }
         .header-subtitle {
             font-family: var(--font-mono);
             font-size: 0.75rem;
-            color: var(--color-gray-500);
+            color: var(--gray-500);
             margin-top: var(--space-xs);
-            text-transform: lowercase;
         }
         
-        /* ─────────────────────────────────────────────────────────────────
-           Hero
-           ───────────────────────────────────────────────────────────────── */
-        .hero {
-            margin-bottom: var(--space-3xl);
-        }
-        
+        /* === HERO === */
+        .hero { margin-bottom: var(--space-3xl); }
         .hero-image {
             width: 100%;
-            height: auto;
             aspect-ratio: 16 / 9;
             object-fit: cover;
             margin-bottom: var(--space-xl);
         }
-        
-        .hero-title {
-            font-size: 1.25rem;
-            margin-bottom: var(--space-sm);
-        }
-        
+        .hero-title { font-size: 1.25rem; margin-bottom: var(--space-sm); }
         .hero-tagline {
             font-family: var(--font-mono);
             font-size: 0.875rem;
-            color: var(--color-gray-500);
+            color: var(--gray-500);
         }
         
-        /* ─────────────────────────────────────────────────────────────────
-           Steps / Screens
-           ───────────────────────────────────────────────────────────────── */
-        .step {
-            display: none;
-            animation: fadeIn var(--transition-base);
-        }
-        
-        .step.active {
-            display: block;
-        }
-        
+        /* === STEPS ===
+         * User flow: intro → site-type → constraints → modules → thermal → summary → form
+         * Only one step visible at a time. Steps animate in.
+         */
+        .step { display: none; animation: fadeIn 250ms ease; }
+        .step.active { display: block; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .step-title { margin-bottom: var(--space-lg); }
+        .step-description { margin-bottom: var(--space-xl); max-width: 480px; }
         
-        .step-title {
-            margin-bottom: var(--space-lg);
-        }
-        
-        .step-description {
-            margin-bottom: var(--space-xl);
-            max-width: 480px;
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Choice Cards (Audience, Site Type)
-           ───────────────────────────────────────────────────────────────── */
+        /* === CHOICE CARDS ===
+         * Used for audience (private/professional) and site type (outdoor/indoor)
+         */
         .choices {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: var(--space-md);
             margin-bottom: var(--space-2xl);
         }
-        
         .choice {
-            border: 1px solid var(--color-gray-300);
+            border: 1px solid var(--gray-300);
             padding: var(--space-xl);
             cursor: pointer;
-            transition: all var(--transition-fast);
-            background: var(--color-white);
+            transition: all var(--transition);
+            background: var(--white);
         }
+        .choice:hover { border-color: var(--black); }
+        .choice.selected { border-color: var(--black); background: var(--gray-100); }
+        .choice-title { font-weight: 400; margin-bottom: var(--space-xs); }
+        .choice-description { font-size: 0.875rem; color: var(--gray-500); }
         
-        .choice:hover {
-            border-color: var(--color-black);
-        }
-        
-        .choice.selected {
-            border-color: var(--color-black);
-            background: var(--color-gray-100);
-        }
-        
-        .choice-title {
-            font-weight: 400;
-            margin-bottom: var(--space-xs);
-        }
-        
-        .choice-description {
-            font-size: 0.875rem;
-            color: var(--color-gray-500);
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Module Cards
-           ───────────────────────────────────────────────────────────────── */
+        /* === MODULE CARDS ===
+         * M1 is required and always selected. Others are toggleable.
+         */
         .modules {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: var(--space-lg);
             margin-bottom: var(--space-2xl);
         }
-        
         .module {
-            border: 1px solid var(--color-gray-200);
-            background: var(--color-white);
+            border: 1px solid var(--gray-200);
+            background: var(--white);
             cursor: pointer;
-            transition: all var(--transition-fast);
-            position: relative;
+            transition: all var(--transition);
         }
-        
-        .module:hover {
-            border-color: var(--color-gray-400);
-        }
-        
-        .module.selected {
-            border-color: var(--color-black);
-        }
-        
-        .module.required {
-            cursor: default;
-        }
-        
+        .module:hover { border-color: var(--gray-400); }
+        .module.selected { border-color: var(--black); }
+        .module.required { cursor: default; }
         .module-image {
             width: 100%;
-            height: auto;
             aspect-ratio: 4 / 3;
             object-fit: contain;
-            background: var(--color-gray-100);
+            background: var(--gray-100);
             padding: var(--space-md);
         }
-        
-        .module-content {
-            padding: var(--space-lg);
-        }
-        
+        .module-content { padding: var(--space-lg); }
         .module-header {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: var(--space-sm);
         }
-        
-        .module-name {
-            font-family: var(--font-mono);
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
-        
+        .module-name { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 500; }
         .module-check {
             width: 18px;
             height: 18px;
-            border: 1px solid var(--color-gray-300);
+            border: 1px solid var(--gray-300);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.75rem;
-            flex-shrink: 0;
-            transition: all var(--transition-fast);
+            transition: all var(--transition);
         }
-        
         .module.selected .module-check {
-            background: var(--color-black);
-            border-color: var(--color-black);
-            color: var(--color-white);
+            background: var(--black);
+            border-color: var(--black);
+            color: var(--white);
         }
+        .module-description { font-size: 0.875rem; color: var(--gray-500); margin-bottom: var(--space-md); }
+        .module-price { font-family: var(--font-mono); font-size: 0.875rem; }
+        .module-note { font-size: 0.75rem; color: var(--gray-400); font-style: italic; }
         
-        .module-description {
-            font-size: 0.875rem;
-            color: var(--color-gray-500);
-            margin-bottom: var(--space-md);
-        }
-        
-        .module-price {
-            font-family: var(--font-mono);
-            font-size: 0.875rem;
-        }
-        
-        .module-note {
-            font-size: 0.75rem;
-            color: var(--color-gray-400);
-            font-style: italic;
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Constraints (Radio/Checkbox Groups)
-           ───────────────────────────────────────────────────────────────── */
-        .constraint-group {
-            margin-bottom: var(--space-xl);
-        }
-        
-        .constraint-label {
-            font-size: 0.875rem;
-            margin-bottom: var(--space-sm);
-            display: block;
-        }
-        
-        .constraint-sublabel {
-            font-size: 0.75rem;
-            color: var(--color-gray-500);
-            margin-bottom: var(--space-md);
-            display: block;
-        }
-        
-        .constraint-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--space-sm);
-        }
-        
+        /* === CONSTRAINTS ===
+         * Radio-style selection groups for site requirements
+         */
+        .constraint-group { margin-bottom: var(--space-xl); }
+        .constraint-label { font-size: 0.875rem; margin-bottom: var(--space-sm); display: block; }
+        .constraint-sublabel { font-size: 0.75rem; color: var(--gray-500); margin-bottom: var(--space-md); display: block; }
+        .constraint-options { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
         .constraint-option {
-            border: 1px solid var(--color-gray-300);
+            border: 1px solid var(--gray-300);
             padding: var(--space-sm) var(--space-md);
             cursor: pointer;
             font-size: 0.875rem;
-            transition: all var(--transition-fast);
+            transition: all var(--transition);
         }
-        
-        .constraint-option:hover {
-            border-color: var(--color-black);
-        }
-        
+        .constraint-option:hover { border-color: var(--black); }
         .constraint-option.selected {
-            border-color: var(--color-black);
-            background: var(--color-black);
-            color: var(--color-white);
+            border-color: var(--black);
+            background: var(--black);
+            color: var(--white);
         }
         
-        /* ─────────────────────────────────────────────────────────────────
-           M4 Thermal Section
-           ───────────────────────────────────────────────────────────────── */
+        /* === THERMAL SECTION ===
+         * M4 gets special treatment — it's the bitcoin integration pitch
+         */
         .thermal-section {
-            background: var(--color-gray-100);
+            background: var(--gray-100);
             padding: var(--space-xl);
             margin-bottom: var(--space-2xl);
         }
+        .thermal-title { font-family: var(--font-mono); font-size: 1rem; margin-bottom: var(--space-lg); }
+        .thermal-copy { font-size: 0.9375rem; line-height: 1.7; margin-bottom: var(--space-lg); max-width: 520px; }
+        .thermal-copy p { margin-bottom: var(--space-md); color: var(--gray-700); }
+        .thermal-actions { display: flex; gap: var(--space-md); flex-wrap: wrap; }
         
-        .thermal-title {
-            font-family: var(--font-mono);
-            font-size: 1rem;
-            margin-bottom: var(--space-lg);
-        }
-        
-        .thermal-copy {
-            font-size: 0.9375rem;
-            line-height: 1.7;
-            margin-bottom: var(--space-lg);
-            max-width: 520px;
-        }
-        
-        .thermal-copy p {
-            margin-bottom: var(--space-md);
-            color: var(--color-gray-700);
-        }
-        
-        .thermal-actions {
-            display: flex;
-            gap: var(--space-md);
-            flex-wrap: wrap;
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Summary
-           ───────────────────────────────────────────────────────────────── */
-        .summary {
-            margin-bottom: var(--space-2xl);
-        }
-        
-        .summary-title {
-            margin-bottom: var(--space-lg);
-        }
-        
-        .summary-section {
-            margin-bottom: var(--space-xl);
-        }
-        
+        /* === SUMMARY === */
+        .summary { margin-bottom: var(--space-2xl); }
+        .summary-title { margin-bottom: var(--space-lg); }
+        .summary-section { margin-bottom: var(--space-xl); }
         .summary-section-title {
             font-family: var(--font-mono);
             font-size: 0.75rem;
-            color: var(--color-gray-500);
+            color: var(--gray-500);
             text-transform: uppercase;
             letter-spacing: 0.05em;
             margin-bottom: var(--space-sm);
         }
-        
-        .summary-site {
-            font-size: 0.9375rem;
-            color: var(--color-gray-600);
-        }
-        
-        .summary-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .summary-table tr {
-            border-bottom: 1px solid var(--color-gray-200);
-        }
-        
-        .summary-table tr:last-child {
-            border-bottom: none;
-        }
-        
-        .summary-table td {
-            padding: var(--space-sm) 0;
-            font-size: 0.9375rem;
-        }
-        
-        .summary-table td:last-child {
-            text-align: right;
-            font-family: var(--font-mono);
-            font-size: 0.875rem;
-        }
-        
-        .summary-table .total td {
-            padding-top: var(--space-md);
-            font-weight: 500;
-        }
-        
-        .summary-note {
-            font-size: 0.8125rem;
-            color: var(--color-gray-500);
-            margin-top: var(--space-md);
-        }
-        
+        .summary-site { font-size: 0.9375rem; color: var(--gray-600); }
+        .summary-table { width: 100%; border-collapse: collapse; }
+        .summary-table tr { border-bottom: 1px solid var(--gray-200); }
+        .summary-table tr:last-child { border-bottom: none; }
+        .summary-table td { padding: var(--space-sm) 0; font-size: 0.9375rem; }
+        .summary-table td:last-child { text-align: right; font-family: var(--font-mono); font-size: 0.875rem; }
+        .summary-table .total td { padding-top: var(--space-md); font-weight: 500; }
+        .summary-note { font-size: 0.8125rem; color: var(--gray-500); margin-top: var(--space-md); }
         .summary-indoor-note {
-            background: var(--color-gray-100);
+            background: var(--gray-100);
             padding: var(--space-lg);
             font-size: 0.9375rem;
-            color: var(--color-gray-600);
+            color: var(--gray-600);
         }
-        
         .summary-reference {
             margin-top: var(--space-md);
             font-family: var(--font-mono);
             font-size: 0.8125rem;
-            color: var(--color-gray-500);
+            color: var(--gray-500);
         }
         
-        /* ─────────────────────────────────────────────────────────────────
-           Form
-           ───────────────────────────────────────────────────────────────── */
-        .form-section {
-            margin-bottom: var(--space-2xl);
-        }
-        
-        .form-title {
-            margin-bottom: var(--space-lg);
-        }
-        
-        .form-row {
-            margin-bottom: var(--space-md);
-        }
-        
-        .form-label {
-            display: block;
-            font-size: 0.875rem;
-            margin-bottom: var(--space-xs);
-            color: var(--color-gray-600);
-        }
-        
+        /* === FORM === */
+        .form-section { margin-bottom: var(--space-2xl); }
+        .form-title { margin-bottom: var(--space-lg); }
+        .form-row { margin-bottom: var(--space-md); }
+        .form-label { display: block; font-size: 0.875rem; margin-bottom: var(--space-xs); color: var(--gray-600); }
         .form-input {
             width: 100%;
             max-width: 400px;
             padding: var(--space-sm) var(--space-md);
-            border: 1px solid var(--color-gray-300);
-            background: var(--color-white);
+            border: 1px solid var(--gray-300);
+            background: var(--white);
             font-family: var(--font-sans);
             font-size: 1rem;
-            transition: border-color var(--transition-fast);
+            transition: border-color var(--transition);
         }
+        .form-input:focus { outline: none; border-color: var(--black); }
+        .form-input::placeholder { color: var(--gray-400); }
+        textarea.form-input { min-height: 100px; resize: vertical; }
         
-        .form-input:focus {
-            outline: none;
-            border-color: var(--color-black);
-        }
-        
-        .form-input::placeholder {
-            color: var(--color-gray-400);
-        }
-        
-        textarea.form-input {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .timeline-options {
-            display: flex;
-            gap: var(--space-sm);
-            flex-wrap: wrap;
-        }
-        
-        .timeline-option {
-            border: 1px solid var(--color-gray-300);
-            padding: var(--space-sm) var(--space-md);
-            cursor: pointer;
-            font-size: 0.875rem;
-            transition: all var(--transition-fast);
-        }
-        
-        .timeline-option:hover {
-            border-color: var(--color-black);
-        }
-        
-        .timeline-option.selected {
-            border-color: var(--color-black);
-            background: var(--color-black);
-            color: var(--color-white);
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Buttons
-           ───────────────────────────────────────────────────────────────── */
+        /* === BUTTONS === */
         .btn {
             display: inline-block;
             padding: var(--space-sm) var(--space-xl);
@@ -586,168 +306,75 @@
             font-weight: 400;
             text-decoration: none;
             cursor: pointer;
-            border: 1px solid var(--color-black);
-            background: var(--color-white);
-            color: var(--color-black);
-            transition: all var(--transition-fast);
+            border: 1px solid var(--black);
+            background: var(--white);
+            color: var(--black);
+            transition: all var(--transition);
         }
+        .btn:hover { background: var(--black); color: var(--white); }
+        .btn-primary { background: var(--black); color: var(--white); }
+        .btn-primary:hover { background: var(--gray-700); }
+        .btn-ghost { border-color: var(--gray-300); color: var(--gray-600); }
+        .btn-ghost:hover { border-color: var(--black); background: var(--white); color: var(--black); }
         
-        .btn:hover {
-            background: var(--color-black);
-            color: var(--color-white);
-        }
-        
-        .btn-primary {
-            background: var(--color-black);
-            color: var(--color-white);
-        }
-        
-        .btn-primary:hover {
-            background: var(--color-gray-800);
-        }
-        
-        .btn-ghost {
-            border-color: var(--color-gray-300);
-            color: var(--color-gray-600);
-        }
-        
-        .btn-ghost:hover {
-            border-color: var(--color-black);
-            background: var(--color-white);
-            color: var(--color-black);
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Navigation
-           ───────────────────────────────────────────────────────────────── */
+        /* === NAVIGATION === */
         .nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding-top: var(--space-xl);
-            border-top: 1px solid var(--color-gray-200);
+            border-top: 1px solid var(--gray-200);
             margin-top: var(--space-2xl);
         }
-        
         .nav-back {
             font-size: 0.875rem;
-            color: var(--color-gray-500);
+            color: var(--gray-500);
             cursor: pointer;
             text-decoration: none;
-            transition: color var(--transition-fast);
+            transition: color var(--transition);
         }
+        .nav-back:hover { color: var(--black); }
         
-        .nav-back:hover {
-            color: var(--color-black);
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Footer
-           ───────────────────────────────────────────────────────────────── */
+        /* === FOOTER === */
         .footer {
             margin-top: var(--space-4xl);
             padding: var(--space-xl) 0;
-            border-top: 1px solid var(--color-gray-200);
+            border-top: 1px solid var(--gray-200);
         }
+        .footer-content { font-size: 0.8125rem; color: var(--gray-500); }
+        .footer-content p { color: var(--gray-500); margin-bottom: var(--space-xs); }
+        .footer-links { margin-top: var(--space-md); }
+        .footer-links a { color: var(--gray-500); margin-right: var(--space-md); }
+        .footer-links a:hover { color: var(--black); }
         
-        .footer-content {
-            font-size: 0.8125rem;
-            color: var(--color-gray-500);
-        }
+        /* === SUCCESS === */
+        .success { text-align: center; padding: var(--space-4xl) 0; }
+        .success-title { font-size: 1.25rem; margin-bottom: var(--space-md); }
+        .success-message { max-width: 400px; margin: 0 auto; }
         
-        .footer-content p {
-            color: var(--color-gray-500);
-            margin-bottom: var(--space-xs);
-        }
+        /* === UTILITIES === */
+        .hidden { display: none !important; }
+        .mt-xl { margin-top: var(--space-xl); }
+        .mt-lg { margin-top: var(--space-lg); }
         
-        .footer-links {
-            margin-top: var(--space-md);
-        }
-        
-        .footer-links a {
-            color: var(--color-gray-500);
-            margin-right: var(--space-md);
-        }
-        
-        .footer-links a:hover {
-            color: var(--color-black);
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Success State
-           ───────────────────────────────────────────────────────────────── */
-        .success {
-            text-align: center;
-            padding: var(--space-4xl) 0;
-        }
-        
-        .success-title {
-            font-size: 1.25rem;
-            margin-bottom: var(--space-md);
-        }
-        
-        .success-message {
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Utilities
-           ───────────────────────────────────────────────────────────────── */
-        .hidden {
-            display: none !important;
-        }
-        
-        .mt-lg {
-            margin-top: var(--space-lg);
-        }
-        
-        .mt-xl {
-            margin-top: var(--space-xl);
-        }
-        
-        .mb-lg {
-            margin-bottom: var(--space-lg);
-        }
-        
-        /* ─────────────────────────────────────────────────────────────────
-           Responsive
-           ───────────────────────────────────────────────────────────────── */
+        /* === RESPONSIVE === */
         @media (max-width: 600px) {
-            .choices {
-                grid-template-columns: 1fr;
-            }
-            
-            .modules {
-                grid-template-columns: 1fr;
-            }
-            
-            .nav {
-                flex-direction: column-reverse;
-                gap: var(--space-md);
-                align-items: stretch;
-                text-align: center;
-            }
-            
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
+            .choices, .modules { grid-template-columns: 1fr; }
+            .nav { flex-direction: column-reverse; gap: var(--space-md); align-items: stretch; text-align: center; }
+            .btn { width: 100%; text-align: center; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <header class="header">
             <a href="./" class="logo">LYN.</a>
             <div class="header-subtitle">site planning</div>
         </header>
         
-        <!-- Main Content -->
         <main>
-            <!-- Step 0: Hero / Intro -->
-            <section class="step active" data-step="0">
+            <!-- STEP: Intro -->
+            <section class="step active" data-step="intro">
                 <div class="hero">
                     <img src="./images/hero.png" alt="LYN sauna by the coast" class="hero-image">
                     <h1 class="hero-title">one of twentyonehundred</h1>
@@ -766,8 +393,8 @@
                 </div>
             </section>
             
-            <!-- Step 1: Site Type -->
-            <section class="step" data-step="1">
+            <!-- STEP: Site Type -->
+            <section class="step" data-step="site-type">
                 <div class="choices">
                     <div class="choice" data-site="outdoor">
                         <h3 class="choice-title">outdoor</h3>
@@ -780,13 +407,13 @@
                 </div>
                 
                 <nav class="nav">
-                    <span class="nav-back" onclick="goBack()">← back</span>
+                    <span class="nav-back" data-action="back">← back</span>
                     <span></span>
                 </nav>
             </section>
             
-            <!-- Step 2: Site Constraints (Outdoor) -->
-            <section class="step" data-step="2">
+            <!-- STEP: Constraints (Outdoor) -->
+            <section class="step" data-step="constraints">
                 <h2 class="step-title">site constraints</h2>
                 <p class="step-description">help us understand your site. if you're unsure, we'll assess in the site review.</p>
                 
@@ -822,19 +449,19 @@
                 </div>
                 
                 <nav class="nav">
-                    <span class="nav-back" onclick="goBack()">← back</span>
-                    <button class="btn btn-primary" onclick="nextStep()">continue</button>
+                    <span class="nav-back" data-action="back">← back</span>
+                    <button class="btn btn-primary" data-action="next">continue</button>
                 </nav>
             </section>
             
-            <!-- Step 2b: Indoor Context (Private) -->
-            <section class="step" data-step="2b-private">
+            <!-- STEP: Indoor Context (Private) -->
+            <section class="step" data-step="indoor-private">
                 <h2 class="step-title">tell us about the project</h2>
                 <p class="step-description">indoor installations are bespoke. same materials. same design. built into your architecture.</p>
                 
                 <div class="constraint-group">
                     <label class="constraint-label">project type</label>
-                    <div class="constraint-options" data-constraint="project-type">
+                    <div class="constraint-options" data-constraint="projectType">
                         <div class="constraint-option" data-value="house">house</div>
                         <div class="constraint-option" data-value="apartment">apartment</div>
                         <div class="constraint-option" data-value="other">other</div>
@@ -843,23 +470,23 @@
                 
                 <div class="form-row mt-xl">
                     <label class="form-label">brief description (optional)</label>
-                    <textarea class="form-input" id="project-description-private" placeholder="tell us about the space..."></textarea>
+                    <textarea class="form-input" data-field="projectDescription" placeholder="tell us about the space..."></textarea>
                 </div>
                 
                 <nav class="nav">
-                    <span class="nav-back" onclick="goBack()">← back</span>
-                    <button class="btn btn-primary" onclick="nextStep()">continue</button>
+                    <span class="nav-back" data-action="back">← back</span>
+                    <button class="btn btn-primary" data-action="next">continue</button>
                 </nav>
             </section>
             
-            <!-- Step 2b: Indoor Context (Professional) -->
-            <section class="step" data-step="2b-professional">
+            <!-- STEP: Indoor Context (Professional) -->
+            <section class="step" data-step="indoor-professional">
                 <h2 class="step-title">tell us about the project</h2>
                 <p class="step-description">indoor installations are bespoke. same materials. same design. built into your architecture.</p>
                 
                 <div class="constraint-group">
                     <label class="constraint-label">project type</label>
-                    <div class="constraint-options" data-constraint="project-type">
+                    <div class="constraint-options" data-constraint="projectType">
                         <div class="constraint-option" data-value="residence">residence</div>
                         <div class="constraint-option" data-value="hotel">hotel</div>
                         <div class="constraint-option" data-value="spa">spa</div>
@@ -869,17 +496,17 @@
                 
                 <div class="form-row mt-xl">
                     <label class="form-label">brief description (optional)</label>
-                    <textarea class="form-input" id="project-description-professional" placeholder="tell us about the space..."></textarea>
+                    <textarea class="form-input" data-field="projectDescription" placeholder="tell us about the space..."></textarea>
                 </div>
                 
                 <nav class="nav">
-                    <span class="nav-back" onclick="goBack()">← back</span>
-                    <button class="btn btn-primary" onclick="nextStep()">continue</button>
+                    <span class="nav-back" data-action="back">← back</span>
+                    <button class="btn btn-primary" data-action="next">continue</button>
                 </nav>
             </section>
             
-            <!-- Step 3: Modules (Outdoor) -->
-            <section class="step" data-step="3">
+            <!-- STEP: Modules -->
+            <section class="step" data-step="modules">
                 <h2 class="step-title">modules</h2>
                 <p class="step-description">m1 sauna is the core. add modules to extend the ritual.</p>
                 
@@ -959,63 +586,59 @@
                 </div>
                 
                 <nav class="nav">
-                    <span class="nav-back" onclick="goBack()">← back</span>
-                    <button class="btn btn-primary" onclick="nextStep()">continue</button>
+                    <span class="nav-back" data-action="back">← back</span>
+                    <button class="btn btn-primary" data-action="next">continue</button>
                 </nav>
             </section>
             
-            <!-- Step 4: M4 Thermal Module -->
-            <section class="step" data-step="4">
+            <!-- STEP: Thermal -->
+            <section class="step" data-step="thermal">
                 <div class="thermal-section">
                     <h2 class="thermal-title">m4 thermal module</h2>
                     <div class="thermal-copy">
                         <p>bitcoin mining hardware as heat source.</p>
                         <p>same electricity — used twice.<br>
-                        <span class="thermal-benefit">heat for the space. bitcoin for your savings.</span></p>
+                        <span id="thermal-benefit">heat for the space. bitcoin for your savings.</span></p>
                         <p>the bench is prepped. bespoke integration also possible.</p>
                         <p>we assess feasibility in the site review.</p>
                     </div>
                     <div class="thermal-actions">
-                        <button class="btn btn-ghost" onclick="skipThermal()">skip</button>
-                        <button class="btn btn-primary" onclick="addThermal()">add m4 · €3,111</button>
+                        <button class="btn btn-ghost" data-action="skip-thermal">skip</button>
+                        <button class="btn btn-primary" data-action="add-thermal">add m4 · €3,111</button>
                     </div>
                 </div>
                 
                 <nav class="nav">
-                    <span class="nav-back" onclick="goBack()">← back</span>
+                    <span class="nav-back" data-action="back">← back</span>
                     <span></span>
                 </nav>
             </section>
             
-            <!-- Step 5: Summary -->
-            <section class="step" data-step="5">
+            <!-- STEP: Summary -->
+            <section class="step" data-step="summary">
                 <div class="summary">
                     <h2 class="summary-title">your configuration</h2>
                     
-                    <!-- Outdoor Summary -->
                     <div id="outdoor-summary">
                         <div class="summary-section">
                             <div class="summary-section-title">site</div>
-                            <p class="summary-site" id="site-summary">outdoor · loading...</p>
+                            <p class="summary-site" id="site-summary"></p>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-section-title">modules</div>
                             <table class="summary-table">
-                                <tbody id="modules-summary">
-                                    <!-- Populated by JS -->
-                                </tbody>
+                                <tbody id="modules-summary"></tbody>
                             </table>
                         </div>
                         
                         <p class="summary-note">pro forma. final pricing confirmed in site review.</p>
                     </div>
                     
-                    <!-- Indoor Summary -->
                     <div id="indoor-summary" class="hidden">
                         <div class="summary-section">
                             <div class="summary-section-title">project</div>
-                            <p class="summary-site" id="indoor-site-summary">indoor · loading...</p>
+                            <p class="summary-site" id="indoor-site-summary"></p>
                         </div>
                         
                         <div class="summary-indoor-note">
@@ -1027,29 +650,24 @@
                 </div>
                 
                 <nav class="nav">
-                    <span class="nav-back" onclick="goBack()">← back</span>
-                    <button class="btn btn-primary" onclick="nextStep()">continue</button>
+                    <span class="nav-back" data-action="back">← back</span>
+                    <button class="btn btn-primary" data-action="next">continue</button>
                 </nav>
             </section>
             
-            <!-- Step 6: Lead Capture -->
-            <section class="step" data-step="6">
+            <!-- STEP: Form -->
+            <section class="step" data-step="form">
                 <h2 class="form-title">request site review</h2>
                 
                 <form id="lead-form" name="site-review" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                    <!-- Honeypot for spam -->
-                    <p class="hidden">
-                        <label>Don't fill this out: <input name="bot-field"></label>
-                    </p>
+                    <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
                     
-                    <!-- Hidden fields for configuration data -->
                     <input type="hidden" name="form-name" value="site-review">
                     <input type="hidden" name="audience" id="form-audience">
                     <input type="hidden" name="site-type" id="form-site-type">
                     <input type="hidden" name="configuration" id="form-configuration">
                     <input type="hidden" name="total" id="form-total">
                     
-                    <!-- Common fields -->
                     <div class="form-row">
                         <label class="form-label">name</label>
                         <input type="text" class="form-input" name="name" required>
@@ -1065,7 +683,6 @@
                         <input type="text" class="form-input" name="location" placeholder="city, country" required>
                     </div>
                     
-                    <!-- Professional-only fields -->
                     <div id="professional-fields" class="hidden">
                         <div class="form-row">
                             <label class="form-label">company</label>
@@ -1079,10 +696,10 @@
                         
                         <div class="form-row">
                             <label class="form-label">timeline</label>
-                            <div class="timeline-options">
-                                <div class="timeline-option" data-value="3 months">3 months</div>
-                                <div class="timeline-option" data-value="6 months">6 months</div>
-                                <div class="timeline-option" data-value="12+ months">12+ months</div>
+                            <div class="constraint-options" data-constraint="timeline">
+                                <div class="constraint-option" data-value="3 months">3 months</div>
+                                <div class="constraint-option" data-value="6 months">6 months</div>
+                                <div class="constraint-option" data-value="12+ months">12+ months</div>
                             </div>
                             <input type="hidden" name="timeline" id="form-timeline">
                         </div>
@@ -1096,12 +713,12 @@
                 </form>
                 
                 <nav class="nav">
-                    <span class="nav-back" onclick="goBack()">← back</span>
+                    <span class="nav-back" data-action="back">← back</span>
                     <span></span>
                 </nav>
             </section>
             
-            <!-- Success -->
+            <!-- STEP: Success -->
             <section class="step" data-step="success">
                 <div class="success">
                     <h2 class="success-title">request received</h2>
@@ -1111,7 +728,6 @@
             </section>
         </main>
         
-        <!-- Footer -->
         <footer class="footer">
             <div class="footer-content">
                 <p>design by <a href="https://www.studiogroundwork.com/" target="_blank">groundwork studio</a> · manufacture by <a href="https://www.sauna-koerner.de/en/" target="_blank">koerner sauna</a></p>
@@ -1125,102 +741,93 @@
     </div>
     
     <script>
-        /* =================================================================
-           LYN Site Planning Tool - JavaScript
-           MIT License
-           ================================================================= */
+        /*
+         * LYN Site Planning Tool - JavaScript
+         * 
+         * Architecture:
+         * - CONFIG: all customizable values (prices, endpoints)
+         * - MODULES: module metadata (names, descriptions, prices)
+         * - state: single source of truth for user selections
+         * - Event delegation: one listener per action type, not per element
+         * 
+         * Flow: intro → site-type → constraints/indoor → modules → thermal → summary → form → success
+         */
         
-        // ─────────────────────────────────────────────────────────────────
-        // Configuration - Edit these values to customize pricing
-        // ─────────────────────────────────────────────────────────────────
+        // === CONFIGURATION ===
         const CONFIG = {
-            prices: {
-                m1: 55555,
-                m2: 11111,
-                m3: 15111,
-                m4: 3111,
-                m5: 3111,
-                m6: 2111,
-                m7: 12111
-            },
-            deliveryInstall: 7777,
             currency: '€',
-            formEndpoint: null // Set to override Netlify Forms
+            deliveryInstall: 7777,
+            formEndpoint: null // null = Netlify Forms, or set custom URL
         };
         
-        // ─────────────────────────────────────────────────────────────────
-        // State
-        // ─────────────────────────────────────────────────────────────────
+        // === MODULE DATA ===
+        // Single source of truth for module information
+        const MODULES = {
+            m1: { name: 'm1 sauna', price: 55555 },
+            m2: { name: 'm2 swimming bridge', price: 11111 },
+            m3: { name: 'm3 changing room', price: 15111 },
+            m4: { name: 'm4 thermal module', price: 3111 },
+            m5: { name: 'm5 outdoor shower', price: 3111 },
+            m6: { name: 'm6 storage', price: 2111 },
+            m7: { name: 'm7 cold plunge', price: 12111 }
+        };
+        
+        // === STEP FLOWS ===
+        // Defines valid step sequences based on user choices
+        const FLOWS = {
+            outdoor: ['intro', 'site-type', 'constraints', 'modules', 'thermal', 'summary', 'form'],
+            'indoor-private': ['intro', 'site-type', 'indoor-private', 'thermal', 'summary', 'form'],
+            'indoor-professional': ['intro', 'site-type', 'indoor-professional', 'thermal', 'summary', 'form']
+        };
+        
+        // === STATE ===
         const state = {
-            currentStep: 0,
-            audience: null,           // 'private' or 'professional'
-            siteType: null,           // 'outdoor' or 'indoor'
-            constraints: {
-                crane: null,
-                power: null,
-                foundation: null,
-                projectType: null,
-                projectDescription: ''
-            },
-            modules: ['m1'],          // m1 always included
+            step: 'intro',
+            audience: null,        // 'private' | 'professional'
+            siteType: null,        // 'outdoor' | 'indoor'
+            constraints: {},       // crane, power, foundation, projectType, projectDescription
+            modules: ['m1'],       // m1 always included
             includeThermal: false,
             timeline: null
         };
         
-        // ─────────────────────────────────────────────────────────────────
-        // Navigation
-        // ─────────────────────────────────────────────────────────────────
+        // === NAVIGATION ===
+        function getFlow() {
+            if (state.siteType === 'outdoor') return FLOWS.outdoor;
+            if (state.siteType === 'indoor') {
+                return state.audience === 'private' ? FLOWS['indoor-private'] : FLOWS['indoor-professional'];
+            }
+            return ['intro', 'site-type']; // default before site type selected
+        }
+        
         function showStep(stepId) {
-            document.querySelectorAll('.step').forEach(step => {
-                step.classList.remove('active');
-            });
+            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             const target = document.querySelector(`[data-step="${stepId}"]`);
             if (target) {
                 target.classList.add('active');
+                state.step = stepId;
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
-        
-        function nextStep() {
-            const stepMap = getStepMap();
-            const currentIndex = stepMap.indexOf(state.currentStep);
-            if (currentIndex < stepMap.length - 1) {
-                state.currentStep = stepMap[currentIndex + 1];
-                showStep(state.currentStep);
                 updateUI();
             }
         }
         
-        function goBack() {
-            const stepMap = getStepMap();
-            const currentIndex = stepMap.indexOf(state.currentStep);
+        function nextStep() {
+            const flow = getFlow();
+            const currentIndex = flow.indexOf(state.step);
+            if (currentIndex < flow.length - 1) {
+                showStep(flow[currentIndex + 1]);
+            }
+        }
+        
+        function prevStep() {
+            const flow = getFlow();
+            const currentIndex = flow.indexOf(state.step);
             if (currentIndex > 0) {
-                state.currentStep = stepMap[currentIndex - 1];
-                showStep(state.currentStep);
+                showStep(flow[currentIndex - 1]);
             }
         }
         
-        function getStepMap() {
-            // Dynamic step order based on selections
-            const steps = [0, 1];
-            
-            if (state.siteType === 'outdoor') {
-                steps.push(2, 3, 4, 5, 6);
-            } else if (state.siteType === 'indoor') {
-                // Different indoor step based on audience
-                if (state.audience === 'private') {
-                    steps.push('2b-private', 4, 5, 6);
-                } else {
-                    steps.push('2b-professional', 4, 5, 6);
-                }
-            }
-            
-            return steps;
-        }
-        
-        // ─────────────────────────────────────────────────────────────────
-        // UI Updates
-        // ─────────────────────────────────────────────────────────────────
+        // === UI UPDATES ===
         function updateUI() {
             updateThermalCopy();
             updateSummary();
@@ -1228,119 +835,62 @@
         }
         
         function updateThermalCopy() {
-            const benefitEl = document.querySelector('.thermal-benefit');
-            if (benefitEl) {
-                if (state.audience === 'private') {
-                    benefitEl.textContent = 'heat for the space. bitcoin for your savings.';
-                } else {
-                    benefitEl.textContent = 'heat for the space. revenue for the project.';
-                }
+            const el = document.getElementById('thermal-benefit');
+            if (el) {
+                el.textContent = state.audience === 'professional'
+                    ? 'heat for the space. revenue for the project.'
+                    : 'heat for the space. bitcoin for your savings.';
             }
         }
         
         function updateSummary() {
-            const outdoorSummary = document.getElementById('outdoor-summary');
-            const indoorSummary = document.getElementById('indoor-summary');
+            const outdoorEl = document.getElementById('outdoor-summary');
+            const indoorEl = document.getElementById('indoor-summary');
             
             if (state.siteType === 'outdoor') {
-                outdoorSummary.classList.remove('hidden');
-                indoorSummary.classList.add('hidden');
-                updateOutdoorSummary();
+                outdoorEl.classList.remove('hidden');
+                indoorEl.classList.add('hidden');
+                
+                // Site info
+                const parts = ['outdoor', state.constraints.foundation, 
+                    `crane: ${state.constraints.crane || '—'}`,
+                    `power: ${state.constraints.power || '—'}`
+                ].filter(Boolean);
+                document.getElementById('site-summary').textContent = parts.join(' · ');
+                
+                // Modules table
+                const tbody = document.getElementById('modules-summary');
+                tbody.innerHTML = '';
+                let total = 0;
+                
+                const allModules = state.includeThermal && !state.modules.includes('m4')
+                    ? [...state.modules, 'm4']
+                    : state.modules;
+                
+                allModules.forEach(id => {
+                    const mod = MODULES[id];
+                    total += mod.price;
+                    tbody.innerHTML += `<tr><td>${mod.name}</td><td>${CONFIG.currency}${mod.price.toLocaleString()}</td></tr>`;
+                });
+                
+                total += CONFIG.deliveryInstall;
+                tbody.innerHTML += `<tr><td>delivery + install (estimate)</td><td>${CONFIG.currency}${CONFIG.deliveryInstall.toLocaleString()}</td></tr>`;
+                tbody.innerHTML += `<tr class="total"><td>indicative total</td><td>${CONFIG.currency}${total.toLocaleString()}</td></tr>`;
             } else {
-                outdoorSummary.classList.add('hidden');
-                indoorSummary.classList.remove('hidden');
-                updateIndoorSummary();
+                outdoorEl.classList.add('hidden');
+                indoorEl.classList.remove('hidden');
+                
+                const parts = ['indoor', state.constraints.projectType,
+                    state.includeThermal ? 'thermal module: interested' : ''
+                ].filter(Boolean);
+                document.getElementById('indoor-site-summary').textContent = parts.join(' · ');
             }
-        }
-        
-        function updateOutdoorSummary() {
-            // Site info
-            const siteInfo = [
-                'outdoor',
-                state.constraints.foundation || '',
-                `crane: ${state.constraints.crane || '—'}`,
-                `power: ${state.constraints.power || '—'}`
-            ].filter(Boolean).join(' · ');
-            
-            document.getElementById('site-summary').textContent = siteInfo;
-            
-            // Modules table
-            const tbody = document.getElementById('modules-summary');
-            tbody.innerHTML = '';
-            
-            let total = 0;
-            
-            // Add selected modules
-            const moduleNames = {
-                m1: 'm1 sauna',
-                m2: 'm2 swimming bridge',
-                m3: 'm3 changing room',
-                m4: 'm4 thermal module',
-                m5: 'm5 outdoor shower',
-                m6: 'm6 storage',
-                m7: 'm7 cold plunge'
-            };
-            
-            state.modules.forEach(mod => {
-                const price = CONFIG.prices[mod];
-                total += price;
-                tbody.innerHTML += `
-                    <tr>
-                        <td>${moduleNames[mod]}</td>
-                        <td>${CONFIG.currency}${price.toLocaleString()}</td>
-                    </tr>
-                `;
-            });
-            
-            // Add M4 if selected
-            if (state.includeThermal && !state.modules.includes('m4')) {
-                const price = CONFIG.prices.m4;
-                total += price;
-                tbody.innerHTML += `
-                    <tr>
-                        <td>${moduleNames.m4}</td>
-                        <td>${CONFIG.currency}${price.toLocaleString()}</td>
-                    </tr>
-                `;
-            }
-            
-            // Delivery + install
-            total += CONFIG.deliveryInstall;
-            tbody.innerHTML += `
-                <tr>
-                    <td>delivery + install (estimate)</td>
-                    <td>${CONFIG.currency}${CONFIG.deliveryInstall.toLocaleString()}</td>
-                </tr>
-            `;
-            
-            // Total
-            tbody.innerHTML += `
-                <tr class="total">
-                    <td>indicative total</td>
-                    <td>${CONFIG.currency}${total.toLocaleString()}</td>
-                </tr>
-            `;
-        }
-        
-        function updateIndoorSummary() {
-            const info = [
-                'indoor',
-                state.constraints.projectType || '',
-                state.includeThermal ? 'thermal module: interested' : ''
-            ].filter(Boolean).join(' · ');
-            
-            document.getElementById('indoor-site-summary').textContent = info;
         }
         
         function updateFormFields() {
-            const professionalFields = document.getElementById('professional-fields');
-            if (state.audience === 'professional') {
-                professionalFields.classList.remove('hidden');
-            } else {
-                professionalFields.classList.add('hidden');
-            }
+            const proFields = document.getElementById('professional-fields');
+            proFields.classList.toggle('hidden', state.audience !== 'professional');
             
-            // Update hidden fields
             document.getElementById('form-audience').value = state.audience || '';
             document.getElementById('form-site-type').value = state.siteType || '';
             document.getElementById('form-configuration').value = JSON.stringify({
@@ -1349,47 +899,22 @@
                 constraints: state.constraints
             });
             
-            // Calculate total for hidden field
-            let total = 0;
-            state.modules.forEach(mod => {
-                total += CONFIG.prices[mod];
-            });
-            if (state.includeThermal) {
-                total += CONFIG.prices.m4;
-            }
-            if (state.siteType === 'outdoor') {
-                total += CONFIG.deliveryInstall;
-            }
+            let total = state.modules.reduce((sum, id) => sum + MODULES[id].price, 0);
+            if (state.includeThermal) total += MODULES.m4.price;
+            if (state.siteType === 'outdoor') total += CONFIG.deliveryInstall;
             document.getElementById('form-total').value = total;
         }
         
-        // ─────────────────────────────────────────────────────────────────
-        // M4 Thermal Actions
-        // ─────────────────────────────────────────────────────────────────
-        function skipThermal() {
-            state.includeThermal = false;
-            nextStep();
-        }
-        
-        function addThermal() {
-            state.includeThermal = true;
-            nextStep();
-        }
-        
-        // ─────────────────────────────────────────────────────────────────
-        // Event Listeners
-        // ─────────────────────────────────────────────────────────────────
+        // === EVENT HANDLERS ===
         document.addEventListener('DOMContentLoaded', function() {
+            
             // Audience selection
             document.querySelectorAll('[data-audience]').forEach(el => {
                 el.addEventListener('click', function() {
                     state.audience = this.dataset.audience;
                     document.querySelectorAll('[data-audience]').forEach(c => c.classList.remove('selected'));
                     this.classList.add('selected');
-                    setTimeout(() => {
-                        state.currentStep = 1;
-                        showStep(1);
-                    }, 150);
+                    setTimeout(() => showStep('site-type'), 150);
                 });
             });
             
@@ -1401,110 +926,82 @@
                     this.classList.add('selected');
                     setTimeout(() => {
                         if (state.siteType === 'outdoor') {
-                            state.currentStep = 2;
-                            showStep(2);
+                            showStep('constraints');
                         } else {
-                            // Show different indoor step based on audience
-                            if (state.audience === 'private') {
-                                state.currentStep = '2b-private';
-                                showStep('2b-private');
-                            } else {
-                                state.currentStep = '2b-professional';
-                                showStep('2b-professional');
-                            }
+                            showStep(state.audience === 'private' ? 'indoor-private' : 'indoor-professional');
                         }
                     }, 150);
                 });
             });
             
-            // Constraint options
+            // Constraint options (unified handler)
             document.querySelectorAll('.constraint-options').forEach(group => {
-                const constraint = group.dataset.constraint;
-                group.querySelectorAll('.constraint-option').forEach(option => {
-                    option.addEventListener('click', function() {
-                        group.querySelectorAll('.constraint-option').forEach(o => o.classList.remove('selected'));
-                        this.classList.add('selected');
-                        
-                        if (constraint === 'crane') state.constraints.crane = this.dataset.value;
-                        if (constraint === 'power') state.constraints.power = this.dataset.value;
-                        if (constraint === 'foundation') state.constraints.foundation = this.dataset.value;
-                        if (constraint === 'project-type') state.constraints.projectType = this.dataset.value;
-                    });
+                group.addEventListener('click', function(e) {
+                    const option = e.target.closest('.constraint-option');
+                    if (!option) return;
+                    
+                    group.querySelectorAll('.constraint-option').forEach(o => o.classList.remove('selected'));
+                    option.classList.add('selected');
+                    
+                    const constraint = group.dataset.constraint;
+                    const value = option.dataset.value;
+                    
+                    if (constraint === 'timeline') {
+                        state.timeline = value;
+                        document.getElementById('form-timeline').value = value;
+                    } else {
+                        state.constraints[constraint] = value;
+                    }
                 });
             });
             
             // Module selection
             document.querySelectorAll('.module:not(.required)').forEach(el => {
                 el.addEventListener('click', function() {
-                    const module = this.dataset.module;
+                    const id = this.dataset.module;
                     this.classList.toggle('selected');
                     
                     if (this.classList.contains('selected')) {
-                        if (!state.modules.includes(module)) {
-                            state.modules.push(module);
-                        }
+                        if (!state.modules.includes(id)) state.modules.push(id);
                     } else {
-                        state.modules = state.modules.filter(m => m !== module);
+                        state.modules = state.modules.filter(m => m !== id);
                     }
                 });
             });
             
-            // Timeline selection
-            document.querySelectorAll('.timeline-option').forEach(el => {
-                el.addEventListener('click', function() {
-                    document.querySelectorAll('.timeline-option').forEach(o => o.classList.remove('selected'));
-                    this.classList.add('selected');
-                    state.timeline = this.dataset.value;
-                    document.getElementById('form-timeline').value = state.timeline;
+            // Text fields
+            document.querySelectorAll('[data-field]').forEach(el => {
+                el.addEventListener('input', function() {
+                    state.constraints[this.dataset.field] = this.value;
                 });
             });
             
-            // Project description (both private and professional)
-            const descInputPrivate = document.getElementById('project-description-private');
-            if (descInputPrivate) {
-                descInputPrivate.addEventListener('input', function() {
-                    state.constraints.projectDescription = this.value;
-                });
-            }
-            
-            const descInputProfessional = document.getElementById('project-description-professional');
-            if (descInputProfessional) {
-                descInputProfessional.addEventListener('input', function() {
-                    state.constraints.projectDescription = this.value;
-                });
-            }
+            // Action buttons (unified via data-action)
+            document.addEventListener('click', function(e) {
+                const action = e.target.dataset.action;
+                if (!action) return;
+                
+                switch (action) {
+                    case 'next': nextStep(); break;
+                    case 'back': prevStep(); break;
+                    case 'skip-thermal': state.includeThermal = false; nextStep(); break;
+                    case 'add-thermal': state.includeThermal = true; nextStep(); break;
+                }
+            });
             
             // Form submission
-            const form = document.getElementById('lead-form');
-            form.addEventListener('submit', function(e) {
-                if (CONFIG.formEndpoint) {
-                    // Custom endpoint
-                    e.preventDefault();
-                    const formData = new FormData(form);
-                    fetch(CONFIG.formEndpoint, {
-                        method: 'POST',
-                        body: formData
-                    }).then(() => {
-                        showStep('success');
-                    }).catch(err => {
-                        console.error('Form submission error:', err);
-                        alert('Something went wrong. Please email sauna@lynbitcoin.com directly.');
-                    });
-                } else {
-                    // Netlify Forms - let it submit normally, then show success
-                    e.preventDefault();
-                    const formData = new FormData(form);
-                    fetch('/', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: new URLSearchParams(formData).toString()
-                    }).then(() => {
-                        showStep('success');
-                    }).catch(err => {
-                        console.error('Form submission error:', err);
-                        alert('Something went wrong. Please email sauna@lynbitcoin.com directly.');
-                    });
-                }
+            document.getElementById('lead-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                const endpoint = CONFIG.formEndpoint || '/';
+                
+                fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(() => showStep('success'))
+                .catch(() => alert('Something went wrong. Please email sauna@lynbitcoin.com directly.'));
             });
         });
     </script>
