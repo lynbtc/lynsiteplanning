@@ -118,14 +118,18 @@
             object-fit: cover;
             margin-bottom: var(--space-xl);
         }
-        .hero-title { font-size: 1.25rem; margin-bottom: var(--space-lg); }
+        .hero-title { font-family: var(--font-sans); font-size: 1.25rem; font-weight: 600; margin-bottom: var(--space-lg); }
         .hero-tagline {
             font-family: var(--font-sans);
             font-size: 0.875rem;
             color: var(--gray-500);
         }
+        .hero-tagline strong {
+            font-weight: 400;
+            color: var(--gray-600);
+        }
         .hero-counter {
-            font-family: var(--font-sans);
+            font-family: var(--font-mono);
             font-size: 0.75rem;
             color: var(--gray-400);
             margin-top: var(--space-sm);
@@ -384,7 +388,7 @@
                 <div class="hero">
                     <img src="./images/hero.png" alt="LYN sauna by the coast" class="hero-image">
                     <h1 class="hero-title">sauna</h1>
-                    <p class="hero-tagline">design by <a href="https://www.studiogroundwork.com/" target="_blank">groundwork studio</a> · manufacture by <a href="https://www.sauna-koerner.de/en/" target="_blank">koerner sauna</a></p>
+                    <p class="hero-tagline"><strong>design</strong> <a href="https://www.studiogroundwork.com/" target="_blank">groundwork studio</a> · <strong>manufacture</strong> <a href="https://www.sauna-koerner.de/en/" target="_blank">koerner sauna</a></p>
                     <p class="hero-counter">2099 remaining</p>
                 </div>
                 
