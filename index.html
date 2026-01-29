@@ -9,7 +9,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         /*
          * LYN Site Planning Tool
@@ -36,6 +36,7 @@
             --gray-700: #404040;
             
             --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-body: 'IBM Plex Sans', sans-serif;
             --font-mono: 'IBM Plex Mono', monospace;
             
             --space-xs: 0.25rem;
@@ -58,7 +59,7 @@
         html { font-size: 16px; }
         
         body {
-            font-family: var(--font-sans);
+            font-family: var(--font-body);
             font-weight: 300;
             line-height: 1.6;
             color: var(--black);
@@ -162,7 +163,7 @@
         .choice:hover { border-color: var(--black); }
         .choice.selected { border-color: var(--black); background: var(--gray-100); }
         .choice-title { font-weight: 400; margin-bottom: var(--space-xs); }
-        .choice-description { font-size: 0.875rem; color: var(--gray-500); }
+        .choice-description { font-family: var(--font-body); font-size: 0.875rem; color: var(--gray-500); }
         
         /* === MODULE CARDS ===
          * M1 is required and always selected. Others are toggleable.
@@ -196,7 +197,7 @@
             align-items: flex-start;
             margin-bottom: var(--space-sm);
         }
-        .module-name { font-family: var(--font-mono); font-size: 0.875rem; font-weight: 500; }
+        .module-name { font-family: var(--font-sans); font-size: 0.875rem; font-weight: 500; }
         .module-check {
             width: 18px;
             height: 18px;
@@ -212,16 +213,16 @@
             border-color: var(--black);
             color: var(--white);
         }
-        .module-description { font-size: 0.875rem; color: var(--gray-500); margin-bottom: var(--space-md); }
+        .module-description { font-family: var(--font-body); font-size: 0.875rem; color: var(--gray-500); margin-bottom: var(--space-md); }
         .module-price { font-family: var(--font-mono); font-size: 0.875rem; }
-        .module-note { font-size: 0.75rem; color: var(--gray-400); font-style: italic; }
+        .module-note { font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-400); }
         
         /* === CONSTRAINTS ===
          * Radio-style selection groups for site requirements
          */
         .constraint-group { margin-bottom: var(--space-xl); }
         .constraint-label { font-size: 0.875rem; margin-bottom: var(--space-sm); display: block; }
-        .constraint-sublabel { font-size: 0.75rem; color: var(--gray-500); margin-bottom: var(--space-md); display: block; }
+        .constraint-sublabel { font-family: var(--font-mono); font-size: 0.75rem; color: var(--gray-500); margin-bottom: var(--space-md); display: block; }
         .constraint-options { display: flex; flex-wrap: wrap; gap: var(--space-sm); }
         .constraint-option {
             border: 1px solid var(--gray-300);
@@ -245,7 +246,7 @@
             padding: var(--space-xl);
             margin-bottom: var(--space-2xl);
         }
-        .thermal-title { font-family: var(--font-mono); font-size: 1rem; margin-bottom: var(--space-lg); }
+        .thermal-title { font-family: var(--font-sans); font-size: 1rem; font-weight: 500; margin-bottom: var(--space-lg); }
         .thermal-copy { font-size: 0.9375rem; line-height: 1.7; margin-bottom: var(--space-lg); max-width: 520px; }
         .thermal-copy p { margin-bottom: var(--space-md); color: var(--gray-700); }
         .thermal-actions { display: flex; gap: var(--space-md); flex-wrap: wrap; }
