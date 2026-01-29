@@ -1,55 +1,50 @@
-# LYN Site Planning Tool
+# LYN Site Planning
 
-Site qualification tool for bitcoin-heated saunas.
+site qualification tool for LYN modular sauna system.
 
-**[lynsiteplanning.netlify.app](https://lynsiteplanning.netlify.app)**
+## the system
 
----
+one sauna. seven modules. twentyonehundred sites.
 
-## Concept
-
-One sauna. Seven modules. 2,100 sites. Ever.
-
-Design by [Groundwork Studio](https://www.studiogroundwork.com/). Manufacture by [Koerner Sauna](https://www.sauna-koerner.de/en/).
-
----
-
-## Modules
-
-| Module | Description | Price |
+| module | description | price |
 |--------|-------------|-------|
-| M1 | sauna — the core | €55,555 |
-| M2 | swimming bridge — water access | €11,111 |
-| M3 | changing room — transitional space | €15,111 |
-| M4 | thermal module — bitcoin mining as heat source | €3,111 |
-| M5 | outdoor shower — cooling rinse | €3,111 |
-| M6 | storage — robes, towels, slippers | €2,111 |
-| M7 | cold plunge — self-contained | €12,111 |
+| m1 sauna | the core. panoramic glass. | €55,555 |
+| m2 swimming bridge | direct water access | €11,111 |
+| m3 changing room | transitional space. skylit. | €15,111 |
+| m4 thermal module | bitcoin mining heat source | €3,111 |
+| m5 outdoor shower | wall-mounted. cooling rinse. | €3,111 |
+| m6 storage | robes. towels. slippers. | €2,111 |
+| m7 cold plunge | self-contained. | €12,111 |
 
-Delivery + installation: €7,777 (estimate)
+## features
 
----
+- private / professional flow
+- outdoor / indoor site types
+- module configuration
+- thermal module (M4) integration
+- lead capture via Netlify Forms
 
-## Code Principles
+## typography
 
-Every line does work. If you add code, delete something else.
+three-font system for visual hierarchy:
 
-- Single file, no dependencies
-- No build step
-- Names say what things are
-- Comments explain why, not what
-- Configuration at the top
+| role | font | usage |
+|------|------|-------|
+| Inter | titles, headlines, logo, buttons | brand voice, warm |
+| IBM Plex Sans | body, prose, descriptions | readable, neutral |
+| IBM Plex Mono | data, labels, codes, prices | technical, systematic |
 
----
+## stack
 
-## Deploy
+- single HTML file
+- vanilla JS
+- no dependencies
+- Netlify Forms for lead capture
 
-Static HTML. Fork, connect to Netlify, deploy.
+## configuration
 
-Forms submit to Netlify Forms by default. To use a custom endpoint, edit `CONFIG.formEndpoint` in `index.html`.
+edit `CONFIG` and `MODULES` in index.html to customize pricing and settings.
 
----
-
-## License
+## license
 
 MIT
