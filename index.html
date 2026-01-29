@@ -148,6 +148,23 @@
         .step-title { margin-bottom: var(--space-lg); }
         .step-description { margin-bottom: var(--space-xl); max-width: 480px; }
         
+        /* === SITE TYPE IMAGES === */
+        .site-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+        .site-image {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            background: var(--gray-100);
+        }
+        @media (max-width: 600px) {
+            .site-images { grid-template-columns: 1fr; }
+        }
+        
         /* === CHOICE CARDS ===
          * Used for audience (private/professional) and site type (outdoor/indoor)
          */
@@ -406,6 +423,11 @@
             
             <!-- STEP: Site Type -->
             <section class="step" data-step="site-type">
+                <div class="site-images">
+                    <img src="./images/hero.png" alt="Outdoor sauna" class="site-image">
+                    <img src="./images/indoor.png" alt="Indoor sauna" class="site-image">
+                </div>
+                
                 <div class="choices">
                     <div class="choice" data-site="outdoor">
                         <h3 class="choice-title">outdoor</h3>
