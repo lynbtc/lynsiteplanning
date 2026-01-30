@@ -461,36 +461,46 @@
             font-size: 14px;
             color: var(--text-muted);
         }
+        .mobile-teaser-note {
+            font-size: 12px;
+            color: var(--text-muted);
+            opacity: 0.6;
+            margin-top: 8px;
+        }
         .mobile-modules {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
+            display: flex;
+            flex-direction: column;
             margin-bottom: 40px;
         }
         .mobile-module {
-            aspect-ratio: 1;
-            border: 1px solid var(--border);
-            padding: 12px;
+            padding: 16px 0 24px;
+            border-bottom: 1px solid rgba(128, 128, 128, 0.2);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            align-items: flex-start;
+        }
+        .mobile-module:last-child {
+            border-bottom: none;
         }
         .mobile-module img {
-            width: 60%;
+            width: 100%;
+            max-width: 280px;
             height: auto;
-            margin-bottom: 8px;
+            margin: 12px auto 8px;
+            order: 2;
         }
         [data-theme="dark"] .mobile-module img {
             filter: invert(1);
         }
         .mobile-module-name {
-            font-size: 13px;
+            font-size: 16px;
+            order: 1;
         }
         .mobile-module-price {
-            font-size: 12px;
+            font-size: 14px;
             color: var(--text-muted);
+            order: 3;
+            margin-top: 2px;
         }
         .mobile-cta {
             text-align: center;
@@ -551,52 +561,50 @@
         <div class="mobile-teaser-header">
             <div class="mobile-teaser-title">site planning</div>
             <div class="mobile-teaser-subtitle">one sauna. seven modules. 2,100 sites.</div>
+            <div class="mobile-teaser-note">optimized for desktop</div>
         </div>
 
         <div class="mobile-modules">
             <div class="mobile-module">
-                <img src="images/m1-sauna.png" alt="m1 sauna">
                 <div class="mobile-module-name">m1: sauna</div>
+                <img src="images/m1-sauna.png" alt="m1 sauna">
                 <div class="mobile-module-price">€55,555</div>
             </div>
             <div class="mobile-module">
+                <div class="mobile-module-name">m2: swimming bridge</div>
                 <img src="images/m2-bridge.png" alt="m2 swimming bridge">
-                <div class="mobile-module-name">m2: bridge</div>
                 <div class="mobile-module-price">€11,111</div>
             </div>
             <div class="mobile-module">
+                <div class="mobile-module-name">m3: changing room</div>
                 <img src="images/m3-changing.png" alt="m3 changing room">
-                <div class="mobile-module-name">m3: changing</div>
                 <div class="mobile-module-price">€15,111</div>
             </div>
             <div class="mobile-module">
+                <div class="mobile-module-name">m4: thermal module</div>
                 <img src="images/m4-thermal.png" alt="m4 thermal">
-                <div class="mobile-module-name">m4: thermal</div>
                 <div class="mobile-module-price">€3,111</div>
             </div>
             <div class="mobile-module">
+                <div class="mobile-module-name">m5: outdoor shower</div>
                 <img src="images/m5-shower.png" alt="m5 outdoor shower">
-                <div class="mobile-module-name">m5: shower</div>
                 <div class="mobile-module-price">€3,111</div>
             </div>
             <div class="mobile-module">
+                <div class="mobile-module-name">m6: outdoor storage</div>
                 <img src="images/m6-storage.png" alt="m6 storage">
-                <div class="mobile-module-name">m6: storage</div>
                 <div class="mobile-module-price">€2,111</div>
             </div>
             <div class="mobile-module">
+                <div class="mobile-module-name">m7: cold plunge</div>
                 <img src="images/m7-plunge.png" alt="m7 cold plunge">
-                <div class="mobile-module-name">m7: plunge</div>
                 <div class="mobile-module-price">€12,111</div>
-            </div>
-            <div class="mobile-module" style="border: 1px dashed var(--border); opacity: 0.5;">
-                <div class="mobile-module-name" style="color: var(--text-muted);">configure<br>on desktop</div>
             </div>
         </div>
 
         <div class="mobile-cta">
             <p class="mobile-cta-text">full site planning tool available on desktop</p>
-            <a href="mailto:hello@lyn.page?subject=LYN%20Site%20Planning&body=Desktop%20link:%20https://siteplanning.lyn.page" class="mobile-cta-btn">email link to myself</a>
+            <a href="/cdn-cgi/l/email-protection#9cf4f9f0f0f3dcf0e5f2b2ecfdfbf9a3efe9fef6f9ffe8a1d0c5d2b9aeaccff5e8f9b9aeacccf0fdf2f2f5f2fbbafef3f8e5a1d8f9eff7e8f3ecb9aeacf0f5f2f7a6b9aeacf4e8e8ecefa6b3b3eff5e8f9ecf0fdf2f2f5f2fbb2f0e5f2b2ecfdfbf9" class="mobile-cta-btn">email link to myself</a>
         </div>
 
         <div class="mobile-teaser-link">
@@ -956,7 +964,7 @@
         <button class="theme-btn" onclick="toggleTheme()" id="themeBtn"></button>
     </nav>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Nav menu
         const navMenu = document.getElementById('navMenu');
         const navTrigger = document.querySelector('.nav-trigger');
@@ -1358,12 +1366,3 @@
                 fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData).toString()
-                })
-                .then(() => showStep('success'))
-                .catch(() => showStep('success'));
-            });
-        });
-    </script>
-</body>
-</html>
