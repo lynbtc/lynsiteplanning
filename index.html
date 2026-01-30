@@ -591,7 +591,7 @@
 
         <div class="mobile-cta">
             <p class="mobile-cta-text">full site planning tool available on desktop</p>
-            <a href="mailto:hello@lyn.page?subject=LYN%20site%20planning&body=Desktop%20link:%20https://lyn.page/siteplanning" class="mobile-cta-btn">email link to myself</a>
+            <a href="mailto:hello@lyn.page?subject=LYN%20Site%20Planning&body=Desktop%20link:%20https://siteplanning.lyn.page" class="mobile-cta-btn">email link to myself</a>
         </div>
 
         <div class="mobile-teaser-link">
@@ -1343,6 +1343,7 @@
                 }
             });
 
+
             // Form submission
             document.getElementById('lead-form').addEventListener('submit', function(e) {
                 e.preventDefault();
@@ -1351,4 +1352,13 @@
 
                 fetch(endpoint, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlenco
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(() => showStep('success'))
+                .catch(() => showStep('success'));
+            });
+        });
+    </script>
+</body>
+</html>
