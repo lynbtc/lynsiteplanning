@@ -64,7 +64,10 @@
             max-width: 100%;
             max-height: 80vh;
             object-fit: contain;
-            transition: opacity 0.3s, filter 0.3s;
+            transition: opacity 0.3s ease, filter 0.3s ease;
+        }
+        .image-column img.fading {
+            opacity: 0;
         }
         [data-theme="dark"] .image-column img.invert-dark {
             filter: invert(1);
@@ -903,13 +906,25 @@
                 target.classList.add('active');
                 state.step = stepId;
                 updateUI();
-                // Update image
+                
+                // Update image with fade transition
                 const imgData = STEP_IMAGES[stepId];
                 const imgEl = document.getElementById('step-image');
                 if (imgData && imgEl) {
-                    imgEl.src = imgData.src;
-                    imgEl.classList.toggle('invert-dark', imgData.invert);
+                    // Only transition if image is changing
+                    if (imgEl.src !== location.origin + '/' + imgData.src && 
+                        !imgEl.src.endsWith(imgData.src)) {
+                        imgEl.classList.add('fading');
+                        setTimeout(() => {
+                            imgEl.src = imgData.src;
+                            imgEl.classList.toggle('invert-dark', imgData.invert);
+                            setTimeout(() => imgEl.classList.remove('fading'), 50);
+                        }, 150);
+                    } else {
+                        imgEl.classList.toggle('invert-dark', imgData.invert);
+                    }
                 }
+                
                 // Update selection strip when on modules step
                 if (stepId === 'modules') updateSelectionStrip();
             }
