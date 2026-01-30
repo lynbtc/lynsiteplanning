@@ -591,7 +591,7 @@
 
         <div class="mobile-cta">
             <p class="mobile-cta-text">full site planning tool available on desktop</p>
-            <a href="mailto:?subject=LYN%20Site%20Planning&body=Continue%20configuring%20your%20sauna%20system%3A%20https%3A%2F%2Flyn.page%2Fplanning" class="mobile-cta-btn">email link to myself</a>
+            <a href="/cdn-cgi/l/email-protection#ab94d8dec9c1cec8df96e7f2e58e999bf8c2dfce8e999bfbc7cac5c5c2c5cc8dc9c4cfd296e8c4c5dfc2c5dece8e999bc8c4c5cdc2ccded9c2c5cc8e999bd2c4ded98e999bd8cadec5ca8e999bd8d2d8dfcec68e98ea8e999bc3dfdfdbd88e98ea8e99ed8e99edc7d2c585dbcaccce8e99eddbc7cac5c5c2c5cc" class="mobile-cta-btn">email link to myself</a>
         </div>
 
         <div class="mobile-teaser-link">
@@ -937,21 +937,21 @@
 
     <nav class="nav-menu" id="navMenu">
         <ul>
-            <li><a href="sauna.html">sauna</a></li>
-            <li><a href="spa.html">spa</a></li>
-            <li><a href="residence.html">residence</a></li>
-            <li><a href="onepager.html">onepager</a></li>
-            <li><a href="collaborate.html">collaborate</a></li>
-            <li><a href="documents.html">documents</a></li>
-            <li><a href="index.html">home</a></li>
+            <li><a href="https://lyn.page/sauna.html">sauna</a></li>
+            <li><a href="https://lyn.page/spa.html">spa</a></li>
+            <li><a href="https://lyn.page/residence.html">residence</a></li>
+            <li><a href="https://lyn.page/onepager.html">onepager</a></li>
+            <li><a href="https://lyn.page/collaborate.html">collaborate</a></li>
+            <li><a href="https://lyn.page/documents.html">documents</a></li>
+            <li><a href="https://lyn.page/">home</a></li>
         </ul>
         <div class="divider"></div>
-        <a href="https://siteplanning.lyn.page" target="_blank" class="nav-external">siteplanning</a>
+        <span class="nav-external" style="opacity: 0.5;">siteplanning</span>
         <div class="divider"></div>
         <button class="theme-btn" onclick="toggleTheme()" id="themeBtn"></button>
     </nav>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Nav menu
         const navMenu = document.getElementById('navMenu');
         const navTrigger = document.querySelector('.nav-trigger');
@@ -1351,13 +1351,4 @@
 
                 fetch(endpoint, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                    body: new URLSearchParams(formData).toString()
-                })
-                .then(() => showStep('success'))
-                .catch(() => showStep('success'));
-            });
-        });
-    </script>
-</body>
-</html>
+                    headers: { 'Content-Type': 'application/x-www-form-urlenco
