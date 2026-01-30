@@ -1,4 +1,4 @@
-# LYN Site Planning
+# siteplanning
 
 site qualification tool for LYN modular sauna system.
 
@@ -16,34 +16,24 @@ one sauna. seven modules. twentyonehundred sites.
 | m6 storage | robes. towels. slippers. | €2,111 |
 | m7 cold plunge | self-contained. | €12,111 |
 
-## features
+## flow
 
-- private / professional flow
+- private / professional
 - outdoor / indoor site types
 - module configuration
-- thermal module (M4) integration
+- thermal module (m4) integration
 - lead capture via Netlify Forms
-
-## typography
-
-three-font system for visual hierarchy:
-
-| role | font | usage |
-|------|------|-------|
-| Inter | titles, headlines, logo, buttons | brand voice, warm |
-| IBM Plex Sans | body, prose, descriptions | readable, neutral |
-| IBM Plex Mono | data, labels, codes, prices | technical, systematic |
 
 ## stack
 
 - single HTML file
 - vanilla JS
 - no dependencies
-- Netlify Forms for lead capture
+- Netlify Forms
 
 ## configuration
 
-edit `CONFIG` and `MODULES` in index.html to customize pricing and settings.
+edit `CONFIG` and `MODULES` in index.html.
 
 ## license
 
