@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>site planning – LYN.</title>
+    <title>siteplanning</title>
     <meta name="description" content="Site qualification tool for bitcoin-heated saunas. one sauna. seven modules. twentyonehundred sites.">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23111' width='100' height='100' rx='12'/></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -384,10 +384,10 @@
         /* Nav trigger */
         .nav-trigger {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 12px;
+            right: 12px;
             font-family: 'Inter', sans-serif;
-            font-size: 12px;
+            font-size: 14px;
             color: var(--text);
             background: none;
             border: none;
@@ -395,6 +395,11 @@
             opacity: 1;
             transition: opacity 0.2s;
             z-index: 10;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .nav-trigger:hover, .nav-trigger.active { opacity: 0.6; }
 
