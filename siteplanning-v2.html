@@ -60,16 +60,27 @@
             top: 0;
             height: 100vh;
         }
-        .image-column img {
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .image-wrapper img {
+            position: absolute;
             max-width: 100%;
-            max-height: 80vh;
+            max-height: 100%;
             object-fit: contain;
-            transition: opacity 0.3s ease, filter 0.3s ease;
-        }
-        .image-column img.fading {
             opacity: 0;
+            transition: opacity 0.4s ease;
+            will-change: opacity;
         }
-        [data-theme="dark"] .image-column img.invert-dark {
+        .image-wrapper img.active {
+            opacity: 1;
+        }
+        [data-theme="dark"] .image-wrapper img.invert-dark {
             filter: invert(1);
         }
 
@@ -432,6 +443,7 @@
             .container { flex-direction: column; }
             .content-column { max-width: 100%; padding: 60px 24px 40px; }
             .image-column { max-width: 100%; height: auto; min-height: 40vh; position: relative; padding: 20px; }
+            .image-wrapper { height: 40vh; }
             .module { flex-wrap: wrap; }
             .module-price { width: 100%; margin-top: 4px; }
         }
@@ -771,7 +783,10 @@
         </div>
 
         <div class="image-column">
-            <img id="step-image" src="images/config-preview.png" alt="LYN sauna" class="invert-dark">
+            <div class="image-wrapper">
+                <img id="step-image-a" src="images/config-preview.png" alt="LYN sauna" class="invert-dark active">
+                <img id="step-image-b" src="" alt="LYN sauna">
+            </div>
         </div>
     </div>
 
@@ -899,6 +914,67 @@
             return ['intro', 'site-type'];
         }
 
+        // === IMAGE TRANSITION SYSTEM ===
+        const imageCache = new Map();
+        let currentImageSlot = 'a'; // Track which slot is currently active
+        
+        // Preload all step images on page load
+        function preloadImages() {
+            const allSrcs = new Set();
+            Object.values(STEP_IMAGES).forEach(img => allSrcs.add(img.src));
+            Object.values(MODULE_IMAGES).forEach(src => allSrcs.add(src));
+            
+            allSrcs.forEach(src => {
+                const img = new Image();
+                img.src = src;
+                imageCache.set(src, img);
+            });
+        }
+        
+        // Crossfade to new image - waits for load, then fades
+        function transitionImage(newSrc, invert) {
+            const imgA = document.getElementById('step-image-a');
+            const imgB = document.getElementById('step-image-b');
+            if (!imgA || !imgB) return;
+            
+            const currentImg = currentImageSlot === 'a' ? imgA : imgB;
+            const nextImg = currentImageSlot === 'a' ? imgB : imgA;
+            
+            // Check if we're already showing this image
+            if (currentImg.src.endsWith(newSrc)) {
+                currentImg.classList.toggle('invert-dark', invert);
+                return;
+            }
+            
+            // Prepare next image
+            nextImg.classList.toggle('invert-dark', invert);
+            
+            // If image is already cached/loaded, transition immediately
+            const cachedImg = imageCache.get(newSrc);
+            if (cachedImg && cachedImg.complete && cachedImg.naturalWidth > 0) {
+                nextImg.src = newSrc;
+                // Use requestAnimationFrame to ensure the src is set before transitioning
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        nextImg.classList.add('active');
+                        currentImg.classList.remove('active');
+                        currentImageSlot = currentImageSlot === 'a' ? 'b' : 'a';
+                    });
+                });
+            } else {
+                // Load then transition
+                nextImg.onload = function() {
+                    requestAnimationFrame(() => {
+                        nextImg.classList.add('active');
+                        currentImg.classList.remove('active');
+                        currentImageSlot = currentImageSlot === 'a' ? 'b' : 'a';
+                    });
+                    nextImg.onload = null;
+                };
+                nextImg.src = newSrc;
+            }
+        }
+
         function showStep(stepId) {
             document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
             const target = document.querySelector(`[data-step="${stepId}"]`);
@@ -907,22 +983,10 @@
                 state.step = stepId;
                 updateUI();
                 
-                // Update image with fade transition
+                // Update image with crossfade transition
                 const imgData = STEP_IMAGES[stepId];
-                const imgEl = document.getElementById('step-image');
-                if (imgData && imgEl) {
-                    // Only transition if image is changing
-                    if (imgEl.src !== location.origin + '/' + imgData.src && 
-                        !imgEl.src.endsWith(imgData.src)) {
-                        imgEl.classList.add('fading');
-                        setTimeout(() => {
-                            imgEl.src = imgData.src;
-                            imgEl.classList.toggle('invert-dark', imgData.invert);
-                            setTimeout(() => imgEl.classList.remove('fading'), 50);
-                        }, 150);
-                    } else {
-                        imgEl.classList.toggle('invert-dark', imgData.invert);
-                    }
+                if (imgData) {
+                    transitionImage(imgData.src, imgData.invert);
                 }
                 
                 // Update selection strip when on modules step
@@ -1053,6 +1117,8 @@
 
         // === EVENT HANDLERS ===
         document.addEventListener('DOMContentLoaded', function() {
+            // Preload all images for smooth transitions
+            preloadImages();
 
             // Audience selection
             document.querySelectorAll('[data-audience]').forEach(el => {
