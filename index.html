@@ -59,6 +59,7 @@
             position: sticky;
             top: 0;
             height: 100vh;
+            pointer-events: none;
         }
         .image-wrapper {
             position: relative;
@@ -67,6 +68,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            pointer-events: auto;
         }
         .image-wrapper img {
             position: absolute;
@@ -606,7 +608,7 @@
 
         <div class="mobile-cta">
             <p class="mobile-cta-text">full site planning tool available on desktop</p>
-            <a href="/cdn-cgi/l/email-protection#9cf4f9f0f0f3dcf0e5f2b2ecfdfbf9a3efe9fef6f9ffe8a1d0c5d2b9aeaccff5e8f9b9aeacccf0fdf2f2f5f2fbbafef3f8e5a1d8f9eff7e8f3ecb9aeacf0f5f2f7a6b9aeacf4e8e8ecefa6b3b3eff5e8f9ecf0fdf2f2f5f2fbb2f0e5f2b2ecfdfbf9" class="mobile-cta-btn">email link to myself</a>
+            <a href="mailto:?subject=LYN%20Site%20Planning&body=Configure%20your%20LYN%20sauna%20site%3A%20https%3A%2F%2Fsiteplanning.lyn.page" class="mobile-cta-btn">email link to myself</a>
         </div>
 
         <div class="mobile-teaser-link">
@@ -966,7 +968,7 @@
         <button class="theme-btn" onclick="toggleTheme()" id="themeBtn"></button>
     </nav>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Nav menu
         const navMenu = document.getElementById('navMenu');
         const navTrigger = document.querySelector('.nav-trigger');
@@ -1368,3 +1370,21 @@
                 fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showStep('success');
+                    } else {
+                        alert('There was an error submitting the form. Please try again.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Form submission error:', error);
+                    alert('There was an error submitting the form. Please try again.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
