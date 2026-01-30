@@ -438,14 +438,97 @@
         .hidden { display: none !important; }
         .mt-lg { margin-top: 24px; }
 
+        /* Mobile Teaser - hidden on desktop */
+        .mobile-teaser {
+            display: none;
+            min-height: 100vh;
+            flex-direction: column;
+            padding: 40px 24px 80px;
+        }
+        .mobile-teaser-header {
+            margin-bottom: 32px;
+        }
+        .mobile-teaser-title {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        .mobile-teaser-subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+        .mobile-modules {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .mobile-module {
+            aspect-ratio: 1;
+            border: 1px solid var(--border);
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .mobile-module img {
+            width: 60%;
+            height: auto;
+            margin-bottom: 8px;
+        }
+        [data-theme="dark"] .mobile-module img {
+            filter: invert(1);
+        }
+        .mobile-module-name {
+            font-size: 13px;
+        }
+        .mobile-module-price {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .mobile-cta {
+            text-align: center;
+            padding: 24px;
+            border: 1px solid var(--border);
+            margin-bottom: 24px;
+        }
+        .mobile-cta-text {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .mobile-cta-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            border: 1px solid var(--text);
+            background: var(--text);
+            color: var(--bg);
+            text-decoration: none;
+            transition: opacity 0.15s;
+        }
+        .mobile-cta-btn:hover {
+            opacity: 0.8;
+        }
+        .mobile-teaser-link {
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .mobile-teaser-link a {
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
         /* Responsive */
         @media (max-width: 900px) {
-            .container { flex-direction: column; }
-            .content-column { max-width: 100%; padding: 60px 24px 40px; }
-            .image-column { max-width: 100%; height: auto; min-height: 40vh; position: relative; padding: 20px; }
-            .image-wrapper { height: 40vh; }
-            .module { flex-wrap: wrap; }
-            .module-price { width: 100%; margin-top: 4px; }
+            .container { display: none; }
+            .mobile-teaser { display: flex; }
+            .footer { display: none; }
         }
     </style>
     <script>
@@ -458,6 +541,64 @@
     </script>
 </head>
 <body>
+    <!-- Mobile Teaser - Read-only preview -->
+    <div class="mobile-teaser">
+        <div class="mobile-teaser-header">
+            <div class="mobile-teaser-title">site planning</div>
+            <div class="mobile-teaser-subtitle">one sauna. seven modules. 2,100 sites.</div>
+        </div>
+
+        <div class="mobile-modules">
+            <div class="mobile-module">
+                <img src="images/m1-sauna.png" alt="m1 sauna">
+                <div class="mobile-module-name">m1: sauna</div>
+                <div class="mobile-module-price">€55,555</div>
+            </div>
+            <div class="mobile-module">
+                <img src="images/m2-bridge.png" alt="m2 swimming bridge">
+                <div class="mobile-module-name">m2: bridge</div>
+                <div class="mobile-module-price">€11,111</div>
+            </div>
+            <div class="mobile-module">
+                <img src="images/m3-changing.png" alt="m3 changing room">
+                <div class="mobile-module-name">m3: changing</div>
+                <div class="mobile-module-price">€15,111</div>
+            </div>
+            <div class="mobile-module">
+                <img src="images/m4-thermal.png" alt="m4 thermal">
+                <div class="mobile-module-name">m4: thermal</div>
+                <div class="mobile-module-price">€3,111</div>
+            </div>
+            <div class="mobile-module">
+                <img src="images/m5-shower.png" alt="m5 outdoor shower">
+                <div class="mobile-module-name">m5: shower</div>
+                <div class="mobile-module-price">€3,111</div>
+            </div>
+            <div class="mobile-module">
+                <img src="images/m6-storage.png" alt="m6 storage">
+                <div class="mobile-module-name">m6: storage</div>
+                <div class="mobile-module-price">€2,111</div>
+            </div>
+            <div class="mobile-module">
+                <img src="images/m7-plunge.png" alt="m7 cold plunge">
+                <div class="mobile-module-name">m7: plunge</div>
+                <div class="mobile-module-price">€12,111</div>
+            </div>
+            <div class="mobile-module" style="border: 1px dashed var(--border); opacity: 0.5;">
+                <div class="mobile-module-name" style="color: var(--text-muted);">configure<br>on desktop</div>
+            </div>
+        </div>
+
+        <div class="mobile-cta">
+            <p class="mobile-cta-text">full site planning tool available on desktop</p>
+            <a href="mailto:?subject=LYN%20Site%20Planning&body=Continue%20configuring%20your%20sauna%20system%3A%20https%3A%2F%2Flyn.page%2Fplanning" class="mobile-cta-btn">email link to myself</a>
+        </div>
+
+        <div class="mobile-teaser-link">
+            <a href="https://lyn.page">← back to lyn.page</a>
+        </div>
+    </div>
+
     <div class="container">
         <div class="content-column">
             <!-- STEP: Intro -->
