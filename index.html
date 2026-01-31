@@ -186,8 +186,8 @@
             opacity: 0.4;
             transition: all 0.2s;
             display: flex;
-            gap: 16px;
-            align-items: baseline;
+            gap: 12px;
+            align-items: center;
             border-bottom: 1px solid var(--border);
             position: relative;
             margin-left: 0;
@@ -217,7 +217,20 @@
             opacity: 1;
         }
         .module.required { opacity: 1; cursor: default; padding-left: 8px; }
-        .module-name { font-size: 16px; min-width: 160px; flex-shrink: 0; }
+        .module-thumb {
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+        }
+        .module-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        [data-theme="dark"] .module-thumb img {
+            filter: invert(1);
+        }
+        .module-name { font-size: 16px; min-width: 140px; flex-shrink: 0; }
         .module-desc { font-size: 14px; color: var(--text-muted); flex: 1; }
         .module-price { font-size: 14px; color: var(--text-muted); white-space: nowrap; }
         .module-check {
@@ -789,36 +802,42 @@
 
                 <div class="modules">
                     <div class="module selected required" data-module="m1">
+                        <span class="module-thumb"><img src="images/m1-sauna.png" alt="m1"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m1: sauna</span>
                         <span class="module-desc">the core. panoramic glass.</span>
                         <span class="module-price">€55,555</span>
                     </div>
                     <div class="module" data-module="m3">
+                        <span class="module-thumb"><img src="images/m3-changing.png" alt="m3"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m3: changing room</span>
                         <span class="module-desc">transitional space. skylit.</span>
                         <span class="module-price">€15,111</span>
                     </div>
                     <div class="module" data-module="m2">
+                        <span class="module-thumb"><img src="images/m2-bridge.png" alt="m2"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m2: swimming bridge</span>
                         <span class="module-desc">direct water access.</span>
                         <span class="module-price">€11,111</span>
                     </div>
                     <div class="module" data-module="m7">
+                        <span class="module-thumb"><img src="images/m7-plunge.png" alt="m7"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m7: cold plunge</span>
                         <span class="module-desc">self-contained basin.</span>
                         <span class="module-price">€12,111</span>
                     </div>
                     <div class="module" data-module="m5">
+                        <span class="module-thumb"><img src="images/m5-shower.png" alt="m5"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m5: outdoor shower</span>
                         <span class="module-desc">wall-mounted. cooling.</span>
                         <span class="module-price">€3,111</span>
                     </div>
                     <div class="module" data-module="m6">
+                        <span class="module-thumb"><img src="images/m6-storage.png" alt="m6"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m6: outdoor storage</span>
                         <span class="module-desc">robes. towels. slippers.</span>
