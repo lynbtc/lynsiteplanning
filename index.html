@@ -316,20 +316,19 @@
         .btn-ghost { border-color: var(--text-muted); color: var(--text-muted); }
         .btn-ghost:hover { border-color: var(--text); color: var(--text); background: var(--bg); }
 
-        /* Selection Strip - shows picked modules (left column, below module list) */
+        /* Selection Strip - hidden legacy */
         .selection-strip {
             display: none;
         }
 
-        /* Right-column strip builder - visible during modules step */
+        /* Right-column strip builder — assembly view */
         .strip-builder {
             display: none;
             flex-direction: column;
-            gap: 12px;
             width: 100%;
             max-height: 80vh;
             overflow-y: auto;
-            padding: 10px 0;
+            padding: 0;
             scrollbar-width: thin;
             scrollbar-color: var(--border) transparent;
         }
@@ -341,37 +340,40 @@
         }
         .strip-module {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 20px;
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            animation: stripIn 0.3s ease;
+            padding: 20px 0;
+            animation: stripIn 0.35s ease;
             flex-shrink: 0;
         }
         @keyframes stripIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .strip-module img {
-            width: 80px;
-            height: 80px;
+            width: 100%;
+            max-width: 280px;
+            height: auto;
             object-fit: contain;
             flex-shrink: 0;
         }
         [data-theme="dark"] .strip-module img {
             filter: invert(1);
         }
-        .strip-module-info {
-            flex: 1;
-            min-width: 0;
-        }
         .strip-module-name {
-            font-size: 14px;
-            margin-bottom: 2px;
-        }
-        .strip-module-price {
             font-size: 13px;
             color: var(--text-muted);
+            margin-top: 8px;
+            text-align: center;
+        }
+        .strip-total {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--text-muted);
+            text-align: center;
+            flex-shrink: 0;
         }
         .strip-empty {
             color: var(--text-muted);
@@ -1071,7 +1073,6 @@
         };
 
         // === STEP IMAGES ===
-        // invert: true for line drawings, false for photos
         const STEP_IMAGES = {
             'intro': { src: 'images/config-preview.png', invert: true },
             'site-type': { src: 'images/config-preview.png', invert: true },
@@ -1085,7 +1086,7 @@
             'success': { src: 'images/hero.png', invert: false }
         };
 
-        // === MODULE IMAGES (for selection strip) ===
+        // === MODULE IMAGES ===
         const MODULE_IMAGES = {
             m1: 'images/m1-sauna.png',
             m2: 'images/m2-bridge.png',
@@ -1125,44 +1126,38 @@
 
         // === IMAGE TRANSITION SYSTEM ===
         const imageCache = new Map();
-        let currentImageSlot = 'a'; // Track which slot is currently active
-        
-        // Preload all step images on page load
+        let currentImageSlot = 'a';
+
         function preloadImages() {
             const allSrcs = new Set();
             Object.values(STEP_IMAGES).forEach(img => allSrcs.add(img.src));
             Object.values(MODULE_IMAGES).forEach(src => allSrcs.add(src));
-            
+
             allSrcs.forEach(src => {
                 const img = new Image();
                 img.src = src;
                 imageCache.set(src, img);
             });
         }
-        
-        // Crossfade to new image - waits for load, then fades
+
         function transitionImage(newSrc, invert) {
             const imgA = document.getElementById('step-image-a');
             const imgB = document.getElementById('step-image-b');
             if (!imgA || !imgB) return;
-            
+
             const currentImg = currentImageSlot === 'a' ? imgA : imgB;
             const nextImg = currentImageSlot === 'a' ? imgB : imgA;
-            
-            // Check if we're already showing this image
+
             if (currentImg.src.endsWith(newSrc)) {
                 currentImg.classList.toggle('invert-dark', invert);
                 return;
             }
-            
-            // Prepare next image
+
             nextImg.classList.toggle('invert-dark', invert);
-            
-            // If image is already cached/loaded, transition immediately
+
             const cachedImg = imageCache.get(newSrc);
             if (cachedImg && cachedImg.complete && cachedImg.naturalWidth > 0) {
                 nextImg.src = newSrc;
-                // Use requestAnimationFrame to ensure the src is set before transitioning
                 requestAnimationFrame(() => {
                     requestAnimationFrame(() => {
                         nextImg.classList.add('active');
@@ -1171,7 +1166,6 @@
                     });
                 });
             } else {
-                // Load then transition
                 nextImg.onload = function() {
                     requestAnimationFrame(() => {
                         nextImg.classList.add('active');
@@ -1191,24 +1185,21 @@
                 target.classList.add('active');
                 state.step = stepId;
                 updateUI();
-                
+
                 const imgA = document.getElementById('step-image-a');
                 const imgB = document.getElementById('step-image-b');
                 const strip = document.getElementById('stripBuilder');
-                
+
                 if (stepId === 'modules') {
-                    // Show strip builder, hide crossfade images
                     if (imgA) imgA.style.display = 'none';
                     if (imgB) imgB.style.display = 'none';
                     if (strip) strip.classList.add('active');
                     updateSelectionStrip();
                 } else {
-                    // Show crossfade images, hide strip builder
                     if (imgA) imgA.style.display = '';
                     if (imgB) imgB.style.display = '';
                     if (strip) strip.classList.remove('active');
-                    
-                    // Update image with crossfade transition
+
                     const imgData = STEP_IMAGES[stepId];
                     if (imgData) {
                         transitionImage(imgData.src, imgData.invert);
@@ -1259,32 +1250,56 @@
         function updateSelectionStrip() {
             const strip = document.getElementById('stripBuilder');
             if (!strip) return;
-            
-            strip.innerHTML = '';
-            
-            // Sort modules in order: m1, m2, m3, m4, m5, m6, m7
-            const sortedModules = [...state.modules].sort((a, b) => {
+
+            // Track which modules are currently rendered
+            const existing = new Map();
+            strip.querySelectorAll('.strip-module').forEach(el => {
+                existing.set(el.dataset.moduleId, el);
+            });
+
+            // Sort selected modules in canonical order
+            const sorted = [...state.modules].sort((a, b) => {
                 return parseInt(a.slice(1)) - parseInt(b.slice(1));
             });
-            
-            if (sortedModules.length === 0) {
-                strip.innerHTML = '<div class="strip-empty">select modules to build your configuration</div>';
-                return;
-            }
-            
-            sortedModules.forEach(id => {
-                const mod = MODULES[id];
-                const item = document.createElement('div');
-                item.className = 'strip-module';
-                item.innerHTML = `
-                    <img src="${MODULE_IMAGES[id]}" alt="${id}">
-                    <div class="strip-module-info">
+
+            // Remove modules no longer selected
+            existing.forEach((el, id) => {
+                if (!sorted.includes(id)) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(-8px)';
+                    setTimeout(() => el.remove(), 200);
+                }
+            });
+
+            // Remove the total if it exists (we'll re-append it)
+            const existingTotal = strip.querySelector('.strip-total');
+            if (existingTotal) existingTotal.remove();
+
+            // Add/reorder modules
+            sorted.forEach((id, index) => {
+                let item = existing.get(id);
+                if (!item) {
+                    // Create new module element
+                    const mod = MODULES[id];
+                    item = document.createElement('div');
+                    item.className = 'strip-module';
+                    item.dataset.moduleId = id;
+                    item.innerHTML = `
+                        <img src="${MODULE_IMAGES[id]}" alt="${mod.name}">
                         <div class="strip-module-name">${mod.name}</div>
-                        <div class="strip-module-price">${CONFIG.currency}${mod.price.toLocaleString()}</div>
-                    </div>
-                `;
+                    `;
+                }
                 strip.appendChild(item);
             });
+
+            // Add running total at bottom
+            if (sorted.length > 0) {
+                const total = sorted.reduce((sum, id) => sum + MODULES[id].price, 0);
+                const totalEl = document.createElement('div');
+                totalEl.className = 'strip-total';
+                totalEl.textContent = `${CONFIG.currency}${total.toLocaleString()}`;
+                strip.appendChild(totalEl);
+            }
         }
 
         function updateSummary() {
@@ -1349,7 +1364,6 @@
 
         // === EVENT HANDLERS ===
         document.addEventListener('DOMContentLoaded', function() {
-            // Preload all images for smooth transitions
             preloadImages();
 
             // Audience selection
@@ -1433,7 +1447,6 @@
                     case 'add-thermal': state.includeThermal = true; nextStep(); break;
                 }
             });
-
 
             // Form submission
             document.getElementById('lead-form').addEventListener('submit', function(e) {
