@@ -70,7 +70,7 @@
             justify-content: center;
             pointer-events: auto;
         }
-        .image-wrapper img {
+        .image-wrapper > img {
             position: absolute;
             max-width: 100%;
             max-height: 100%;
@@ -79,10 +79,10 @@
             transition: opacity 0.4s ease;
             will-change: opacity;
         }
-        .image-wrapper img.active {
+        .image-wrapper > img.active {
             opacity: 1;
         }
-        [data-theme="dark"] .image-wrapper img.invert-dark {
+        [data-theme="dark"] .image-wrapper > img.invert-dark {
             filter: invert(1);
         }
 
