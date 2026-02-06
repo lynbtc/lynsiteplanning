@@ -1200,7 +1200,10 @@
                     if (imgB) imgB.style.display = '';
                     if (strip) strip.classList.remove('active');
 
-                    const imgData = STEP_IMAGES[stepId];
+                    let imgData = STEP_IMAGES[stepId];
+                    if (stepId === 'constraints' && state.audience === 'professional') {
+                        imgData = { src: 'images/spa.png', invert: false };
+                    }
                     if (imgData) {
                         transitionImage(imgData.src, imgData.invert);
                     }
