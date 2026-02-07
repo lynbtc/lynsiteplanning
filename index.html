@@ -232,7 +232,6 @@
         }
         .module-name { font-size: 16px; min-width: 140px; flex-shrink: 0; }
         .module-desc { font-size: 14px; color: var(--text-muted); flex: 1; }
-        .module-price { font-size: 14px; color: var(--text-muted); white-space: nowrap; }
         .module-check {
             width: 16px;
             height: 16px;
@@ -270,12 +269,7 @@
         .summary-section { margin-bottom: 24px; }
         .summary-label { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
         .summary-value { font-size: 14px; }
-        .summary-table { width: 100%; }
-        .summary-table tr { border-bottom: 1px solid var(--border); }
-        .summary-table tr:last-child { border-bottom: none; }
-        .summary-table td { padding: 8px 0; font-size: 14px; }
-        .summary-table td:last-child { text-align: right; color: var(--text-muted); }
-        .summary-table .total td { padding-top: 16px; font-weight: 400; }
+        .summary-modules { font-size: 14px; line-height: 1.8; }
         .summary-note { font-size: 13px; color: var(--text-muted); margin-top: 16px; }
 
         /* Form */
@@ -365,15 +359,6 @@
             color: var(--text-muted);
             margin-top: 8px;
             text-align: center;
-        }
-        .strip-total {
-            margin-top: auto;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
-            font-size: 13px;
-            color: var(--text-muted);
-            text-align: center;
-            flex-shrink: 0;
         }
         .strip-empty {
             color: var(--text-muted);
@@ -542,8 +527,8 @@
             font-size: 16px;
             order: 1;
         }
-        .mobile-module-price {
-            font-size: 14px;
+        .mobile-module-dim {
+            font-size: 13px;
             color: var(--text-muted);
             order: 3;
             margin-top: 2px;
@@ -620,42 +605,42 @@
             <div class="mobile-module">
                 <div class="mobile-module-name">m1: sauna</div>
                 <img src="images/m1-sauna.png" alt="m1 sauna">
-                <div class="mobile-module-price">€55,555</div>
+                <div class="mobile-module-dim">3.3 × 2.2 × 2.5 m</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m2: swimming bridge</div>
                 <img src="images/m2-bridge.png" alt="m2 swimming bridge">
-                <div class="mobile-module-price">€11,111</div>
+                <div class="mobile-module-dim">1.5 × 2.0 × 0.3 m</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m3: changing room</div>
                 <img src="images/m3-changing.png" alt="m3 changing room">
-                <div class="mobile-module-price">€15,111</div>
+                <div class="mobile-module-dim">1.5 × 2.0 × 2.5 m</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m4: thermal module</div>
                 <img src="images/m4-thermal.png" alt="m4 thermal">
-                <div class="mobile-module-price">€3,111</div>
+                <div class="mobile-module-dim">site-dependent</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m5: outdoor shower</div>
                 <img src="images/m5-shower.png" alt="m5 outdoor shower">
-                <div class="mobile-module-price">€3,111</div>
+                <div class="mobile-module-dim">0.5 × 0.1 × 2.0 m</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m6: outdoor storage</div>
                 <img src="images/m6-storage.png" alt="m6 storage">
-                <div class="mobile-module-price">€2,111</div>
+                <div class="mobile-module-dim">0.6 × 0.3 × 1.5 m</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m7: cold plunge</div>
                 <img src="images/m7-plunge.png" alt="m7 cold plunge">
-                <div class="mobile-module-price">€12,111</div>
+                <div class="mobile-module-dim">1.5 × 2.0 × 2.5 m</div>
             </div>
         </div>
 
         <div class="mobile-cta">
-            <p class="mobile-cta-text">interested? request a site review.</p>
+            <p class="mobile-cta-text">configurations from €55,000. pricing confirmed in site review.</p>
             <a href="mailto:sauna@lyn.page?subject=site%20review%20request" class="mobile-cta-btn">request site review</a>
         </div>
 
@@ -808,42 +793,36 @@
                         <span class="module-check">✓</span>
                         <span class="module-name">m1: sauna</span>
                         <span class="module-desc">the core. panoramic glass.</span>
-                        <span class="module-price">€55,555</span>
                     </div>
                     <div class="module" data-module="m3">
                         <span class="module-thumb"><img src="images/m3-changing.png" alt="m3"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m3: changing room</span>
                         <span class="module-desc">transitional space. skylit.</span>
-                        <span class="module-price">€15,111</span>
                     </div>
                     <div class="module" data-module="m2">
                         <span class="module-thumb"><img src="images/m2-bridge.png" alt="m2"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m2: swimming bridge</span>
                         <span class="module-desc">direct water access.</span>
-                        <span class="module-price">€11,111</span>
                     </div>
                     <div class="module" data-module="m7">
                         <span class="module-thumb"><img src="images/m7-plunge.png" alt="m7"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m7: cold plunge</span>
                         <span class="module-desc">self-contained basin.</span>
-                        <span class="module-price">€12,111</span>
                     </div>
                     <div class="module" data-module="m5">
                         <span class="module-thumb"><img src="images/m5-shower.png" alt="m5"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m5: outdoor shower</span>
                         <span class="module-desc">wall-mounted. cooling.</span>
-                        <span class="module-price">€3,111</span>
                     </div>
                     <div class="module" data-module="m6">
                         <span class="module-thumb"><img src="images/m6-storage.png" alt="m6"></span>
                         <span class="module-check">✓</span>
                         <span class="module-name">m6: outdoor storage</span>
                         <span class="module-desc">robes. towels. slippers.</span>
-                        <span class="module-price">€2,111</span>
                     </div>
                 </div>
 
@@ -866,7 +845,7 @@
                     </div>
                     <div class="thermal-actions">
                         <button class="btn btn-ghost" data-action="skip-thermal">skip</button>
-                        <button class="btn btn-primary" data-action="add-thermal">add m4 · €3,111</button>
+                        <button class="btn btn-primary" data-action="add-thermal">add m4</button>
                     </div>
                 </div>
 
@@ -889,12 +868,10 @@
 
                         <div class="summary-section">
                             <div class="summary-label">modules</div>
-                            <table class="summary-table">
-                                <tbody id="modules-summary"></tbody>
-                            </table>
+                            <div class="summary-modules" id="modules-summary"></div>
                         </div>
 
-                        <p class="summary-note">pro forma. final pricing confirmed in site review.</p>
+                        <p class="summary-note">pricing confirmed in site review.</p>
                     </div>
 
                     <div id="indoor-summary" class="hidden">
@@ -906,7 +883,6 @@
                         <div class="thermal-section">
                             <p>indoor installations are bespoke.</p>
                             <p>materials and construction quoted per project.</p>
-                            <p class="summary-note">reference: outdoor m1 sauna from €55,555</p>
                         </div>
                     </div>
                 </div>
@@ -928,7 +904,6 @@
                     <input type="hidden" name="audience" id="form-audience">
                     <input type="hidden" name="site-type" id="form-site-type">
                     <input type="hidden" name="configuration" id="form-configuration">
-                    <input type="hidden" name="total" id="form-total">
 
                     <div class="form-row">
                         <label class="form-label">name</label>
@@ -1057,19 +1032,18 @@
         // === CONFIGURATION ===
         const CONFIG = {
             currency: '€',
-            deliveryInstall: 7777,
             formEndpoint: null
         };
 
         // === MODULE DATA ===
         const MODULES = {
-            m1: { name: 'm1: sauna', price: 55555 },
-            m2: { name: 'm2: swimming bridge', price: 11111 },
-            m3: { name: 'm3: changing room', price: 15111 },
-            m4: { name: 'm4: thermal module', price: 3111 },
-            m5: { name: 'm5: outdoor shower', price: 3111 },
-            m6: { name: 'm6: outdoor storage', price: 2111 },
-            m7: { name: 'm7: cold plunge', price: 12111 }
+            m1: { name: 'm1: sauna' },
+            m2: { name: 'm2: swimming bridge' },
+            m3: { name: 'm3: changing room' },
+            m4: { name: 'm4: thermal module' },
+            m5: { name: 'm5: outdoor shower' },
+            m6: { name: 'm6: outdoor storage' },
+            m7: { name: 'm7: cold plunge' }
         };
 
         // === STEP IMAGES ===
@@ -1254,18 +1228,15 @@
             const strip = document.getElementById('stripBuilder');
             if (!strip) return;
 
-            // Track which modules are currently rendered
             const existing = new Map();
             strip.querySelectorAll('.strip-module').forEach(el => {
                 existing.set(el.dataset.moduleId, el);
             });
 
-            // Sort selected modules in canonical order
             const sorted = [...state.modules].sort((a, b) => {
                 return parseInt(a.slice(1)) - parseInt(b.slice(1));
             });
 
-            // Remove modules no longer selected
             existing.forEach((el, id) => {
                 if (!sorted.includes(id)) {
                     el.style.opacity = '0';
@@ -1274,15 +1245,9 @@
                 }
             });
 
-            // Remove the total if it exists (we'll re-append it)
-            const existingTotal = strip.querySelector('.strip-total');
-            if (existingTotal) existingTotal.remove();
-
-            // Add/reorder modules
             sorted.forEach((id, index) => {
                 let item = existing.get(id);
                 if (!item) {
-                    // Create new module element
                     const mod = MODULES[id];
                     item = document.createElement('div');
                     item.className = 'strip-module';
@@ -1294,15 +1259,6 @@
                 }
                 strip.appendChild(item);
             });
-
-            // Add running total at bottom
-            if (sorted.length > 0) {
-                const total = sorted.reduce((sum, id) => sum + MODULES[id].price, 0);
-                const totalEl = document.createElement('div');
-                totalEl.className = 'strip-total';
-                totalEl.textContent = `${CONFIG.currency}${total.toLocaleString()}`;
-                strip.appendChild(totalEl);
-            }
         }
 
         function updateSummary() {
@@ -1319,23 +1275,13 @@
                 ].filter(Boolean);
                 document.getElementById('site-summary').textContent = parts.join(' · ');
 
-                const tbody = document.getElementById('modules-summary');
-                tbody.innerHTML = '';
-                let total = 0;
-
+                const summaryEl = document.getElementById('modules-summary');
                 const allModules = state.includeThermal && !state.modules.includes('m4')
                     ? [...state.modules, 'm4']
                     : state.modules;
 
-                allModules.forEach(id => {
-                    const mod = MODULES[id];
-                    total += mod.price;
-                    tbody.innerHTML += `<tr><td>${mod.name}</td><td>${CONFIG.currency}${mod.price.toLocaleString()}</td></tr>`;
-                });
-
-                total += CONFIG.deliveryInstall;
-                tbody.innerHTML += `<tr><td>delivery + install</td><td>${CONFIG.currency}${CONFIG.deliveryInstall.toLocaleString()}</td></tr>`;
-                tbody.innerHTML += `<tr class="total"><td>indicative total</td><td>${CONFIG.currency}${total.toLocaleString()}</td></tr>`;
+                const sorted = [...allModules].sort((a, b) => parseInt(a.slice(1)) - parseInt(b.slice(1)));
+                summaryEl.innerHTML = sorted.map(id => MODULES[id].name).join('<br>');
             } else {
                 outdoorEl.classList.add('hidden');
                 indoorEl.classList.remove('hidden');
@@ -1358,11 +1304,6 @@
                 thermal: state.includeThermal,
                 constraints: state.constraints
             });
-
-            let total = state.modules.reduce((sum, id) => sum + MODULES[id].price, 0);
-            if (state.includeThermal) total += MODULES.m4.price;
-            if (state.siteType === 'outdoor') total += CONFIG.deliveryInstall;
-            document.getElementById('form-total').value = total;
         }
 
         // === EVENT HANDLERS ===
