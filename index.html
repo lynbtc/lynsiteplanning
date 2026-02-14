@@ -818,6 +818,10 @@
                     <span class="nav-back" data-action="back">back</span>
                     <button class="btn btn-primary" data-action="next">request site review</button>
                 </nav>
+                <div class="summary-actions">
+                    <button onclick="window.print()">download pdf</button>
+                    <a href="https://lyn.page/productsheet.html" target="_blank">full product sheet</a>
+                </div>
             </section>
 
             <!-- STEP: Form -->
@@ -1224,12 +1228,6 @@
             } else {
                 html += '<p class="summary-note">bespoke pricing confirmed after design phase. excluding VAT.</p>';
             }
-
-            // Actions
-            html += '<div class="summary-actions">';
-            html += '<button onclick="window.print()">download pdf</button>';
-            html += '<a href="https://lyn.page/productsheet.html">full product sheet</a>';
-            html += '</div>';
 
             el.innerHTML = html;
         }
