@@ -8,7 +8,7 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23262624' width='100' height='100' rx='12'/></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400&family=IBM+Plex+Mono:wght@400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: #fafafa;
@@ -37,10 +37,7 @@
         a:hover { opacity: 0.6; }
 
         /* Layout */
-        .container {
-            display: flex;
-            min-height: 100vh;
-        }
+        .container { display: flex; min-height: 100vh; }
         .content-column {
             flex: 1;
             display: flex;
@@ -79,12 +76,8 @@
             transition: opacity 0.4s ease;
             will-change: opacity;
         }
-        .image-wrapper > img.active {
-            opacity: 1;
-        }
-        [data-theme="dark"] .image-wrapper > img.invert-dark {
-            filter: invert(1);
-        }
+        .image-wrapper > img.active { opacity: 1; }
+        [data-theme="dark"] .image-wrapper > img.invert-dark { filter: invert(1); }
 
         /* Steps */
         .step { display: none; }
@@ -95,28 +88,13 @@
         }
 
         /* Typography */
-        .step-title {
-            font-size: 16px;
-            margin-bottom: 24px;
-        }
-        .step-description {
-            color: var(--text-muted);
-            margin-bottom: 32px;
-            max-width: 400px;
-        }
+        .step-title { font-size: 16px; margin-bottom: 24px; }
+        .step-description { color: var(--text-muted); margin-bottom: 32px; max-width: 400px; }
         .muted { color: var(--text-muted); }
-        .link {
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
+        .link { text-decoration: underline; text-underline-offset: 2px; }
 
         /* Choices */
-        .choices {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 32px;
-        }
+        .choices { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
         .choice {
             padding: 16px 0;
             cursor: pointer;
@@ -126,14 +104,8 @@
             position: relative;
         }
         .choice:last-child { border-bottom: none; }
-        .choice:hover {
-            opacity: 1;
-            padding-left: 12px;
-        }
-        .choice.selected {
-            opacity: 1;
-            padding-left: 12px;
-        }
+        .choice:hover { opacity: 1; padding-left: 12px; }
+        .choice.selected { opacity: 1; padding-left: 12px; }
         .choice::before {
             content: '';
             position: absolute;
@@ -145,10 +117,7 @@
             background: var(--text);
             transition: height 0.2s;
         }
-        .choice:hover::before,
-        .choice.selected::before {
-            height: 100%;
-        }
+        .choice:hover::before, .choice.selected::before { height: 100%; }
         .choice-title { font-size: 16px; margin-bottom: 4px; }
         .choice-description { font-size: 14px; color: var(--text-muted); }
 
@@ -166,22 +135,13 @@
             border: 1px solid var(--border);
             background: transparent;
         }
-        .constraint-option:hover {
-            opacity: 1;
-            border-color: var(--text-muted);
-            transform: translateY(-1px);
-        }
-        .constraint-option.selected {
-            opacity: 1;
-            border-color: var(--text);
-            background: var(--text);
-            color: var(--bg);
-        }
+        .constraint-option:hover { opacity: 1; border-color: var(--text-muted); transform: translateY(-1px); }
+        .constraint-option.selected { opacity: 1; border-color: var(--text); background: var(--text); color: var(--bg); }
 
         /* Modules */
         .modules { margin-bottom: 32px; }
         .module {
-            padding: 12px 0 12px 0;
+            padding: 12px 0;
             cursor: pointer;
             opacity: 0.4;
             transition: all 0.2s;
@@ -204,34 +164,17 @@
             opacity: 0;
             transition: opacity 0.2s;
         }
-        .module:hover {
-            opacity: 0.8;
-            padding-left: 8px;
-        }
-        .module.selected {
-            opacity: 1;
-            padding-left: 8px;
-        }
-        .module.selected::before,
-        .module.required::before {
-            opacity: 1;
-        }
+        .module:hover { opacity: 0.8; padding-left: 8px; }
+        .module.selected { opacity: 1; padding-left: 8px; }
+        .module.selected::before, .module.required::before { opacity: 1; }
         .module.required { opacity: 1; cursor: default; padding-left: 8px; }
-        .module-thumb {
-            width: 36px;
-            height: 36px;
-            flex-shrink: 0;
-        }
-        .module-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        [data-theme="dark"] .module-thumb img {
-            filter: invert(1);
-        }
-        .module-name { font-size: 16px; min-width: 140px; flex-shrink: 0; }
-        .module-desc { font-size: 14px; color: var(--text-muted); flex: 1; }
+        .module-thumb { width: 36px; height: 36px; flex-shrink: 0; }
+        .module-thumb img { width: 100%; height: 100%; object-fit: contain; }
+        [data-theme="dark"] .module-thumb img { filter: invert(1); }
+        .module-info { flex: 1; min-width: 0; }
+        .module-name { font-size: 16px; }
+        .module-meta { font-size: 13px; color: var(--text-muted); display: flex; gap: 12px; }
+        .module-dim { font-family: 'IBM Plex Mono', monospace; font-size: 11px; }
         .module-check {
             width: 16px;
             height: 16px;
@@ -243,8 +186,7 @@
             flex-shrink: 0;
             transition: all 0.2s;
         }
-        .module.selected .module-check,
-        .module.required .module-check {
+        .module.selected .module-check, .module.required .module-check {
             background: var(--text);
             border-color: var(--text);
             color: var(--bg);
@@ -256,9 +198,7 @@
             background: var(--border);
             margin-bottom: 32px;
         }
-        [data-theme="dark"] .thermal-section {
-            background: #1a1a1a;
-        }
+        [data-theme="dark"] .thermal-section { background: #1a1a1a; }
         .thermal-title { font-size: 16px; margin-bottom: 16px; }
         .thermal-copy { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.7; }
         .thermal-copy p { margin-bottom: 8px; }
@@ -267,10 +207,83 @@
         /* Summary */
         .summary { margin-bottom: 32px; }
         .summary-section { margin-bottom: 24px; }
-        .summary-label { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+        .summary-label { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-muted); letter-spacing: 0.03em; margin-bottom: 12px; }
         .summary-value { font-size: 14px; }
-        .summary-modules { font-size: 14px; line-height: 1.8; }
         .summary-note { font-size: 13px; color: var(--text-muted); margin-top: 16px; }
+
+        /* Summary modules */
+        .summary-module { border-bottom: 1px solid var(--border); }
+        .summary-module:last-child { border-bottom: none; }
+        .summary-module-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            cursor: pointer;
+            transition: opacity 0.15s;
+        }
+        .summary-module-header:hover { opacity: 0.7; }
+        .summary-module-name { font-size: 14px; }
+        .summary-module-dim { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-muted); }
+        .summary-module-toggle { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-muted); }
+        .summary-module-specs {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .summary-module.open .summary-module-specs { max-height: 500px; }
+        .summary-spec-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 8px;
+            padding: 4px 0;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(128,128,128,0.1);
+        }
+        .summary-spec-row:last-child { border-bottom: none; }
+        .summary-spec-key { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-muted); padding-top: 1px; }
+        .summary-spec-val { color: var(--text-muted); }
+
+        /* Summary heater */
+        .summary-heater { padding: 20px 0; }
+        .summary-heater p { font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-bottom: 8px; }
+        .summary-flow-row {
+            display: grid;
+            grid-template-columns: 110px 1fr;
+            gap: 8px;
+            padding: 6px 0;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(128,128,128,0.1);
+        }
+        .summary-flow-row:last-child { border-bottom: none; }
+        .summary-flow-key { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-muted); padding-top: 1px; }
+        .summary-flow-val { color: var(--text-muted); }
+
+        /* Summary install */
+        .summary-install { padding: 12px 0; }
+
+        /* Summary process */
+        .summary-step { display: grid; grid-template-columns: 30px 1fr; gap: 8px; padding: 10px 0; border-bottom: 1px solid rgba(128,128,128,0.1); }
+        .summary-step:last-child { border-bottom: none; }
+        .summary-step-num { font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--text-muted); padding-top: 2px; }
+        .summary-step-text { font-size: 13px; color: var(--text-muted); }
+        .summary-step-title { color: var(--text); font-weight: 400; }
+
+        /* Summary actions */
+        .summary-actions { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+        .summary-actions a, .summary-actions button {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--text-muted);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.15s;
+        }
+        .summary-actions a:hover, .summary-actions button:hover { color: var(--text); opacity: 1; }
 
         /* Form */
         .form-row { margin-bottom: 16px; }
@@ -310,12 +323,8 @@
         .btn-ghost { border-color: var(--text-muted); color: var(--text-muted); }
         .btn-ghost:hover { border-color: var(--text); color: var(--text); background: var(--bg); }
 
-        /* Selection Strip - hidden legacy */
-        .selection-strip {
-            display: none;
-        }
-
-        /* Right-column strip builder — assembly view */
+        /* Selection Strip */
+        .selection-strip { display: none; }
         .strip-builder {
             display: none;
             flex-direction: column;
@@ -329,9 +338,7 @@
         .strip-builder::-webkit-scrollbar { width: 4px; }
         .strip-builder::-webkit-scrollbar-track { background: transparent; }
         .strip-builder::-webkit-scrollbar-thumb { background: var(--border); }
-        .strip-builder.active {
-            display: flex;
-        }
+        .strip-builder.active { display: flex; }
         .strip-module {
             display: flex;
             flex-direction: column;
@@ -344,29 +351,9 @@
             from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .strip-module img {
-            width: 100%;
-            max-width: 280px;
-            height: auto;
-            object-fit: contain;
-            flex-shrink: 0;
-        }
-        [data-theme="dark"] .strip-module img {
-            filter: invert(1);
-        }
-        .strip-module-name {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 8px;
-            text-align: center;
-        }
-        .strip-empty {
-            color: var(--text-muted);
-            font-size: 14px;
-            text-align: center;
-            padding: 40px 20px;
-            opacity: 0.5;
-        }
+        .strip-module img { width: 100%; max-width: 280px; height: auto; object-fit: contain; flex-shrink: 0; }
+        [data-theme="dark"] .strip-module img { filter: invert(1); }
+        .strip-module-name { font-size: 13px; color: var(--text-muted); margin-top: 8px; text-align: center; }
 
         /* Navigation */
         .step-nav {
@@ -377,12 +364,7 @@
             margin-top: 32px;
             border-top: 1px solid var(--border);
         }
-        .nav-back {
-            font-size: 14px;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: color 0.15s;
-        }
+        .nav-back { font-size: 14px; color: var(--text-muted); cursor: pointer; transition: color 0.15s; }
         .nav-back:hover { color: var(--text); }
 
         /* Success */
@@ -404,7 +386,7 @@
             opacity: 0.5;
         }
 
-        /* Nav trigger */
+        /* Nav */
         .nav-trigger {
             position: fixed;
             top: 12px;
@@ -425,8 +407,6 @@
             justify-content: center;
         }
         .nav-trigger:hover, .nav-trigger.active { opacity: 0.6; }
-
-        /* Nav menu */
         .nav-menu {
             position: fixed;
             top: 48px;
@@ -466,43 +446,20 @@
         .hidden { display: none !important; }
         .mt-lg { margin-top: 24px; }
 
-        /* Mobile Teaser - hidden on desktop */
+        /* Mobile Teaser */
         .mobile-teaser {
             display: none;
             min-height: 100vh;
             flex-direction: column;
             padding: 40px 24px 80px;
         }
-        .mobile-teaser-header {
-            margin-bottom: 32px;
-        }
-        .mobile-teaser-title {
-            font-size: 16px;
-            margin-bottom: 8px;
-        }
-        .mobile-teaser-subtitle {
-            font-size: 14px;
-            color: var(--text-muted);
-        }
-        .mobile-teaser-note {
-            font-size: 12px;
-            color: var(--text-muted);
-            opacity: 0.6;
-            margin-top: 8px;
-        }
-        .mobile-hero {
-            margin-bottom: 32px;
-        }
-        .mobile-hero img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .mobile-modules {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 40px;
-        }
+        .mobile-teaser-header { margin-bottom: 32px; }
+        .mobile-teaser-title { font-size: 16px; margin-bottom: 8px; }
+        .mobile-teaser-subtitle { font-size: 14px; color: var(--text-muted); }
+        .mobile-teaser-note { font-size: 12px; color: var(--text-muted); opacity: 0.6; margin-top: 8px; }
+        .mobile-hero { margin-bottom: 32px; }
+        .mobile-hero img { width: 100%; height: auto; display: block; }
+        .mobile-modules { display: flex; flex-direction: column; margin-bottom: 40px; }
         .mobile-module {
             padding: 16px 0 24px;
             border-bottom: 1px solid rgba(128, 128, 128, 0.2);
@@ -510,40 +467,13 @@
             flex-direction: column;
             align-items: flex-start;
         }
-        .mobile-module:last-child {
-            border-bottom: none;
-        }
-        .mobile-module img {
-            width: 100%;
-            height: auto;
-            margin: 12px 0 8px;
-            order: 2;
-        }
-        [data-theme="dark"] .mobile-module img {
-            filter: invert(1);
-        }
-        .mobile-module-name {
-            font-size: 16px;
-            order: 1;
-        }
-        .mobile-module-dim {
-            font-size: 13px;
-            color: var(--text-muted);
-            order: 3;
-            margin-top: 2px;
-        }
-        .mobile-cta {
-            text-align: center;
-            padding: 24px;
-            border: 1px solid var(--border);
-            margin-bottom: 24px;
-        }
-        .mobile-cta-text {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 16px;
-            line-height: 1.6;
-        }
+        .mobile-module:last-child { border-bottom: none; }
+        .mobile-module img { width: 100%; height: auto; margin: 12px 0 8px; order: 2; }
+        [data-theme="dark"] .mobile-module img { filter: invert(1); }
+        .mobile-module-name { font-size: 16px; order: 1; }
+        .mobile-module-dim { font-size: 13px; color: var(--text-muted); order: 3; margin-top: 2px; }
+        .mobile-cta { text-align: center; padding: 24px; border: 1px solid var(--border); margin-bottom: 24px; }
+        .mobile-cta-text { font-size: 14px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.6; }
         .mobile-cta-btn {
             display: inline-block;
             padding: 10px 20px;
@@ -556,26 +486,30 @@
             text-decoration: none;
             transition: opacity 0.15s;
         }
-        .mobile-cta-btn:hover {
-            opacity: 0.8;
-        }
-        .mobile-teaser-link {
-            text-align: center;
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-        .mobile-teaser-link a {
-            text-decoration: underline;
-            text-underline-offset: 2px;
+        .mobile-cta-btn:hover { opacity: 0.8; }
+        .mobile-teaser-link { text-align: center; font-size: 13px; color: var(--text-muted); }
+        .mobile-teaser-link a { text-decoration: underline; text-underline-offset: 2px; }
+
+        /* Print */
+        @media print {
+            body { background: white; color: #1a1a1a; font-size: 10pt; }
+            .container { display: block; }
+            .content-column { max-width: 100%; padding: 0; }
+            .image-column, .nav-trigger, .nav-menu, .footer, .mobile-teaser { display: none !important; }
+            .step { display: none !important; }
+            .step[data-step="summary"] { display: block !important; }
+            .summary-module-specs { max-height: none !important; overflow: visible !important; }
+            .summary-module-toggle { display: none; }
+            .summary-actions { display: none; }
+            .step-nav { display: none; }
+            .btn { border: 1px solid #1a1a1a; }
+            @page { margin: 1.8cm; size: A4; }
         }
 
-        /* Responsive */
         @media (max-width: 900px) {
             .container { display: none; }
             .mobile-teaser { display: flex; }
             .footer { display: none; }
-            .nav-trigger { z-index: 100; }
-            .nav-menu { z-index: 100; }
         }
     </style>
     <script>
@@ -588,33 +522,29 @@
     </script>
 </head>
 <body>
-    <!-- Mobile Teaser - Read-only preview -->
+    <!-- Mobile Teaser -->
     <div class="mobile-teaser">
         <div class="mobile-teaser-header">
             <div class="mobile-teaser-title">site planning</div>
             <div class="mobile-teaser-subtitle">one sauna. seven modules. 2,100 sites.</div>
             <div class="mobile-teaser-note">optimized for desktop</div>
         </div>
-
-        <div class="mobile-hero">
-            <img src="images/hero.png" alt="LYN sauna">
-        </div>
-
+        <div class="mobile-hero"><img src="images/hero.png" alt="LYN sauna"></div>
         <div class="mobile-modules">
             <div class="mobile-module">
                 <div class="mobile-module-name">m1: sauna</div>
                 <img src="images/m1-sauna.png" alt="m1 sauna">
-                <div class="mobile-module-dim">3.3 × 2.2 × 2.5 m</div>
+                <div class="mobile-module-dim">3.3 x 2.2 x 2.5 m</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m2: swimming bridge</div>
                 <img src="images/m2-bridge.png" alt="m2 swimming bridge">
-                <div class="mobile-module-dim">1.5 × 2.0 × 0.3 m</div>
+                <div class="mobile-module-dim">1.5 x 2.0 x 0.3 m</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m3: changing room</div>
                 <img src="images/m3-changing.png" alt="m3 changing room">
-                <div class="mobile-module-dim">1.5 × 2.0 × 2.5 m</div>
+                <div class="mobile-module-dim">1.5 x 2.0 x 2.5 m</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m4: thermal module</div>
@@ -624,28 +554,24 @@
             <div class="mobile-module">
                 <div class="mobile-module-name">m5: outdoor shower</div>
                 <img src="images/m5-shower.png" alt="m5 outdoor shower">
-                <div class="mobile-module-dim">0.5 × 0.1 × 2.0 m</div>
+                <div class="mobile-module-dim">0.5 x 0.1 x 2.0 m</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m6: outdoor storage</div>
                 <img src="images/m6-storage.png" alt="m6 storage">
-                <div class="mobile-module-dim">0.6 × 0.3 × 1.5 m</div>
+                <div class="mobile-module-dim">0.6 x 0.3 x 1.5 m</div>
             </div>
             <div class="mobile-module">
                 <div class="mobile-module-name">m7: cold plunge</div>
                 <img src="images/m7-plunge.png" alt="m7 cold plunge">
-                <div class="mobile-module-dim">1.5 × 2.0 × 2.5 m</div>
+                <div class="mobile-module-dim">1.5 x 2.0 x 2.5 m</div>
             </div>
         </div>
-
         <div class="mobile-cta">
-            <p class="mobile-cta-text">configurations from €55,000. pricing confirmed in site review.</p>
+            <p class="mobile-cta-text">configurations from EUR 55,000. pricing confirmed in site review.</p>
             <a href="mailto:sauna@lyn.page?subject=site%20review%20request" class="mobile-cta-btn">request site review</a>
         </div>
-
-        <div class="mobile-teaser-link">
-            <a href="https://lyn.page">← back to lyn.page</a>
-        </div>
+        <div class="mobile-teaser-link"><a href="https://lyn.page">back to lyn.page</a></div>
     </div>
 
     <div class="container">
@@ -683,7 +609,7 @@
                     </div>
                 </div>
                 <nav class="step-nav">
-                    <span class="nav-back" data-action="back">← back</span>
+                    <span class="nav-back" data-action="back">back</span>
                     <span></span>
                 </nav>
             </section>
@@ -725,7 +651,7 @@
                 </div>
 
                 <nav class="step-nav">
-                    <span class="nav-back" data-action="back">← back</span>
+                    <span class="nav-back" data-action="back">back</span>
                     <button class="btn btn-primary" data-action="next">continue</button>
                 </nav>
             </section>
@@ -750,7 +676,7 @@
                 </div>
 
                 <nav class="step-nav">
-                    <span class="nav-back" data-action="back">← back</span>
+                    <span class="nav-back" data-action="back">back</span>
                     <button class="btn btn-primary" data-action="next">continue</button>
                 </nav>
             </section>
@@ -776,7 +702,7 @@
                 </div>
 
                 <nav class="step-nav">
-                    <span class="nav-back" data-action="back">← back</span>
+                    <span class="nav-back" data-action="back">back</span>
                     <button class="btn btn-primary" data-action="next">continue</button>
                 </nav>
             </section>
@@ -789,44 +715,56 @@
                 <div class="modules">
                     <div class="module selected required" data-module="m1">
                         <span class="module-thumb"><img src="images/m1-sauna.png" alt="m1"></span>
-                        <span class="module-check">✓</span>
-                        <span class="module-name">m1: sauna</span>
-                        <span class="module-desc">the core. panoramic glass.</span>
+                        <span class="module-check">&#10003;</span>
+                        <div class="module-info">
+                            <div class="module-name">m1: sauna</div>
+                            <div class="module-meta"><span class="module-dim">3.3 x 2.2 x 2.5 m</span></div>
+                        </div>
                     </div>
                     <div class="module" data-module="m3">
                         <span class="module-thumb"><img src="images/m3-changing.png" alt="m3"></span>
-                        <span class="module-check">✓</span>
-                        <span class="module-name">m3: changing room</span>
-                        <span class="module-desc">transitional space. skylit.</span>
+                        <span class="module-check">&#10003;</span>
+                        <div class="module-info">
+                            <div class="module-name">m3: changing room</div>
+                            <div class="module-meta"><span class="module-dim">1.5 x 2.0 x 2.5 m</span></div>
+                        </div>
                     </div>
                     <div class="module" data-module="m2">
                         <span class="module-thumb"><img src="images/m2-bridge.png" alt="m2"></span>
-                        <span class="module-check">✓</span>
-                        <span class="module-name">m2: swimming bridge</span>
-                        <span class="module-desc">direct water access.</span>
+                        <span class="module-check">&#10003;</span>
+                        <div class="module-info">
+                            <div class="module-name">m2: swimming bridge</div>
+                            <div class="module-meta"><span class="module-dim">1.5 x 2.0 x 0.3 m</span></div>
+                        </div>
                     </div>
                     <div class="module" data-module="m7">
                         <span class="module-thumb"><img src="images/m7-plunge.png" alt="m7"></span>
-                        <span class="module-check">✓</span>
-                        <span class="module-name">m7: cold plunge</span>
-                        <span class="module-desc">self-contained basin.</span>
+                        <span class="module-check">&#10003;</span>
+                        <div class="module-info">
+                            <div class="module-name">m7: cold plunge</div>
+                            <div class="module-meta"><span class="module-dim">1.5 x 2.0 x 2.5 m</span></div>
+                        </div>
                     </div>
                     <div class="module" data-module="m5">
                         <span class="module-thumb"><img src="images/m5-shower.png" alt="m5"></span>
-                        <span class="module-check">✓</span>
-                        <span class="module-name">m5: outdoor shower</span>
-                        <span class="module-desc">wall-mounted. cooling.</span>
+                        <span class="module-check">&#10003;</span>
+                        <div class="module-info">
+                            <div class="module-name">m5: outdoor shower</div>
+                            <div class="module-meta"><span class="module-dim">0.5 x 0.1 x 2.0 m</span></div>
+                        </div>
                     </div>
                     <div class="module" data-module="m6">
                         <span class="module-thumb"><img src="images/m6-storage.png" alt="m6"></span>
-                        <span class="module-check">✓</span>
-                        <span class="module-name">m6: outdoor storage</span>
-                        <span class="module-desc">robes. towels. slippers.</span>
+                        <span class="module-check">&#10003;</span>
+                        <div class="module-info">
+                            <div class="module-name">m6: outdoor storage</div>
+                            <div class="module-meta"><span class="module-dim">0.6 x 0.3 x 1.5 m</span></div>
+                        </div>
                     </div>
                 </div>
 
                 <nav class="step-nav">
-                    <span class="nav-back" data-action="back">← back</span>
+                    <span class="nav-back" data-action="back">back</span>
                     <button class="btn btn-primary" data-action="next">continue</button>
                 </nav>
             </section>
@@ -848,9 +786,8 @@
                         <button class="btn btn-primary" data-action="add-thermal">add m4</button>
                     </div>
                 </div>
-
                 <nav class="step-nav">
-                    <span class="nav-back" data-action="back">← back</span>
+                    <span class="nav-back" data-action="back">back</span>
                     <span></span>
                 </nav>
             </section>
@@ -858,58 +795,18 @@
             <!-- STEP: Summary -->
             <section class="step" data-step="summary">
                 <div class="step-title">your configuration</div>
-
-                <div class="summary">
-                    <div id="outdoor-summary">
-                        <div class="summary-section">
-                            <div class="summary-label">site</div>
-                            <div class="summary-value" id="site-summary"></div>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-label">modules</div>
-                            <div class="summary-modules" id="modules-summary"></div>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-label">stove</div>
-                            <div class="summary-value">assessed in site review. specified to architecture and site conditions.</div>
-                        </div>
-
-                        <p class="summary-note">configurations from €55,000. pricing confirmed in site review.</p>
-                    </div>
-
-                    <div id="indoor-summary" class="hidden">
-                        <div class="summary-section">
-                            <div class="summary-label">project</div>
-                            <div class="summary-value" id="indoor-site-summary"></div>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-label">stove</div>
-                            <div class="summary-value">assessed in site review. specified to architecture and site conditions.</div>
-                        </div>
-
-                        <div class="thermal-section">
-                            <p>indoor installations are bespoke.</p>
-                            <p>materials and construction quoted per project.</p>
-                        </div>
-                    </div>
-                </div>
-
+                <div id="summary-content"></div>
                 <nav class="step-nav">
-                    <span class="nav-back" data-action="back">← back</span>
-                    <button class="btn btn-primary" data-action="next">continue</button>
+                    <span class="nav-back" data-action="back">back</span>
+                    <button class="btn btn-primary" data-action="next">request site review</button>
                 </nav>
             </section>
 
             <!-- STEP: Form -->
             <section class="step" data-step="form">
                 <div class="step-title">request site review</div>
-
                 <form id="lead-form" name="site-review" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                     <p class="hidden"><label>Don't fill this out: <input name="bot-field"></label></p>
-
                     <input type="hidden" name="form-name" value="site-review">
                     <input type="hidden" name="audience" id="form-audience">
                     <input type="hidden" name="site-type" id="form-site-type">
@@ -919,12 +816,10 @@
                         <label class="form-label">name</label>
                         <input type="text" class="form-input" name="name" required>
                     </div>
-
                     <div class="form-row">
                         <label class="form-label">email</label>
                         <input type="email" class="form-input" name="email" required>
                     </div>
-
                     <div class="form-row">
                         <label class="form-label">location</label>
                         <input type="text" class="form-input" name="location" placeholder="city, country" required>
@@ -935,12 +830,10 @@
                             <label class="form-label">company</label>
                             <input type="text" class="form-input" name="company">
                         </div>
-
                         <div class="form-row">
                             <label class="form-label">role</label>
                             <input type="text" class="form-input" name="role">
                         </div>
-
                         <div class="form-row">
                             <label class="form-label">timeline</label>
                             <div class="constraint-options" data-constraint="timeline">
@@ -955,12 +848,10 @@
                     <div class="mt-lg">
                         <button type="submit" class="btn btn-primary">request site review</button>
                     </div>
-
                     <p class="summary-note mt-lg">response within 48 hours</p>
                 </form>
-
                 <nav class="step-nav">
-                    <span class="nav-back" data-action="back">← back</span>
+                    <span class="nav-back" data-action="back">back</span>
                     <span></span>
                 </nav>
             </section>
@@ -970,7 +861,7 @@
                 <div class="success">
                     <div class="success-title">request received</div>
                     <p class="success-message">we'll review your site and respond within 48 hours.</p>
-                    <p class="mt-lg"><a href="https://lyn.page" class="link">← return to lyn.page</a></p>
+                    <p class="mt-lg"><a href="https://lyn.page" class="link">back to lyn.page</a></p>
                 </div>
             </section>
         </div>
@@ -979,17 +870,14 @@
             <div class="image-wrapper">
                 <img id="step-image-a" src="images/config-preview.png" alt="LYN sauna" class="invert-dark active">
                 <img id="step-image-b" src="" alt="LYN sauna">
-                <div class="strip-builder" id="stripBuilder">
-                    <!-- Built dynamically by JS -->
-                </div>
+                <div class="strip-builder" id="stripBuilder"></div>
             </div>
         </div>
     </div>
 
-    <footer class="footer">© lynbtc aps · copenhagen 2025 · vat dk46170571</footer>
+    <footer class="footer">lynbtc aps copenhagen 2025 vat dk46170571</footer>
 
-    <button class="nav-trigger" onclick="toggleNav()" aria-label="Toggle navigation">–</button>
-
+    <button class="nav-trigger" onclick="toggleNav()" aria-label="Toggle navigation">-</button>
     <nav class="nav-menu" id="navMenu">
         <ul>
             <li><a href="https://lyn.page/sauna.html">sauna</a></li>
@@ -1007,56 +895,76 @@
     </nav>
 
     <script>
-        // Nav menu
+        // Nav
         const navMenu = document.getElementById('navMenu');
         const navTrigger = document.querySelector('.nav-trigger');
-
-        function toggleNav() {
-            navMenu.classList.toggle('open');
-            navTrigger.classList.toggle('active');
-        }
-
-        function updateThemeBtn() {
-            const current = document.documentElement.getAttribute('data-theme');
-            document.getElementById('themeBtn').textContent = current === 'dark' ? 'light mode' : 'dark mode';
-        }
-
-        function toggleTheme() {
-            const html = document.documentElement;
-            const current = html.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', next);
-            localStorage.setItem('lyn-theme', next);
-            updateThemeBtn();
-        }
-
-        document.addEventListener('click', (e) => {
-            if (!navMenu.contains(e.target) && !navTrigger.contains(e.target)) {
-                navMenu.classList.remove('open');
-                navTrigger.classList.remove('active');
-            }
-        });
-
+        function toggleNav() { navMenu.classList.toggle('open'); navTrigger.classList.toggle('active'); }
+        function updateThemeBtn() { var c = document.documentElement.getAttribute('data-theme'); document.getElementById('themeBtn').textContent = c === 'dark' ? 'light mode' : 'dark mode'; }
+        function toggleTheme() { var h = document.documentElement, c = h.getAttribute('data-theme'), n = c === 'dark' ? 'light' : 'dark'; h.setAttribute('data-theme', n); localStorage.setItem('lyn-theme', n); updateThemeBtn(); }
+        document.addEventListener('click', function(e) { if (!navMenu.contains(e.target) && !navTrigger.contains(e.target)) { navMenu.classList.remove('open'); navTrigger.classList.remove('active'); } });
         updateThemeBtn();
-
-        // === CONFIGURATION ===
-        const CONFIG = {
-            currency: '€',
-            formEndpoint: null
-        };
 
         // === MODULE DATA ===
         const MODULES = {
-            m1: { name: 'm1: sauna' },
-            m2: { name: 'm2: swimming bridge' },
-            m3: { name: 'm3: changing room' },
-            m4: { name: 'm4: thermal module' },
-            m5: { name: 'm5: outdoor shower' },
-            m6: { name: 'm6: outdoor storage' },
-            m7: { name: 'm7: cold plunge' }
+            m1: { name: 'm1: sauna', dim: '3300 x 2200 x 2500 mm', specs: [
+                ['Interior', 'Bench and back wall: 30 x 30 mm natural colour wooden strips. Floor: 100 mm wide natural colour planks.'],
+                ['Glass', 'Frameless load-supporting glass slabs. Sliding glass door with black handle, left or right side option.'],
+                ['Heater', 'Specified to cabin volume during design phase. Curated selection — the use case determines the stove.'],
+                ['Roof', 'Double side pitched slate roof'],
+                ['Exterior', 'Black painted 30 x 30 mm wooden strips. Powder-coated black steel wrapped bottom rim.'],
+                ['Capacity', '4-6 persons (outdoor). Indoor scaled to architecture.'],
+                ['Electrical', '400V three-phase. Wattage specified to cabin volume.'],
+                ['Edition', 'Outdoor: numbered 0001-2100. Indoor: unlimited bespoke.']
+            ]},
+            m2: { name: 'm2: swimming bridge', dim: '1500 x 2000 x 300 mm', specs: [
+                ['Structure', 'Powder-coated black steel stairs and guard (left or right side option)'],
+                ['Deck', '100 mm wide natural colour wooden planks'],
+                ['Rim', 'Powder-coated black steel wrapped bottom rim'],
+                ['Installation', 'Bolted to foundation or dock. Waterside placement.']
+            ]},
+            m3: { name: 'm3: changing room', dim: '1500 x 2000 x 2500 mm', specs: [
+                ['Interior', 'Bench and back wall: 30 x 30 mm black painted wooden strips. Floor: 100 mm wide natural colour planks.'],
+                ['Skylight', 'Flat mounted skylight'],
+                ['Storage', 'Powder-coated black steel locker shelving with mounting storage for M4'],
+                ['Door', 'Recessed in protruding powder-coated steel frame. Clad with black painted 30 mm strips, black handle.'],
+                ['Exterior', 'Black painted 30 x 30 mm wooden strips. Powder-coated black steel wrapped bottom rim.'],
+                ['Heating', 'Via M4 thermal module mounted in locker shelving (optional)']
+            ]},
+            m4: { name: 'm4: thermal module', dim: 'Site-dependent', specs: [
+                ['Hardware', 'ASIC miner (current generation)'],
+                ['Power draw', '3,500 W (typical configuration)'],
+                ['Heat output', '3,500 W thermal. 100% electrical-to-thermal conversion.'],
+                ['Daily output', '84 kWh heat / day (continuous operation)'],
+                ['Electrical', '230V single-phase. Dedicated circuit.'],
+                ['Network', 'Ethernet or WiFi. Mining pool connection and monitoring.'],
+                ['Sound', 'Soundproofed enclosure within M3 locker shelving'],
+                ['Custody', 'Bitcoin mines to a wallet you control. Setup assistance included.']
+            ]},
+            m5: { name: 'm5: outdoor shower', dim: '500 x 100 x 2000 mm', specs: [
+                ['Material', 'Stainless steel 316L, marine-grade'],
+                ['Mount', 'Wall-mounted to cabin or changing room exterior'],
+                ['Supply', 'Water hose connection or plumbed installation with mixer valve'],
+                ['Drainage', 'Surface to ground or plumbed to waste']
+            ]},
+            m6: { name: 'm6: outdoor storage', dim: '600 x 300 x 1500 mm', specs: [
+                ['Construction', 'Matching exterior cladding'],
+                ['Access', 'Front access'],
+                ['Seal', 'Weather-sealed, ventilated']
+            ]},
+            m7: { name: 'm7: cold plunge', dim: '1500 x 2000 x 2500 mm', specs: [
+                ['Construction', 'Insulated basin, watertight inner shell'],
+                ['Capacity', 'Single person full immersion'],
+                ['Fill', 'Manual hose fill or plumbed supply with overflow drain'],
+                ['Chiller', 'Optional. Not needed where ambient water is cold.'],
+                ['Drainage', 'Bottom drain to waste or ground soak-away']
+            ]}
         };
 
-        // === STEP IMAGES ===
+        const MODULE_IMAGES = {
+            m1: 'images/m1-sauna.png', m2: 'images/m2-bridge.png', m3: 'images/m3-changing.png',
+            m4: 'images/m4-thermal.png', m5: 'images/m5-shower.png', m6: 'images/m6-storage.png', m7: 'images/m7-plunge.png'
+        };
+
         const STEP_IMAGES = {
             'intro': { src: 'images/config-preview.png', invert: true },
             'site-type': { src: 'images/config-preview.png', invert: true },
@@ -1070,25 +978,12 @@
             'success': { src: 'images/hero.png', invert: false }
         };
 
-        // === MODULE IMAGES ===
-        const MODULE_IMAGES = {
-            m1: 'images/m1-sauna.png',
-            m2: 'images/m2-bridge.png',
-            m3: 'images/m3-changing.png',
-            m4: 'images/m4-thermal.png',
-            m5: 'images/m5-shower.png',
-            m6: 'images/m6-storage.png',
-            m7: 'images/m7-plunge.png'
-        };
-
-        // === STEP FLOWS ===
         const FLOWS = {
             outdoor: ['intro', 'site-type', 'constraints', 'modules', 'thermal', 'summary', 'form'],
             'indoor-private': ['intro', 'site-type', 'indoor-private', 'thermal', 'summary', 'form'],
             'indoor-professional': ['intro', 'site-type', 'indoor-professional', 'thermal', 'summary', 'form']
         };
 
-        // === STATE ===
         const state = {
             step: 'intro',
             audience: null,
@@ -1102,77 +997,56 @@
         // === NAVIGATION ===
         function getFlow() {
             if (state.siteType === 'outdoor') return FLOWS.outdoor;
-            if (state.siteType === 'indoor') {
-                return state.audience === 'private' ? FLOWS['indoor-private'] : FLOWS['indoor-professional'];
-            }
+            if (state.siteType === 'indoor') return state.audience === 'private' ? FLOWS['indoor-private'] : FLOWS['indoor-professional'];
             return ['intro', 'site-type'];
         }
 
-        // === IMAGE TRANSITION SYSTEM ===
+        // === IMAGE TRANSITION ===
         const imageCache = new Map();
         let currentImageSlot = 'a';
 
         function preloadImages() {
             const allSrcs = new Set();
-            Object.values(STEP_IMAGES).forEach(img => allSrcs.add(img.src));
-            Object.values(MODULE_IMAGES).forEach(src => allSrcs.add(src));
-
-            allSrcs.forEach(src => {
-                const img = new Image();
-                img.src = src;
-                imageCache.set(src, img);
-            });
+            Object.values(STEP_IMAGES).forEach(function(img) { allSrcs.add(img.src); });
+            Object.values(MODULE_IMAGES).forEach(function(src) { allSrcs.add(src); });
+            allSrcs.forEach(function(src) { var img = new Image(); img.src = src; imageCache.set(src, img); });
         }
 
         function transitionImage(newSrc, invert) {
-            const imgA = document.getElementById('step-image-a');
-            const imgB = document.getElementById('step-image-b');
+            var imgA = document.getElementById('step-image-a');
+            var imgB = document.getElementById('step-image-b');
             if (!imgA || !imgB) return;
-
-            const currentImg = currentImageSlot === 'a' ? imgA : imgB;
-            const nextImg = currentImageSlot === 'a' ? imgB : imgA;
-
-            if (currentImg.src.endsWith(newSrc)) {
-                currentImg.classList.toggle('invert-dark', invert);
-                return;
-            }
-
+            var currentImg = currentImageSlot === 'a' ? imgA : imgB;
+            var nextImg = currentImageSlot === 'a' ? imgB : imgA;
+            if (currentImg.src.endsWith(newSrc)) { currentImg.classList.toggle('invert-dark', invert); return; }
             nextImg.classList.toggle('invert-dark', invert);
-
-            const cachedImg = imageCache.get(newSrc);
+            var cachedImg = imageCache.get(newSrc);
             if (cachedImg && cachedImg.complete && cachedImg.naturalWidth > 0) {
                 nextImg.src = newSrc;
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        nextImg.classList.add('active');
-                        currentImg.classList.remove('active');
-                        currentImageSlot = currentImageSlot === 'a' ? 'b' : 'a';
-                    });
-                });
+                requestAnimationFrame(function() { requestAnimationFrame(function() {
+                    nextImg.classList.add('active'); currentImg.classList.remove('active');
+                    currentImageSlot = currentImageSlot === 'a' ? 'b' : 'a';
+                }); });
             } else {
-                nextImg.onload = function() {
-                    requestAnimationFrame(() => {
-                        nextImg.classList.add('active');
-                        currentImg.classList.remove('active');
-                        currentImageSlot = currentImageSlot === 'a' ? 'b' : 'a';
-                    });
-                    nextImg.onload = null;
-                };
+                nextImg.onload = function() { requestAnimationFrame(function() {
+                    nextImg.classList.add('active'); currentImg.classList.remove('active');
+                    currentImageSlot = currentImageSlot === 'a' ? 'b' : 'a';
+                }); nextImg.onload = null; };
                 nextImg.src = newSrc;
             }
         }
 
         function showStep(stepId) {
-            document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-            const target = document.querySelector(`[data-step="${stepId}"]`);
+            document.querySelectorAll('.step').forEach(function(s) { s.classList.remove('active'); });
+            var target = document.querySelector('[data-step="' + stepId + '"]');
             if (target) {
                 target.classList.add('active');
                 state.step = stepId;
                 updateUI();
 
-                const imgA = document.getElementById('step-image-a');
-                const imgB = document.getElementById('step-image-b');
-                const strip = document.getElementById('stripBuilder');
+                var imgA = document.getElementById('step-image-a');
+                var imgB = document.getElementById('step-image-b');
+                var strip = document.getElementById('stripBuilder');
 
                 if (stepId === 'modules') {
                     if (imgA) imgA.style.display = 'none';
@@ -1183,32 +1057,25 @@
                     if (imgA) imgA.style.display = '';
                     if (imgB) imgB.style.display = '';
                     if (strip) strip.classList.remove('active');
-
-                    let imgData = STEP_IMAGES[stepId];
+                    var imgData = STEP_IMAGES[stepId];
                     if (stepId === 'constraints' && state.audience === 'professional') {
                         imgData = { src: 'images/spa.png', invert: false };
                     }
-                    if (imgData) {
-                        transitionImage(imgData.src, imgData.invert);
-                    }
+                    if (imgData) transitionImage(imgData.src, imgData.invert);
                 }
             }
         }
 
         function nextStep() {
-            const flow = getFlow();
-            const currentIndex = flow.indexOf(state.step);
-            if (currentIndex < flow.length - 1) {
-                showStep(flow[currentIndex + 1]);
-            }
+            var flow = getFlow();
+            var i = flow.indexOf(state.step);
+            if (i < flow.length - 1) showStep(flow[i + 1]);
         }
 
         function prevStep() {
-            const flow = getFlow();
-            const currentIndex = flow.indexOf(state.step);
-            if (currentIndex > 0) {
-                showStep(flow[currentIndex - 1]);
-            }
+            var flow = getFlow();
+            var i = flow.indexOf(state.step);
+            if (i > 0) showStep(flow[i - 1]);
         }
 
         // === UI UPDATES ===
@@ -1219,94 +1086,146 @@
         }
 
         function updateThermalCopy() {
-            const benefitEl = document.getElementById('thermal-benefit');
-            if (benefitEl) {
-                benefitEl.textContent = state.audience === 'professional'
-                    ? 'heat for the space. revenue for the project.'
-                    : 'heat for the space. hard asset for your savings.';
-            }
-
-            const integrationEl = document.getElementById('thermal-integration');
-            if (integrationEl) {
-                integrationEl.textContent = state.siteType === 'outdoor'
-                    ? 'hidden within the m3 bench or bespoke integration.'
-                    : 'integrated into your architecture.';
-            }
+            var b = document.getElementById('thermal-benefit');
+            if (b) b.textContent = state.audience === 'professional' ? 'heat for the space. revenue for the project.' : 'heat for the space. hard asset for your savings.';
+            var t = document.getElementById('thermal-integration');
+            if (t) t.textContent = state.siteType === 'outdoor' ? 'hidden within the m3 bench or bespoke integration.' : 'integrated into your architecture.';
         }
 
         function updateSelectionStrip() {
-            const strip = document.getElementById('stripBuilder');
+            var strip = document.getElementById('stripBuilder');
             if (!strip) return;
-
-            const existing = new Map();
-            strip.querySelectorAll('.strip-module').forEach(el => {
-                existing.set(el.dataset.moduleId, el);
+            var existing = new Map();
+            strip.querySelectorAll('.strip-module').forEach(function(el) { existing.set(el.dataset.moduleId, el); });
+            var sorted = state.modules.slice().sort(function(a, b) { return parseInt(a.slice(1)) - parseInt(b.slice(1)); });
+            existing.forEach(function(el, id) {
+                if (sorted.indexOf(id) === -1) { el.style.opacity = '0'; el.style.transform = 'translateY(-8px)'; setTimeout(function() { el.remove(); }, 200); }
             });
-
-            const sorted = [...state.modules].sort((a, b) => {
-                return parseInt(a.slice(1)) - parseInt(b.slice(1));
-            });
-
-            existing.forEach((el, id) => {
-                if (!sorted.includes(id)) {
-                    el.style.opacity = '0';
-                    el.style.transform = 'translateY(-8px)';
-                    setTimeout(() => el.remove(), 200);
-                }
-            });
-
-            sorted.forEach((id, index) => {
-                let item = existing.get(id);
+            sorted.forEach(function(id) {
+                var item = existing.get(id);
                 if (!item) {
-                    const mod = MODULES[id];
+                    var mod = MODULES[id];
                     item = document.createElement('div');
                     item.className = 'strip-module';
                     item.dataset.moduleId = id;
-                    item.innerHTML = `
-                        <img src="${MODULE_IMAGES[id]}" alt="${mod.name}">
-                        <div class="strip-module-name">${mod.name}</div>
-                    `;
+                    item.innerHTML = '<img src="' + MODULE_IMAGES[id] + '" alt="' + mod.name + '"><div class="strip-module-name">' + mod.name + '</div>';
                 }
                 strip.appendChild(item);
             });
         }
 
+        // === RICH SUMMARY ===
         function updateSummary() {
-            const outdoorEl = document.getElementById('outdoor-summary');
-            const indoorEl = document.getElementById('indoor-summary');
+            var el = document.getElementById('summary-content');
+            if (!el) return;
 
+            var allModules = state.modules.slice();
+            if (state.includeThermal && allModules.indexOf('m4') === -1) allModules.push('m4');
+            var sorted = allModules.sort(function(a, b) { return parseInt(a.slice(1)) - parseInt(b.slice(1)); });
+
+            var html = '';
+
+            // Site info
+            html += '<div class="summary-section">';
+            html += '<div class="summary-label">site</div>';
             if (state.siteType === 'outdoor') {
-                outdoorEl.classList.remove('hidden');
-                indoorEl.classList.add('hidden');
-
-                const parts = ['outdoor', state.constraints.foundation,
-                    `crane: ${state.constraints.crane || '—'}`,
-                    `power: ${state.constraints.power || '—'}`
-                ].filter(Boolean);
-                document.getElementById('site-summary').textContent = parts.join(' · ');
-
-                const summaryEl = document.getElementById('modules-summary');
-                const allModules = state.includeThermal && !state.modules.includes('m4')
-                    ? [...state.modules, 'm4']
-                    : state.modules;
-
-                const sorted = [...allModules].sort((a, b) => parseInt(a.slice(1)) - parseInt(b.slice(1)));
-                summaryEl.innerHTML = sorted.map(id => MODULES[id].name).join('<br>');
+                var parts = ['outdoor', state.constraints.foundation, 'crane: ' + (state.constraints.crane || '-'), 'power: ' + (state.constraints.power || '-')].filter(Boolean);
+                html += '<div class="summary-value">' + parts.join(' · ') + '</div>';
             } else {
-                outdoorEl.classList.add('hidden');
-                indoorEl.classList.remove('hidden');
-
-                const parts = ['indoor', state.constraints.projectType,
-                    state.includeThermal ? 'thermal: interested' : ''
-                ].filter(Boolean);
-                document.getElementById('indoor-site-summary').textContent = parts.join(' · ');
+                var parts = ['indoor', state.constraints.projectType, state.includeThermal ? 'thermal: interested' : ''].filter(Boolean);
+                html += '<div class="summary-value">' + parts.join(' · ') + '</div>';
             }
+            html += '</div>';
+
+            // Modules with collapsible specs
+            html += '<div class="summary-section">';
+            html += '<div class="summary-label">modules</div>';
+            sorted.forEach(function(id) {
+                var mod = MODULES[id];
+                html += '<div class="summary-module" data-summary-module="' + id + '">';
+                html += '<div class="summary-module-header" onclick="toggleSummaryModule(this)">';
+                html += '<div><span class="summary-module-name">' + mod.name + '</span> <span class="summary-module-dim">' + mod.dim + '</span></div>';
+                html += '<span class="summary-module-toggle">+ specs</span>';
+                html += '</div>';
+                html += '<div class="summary-module-specs">';
+                mod.specs.forEach(function(s) {
+                    html += '<div class="summary-spec-row"><div class="summary-spec-key">' + s[0] + '</div><div class="summary-spec-val">' + s[1] + '</div></div>';
+                });
+                html += '</div></div>';
+            });
+            html += '</div>';
+
+            // Stove
+            html += '<div class="summary-section">';
+            html += '<div class="summary-label">stove</div>';
+            html += '<div class="summary-value" style="font-size:13px;color:var(--text-muted);">Curated selection. The use case determines the stove. Indoor/commercial: KOERNER as standard. Private outdoor: specified during design phase.</div>';
+            html += '</div>';
+
+            // Heater system (if M4)
+            if (state.includeThermal) {
+                html += '<div class="summary-section summary-heater">';
+                html += '<div class="summary-label">heater system</div>';
+                html += '<p>Two kinds of heat. The sauna heater brings the cabin to operating temperature. The M4 thermal module heats the space around it — changing room warmth, cabin pre-warming to ~20 C baseline.</p>';
+                html += '<p>M4 replaces a conventional electric heater at the same wattage. Same electricity, same heat. Also mines bitcoin. Dual output.</p>';
+                html += '<div style="margin-top:12px;">';
+                html += '<div class="summary-flow-row"><div class="summary-flow-key">Input</div><div class="summary-flow-val">3,500 W typical. Same as a conventional space heater.</div></div>';
+                html += '<div class="summary-flow-row"><div class="summary-flow-key">Output 1</div><div class="summary-flow-val">Heat — 3,500 W thermal into changing room and cabin.</div></div>';
+                html += '<div class="summary-flow-row"><div class="summary-flow-key">Output 2</div><div class="summary-flow-val">Bitcoin — mined continuously. Accumulates in site wallet.</div></div>';
+                html += '<div class="summary-flow-row"><div class="summary-flow-key">Hardware</div><div class="summary-flow-val">~4-5 years productive life. Simple swap.</div></div>';
+                html += '<div class="summary-flow-row"><div class="summary-flow-key">Custody</div><div class="summary-flow-val">Bitcoin mines to a wallet you control.</div></div>';
+                html += '</div></div>';
+            }
+
+            // Installation requirements
+            html += '<div class="summary-section summary-install">';
+            html += '<div class="summary-label">installation</div>';
+            if (state.siteType === 'outdoor') {
+                html += '<div class="summary-spec-row"><div class="summary-spec-key">Footprint</div><div class="summary-spec-val">~22 m2 full configuration</div></div>';
+                html += '<div class="summary-spec-row"><div class="summary-spec-key">Foundation</div><div class="summary-spec-val">Level concrete pad, screw piles, or timber frame. Prepared before delivery.</div></div>';
+                html += '<div class="summary-spec-row"><div class="summary-spec-key">Electrical</div><div class="summary-spec-val">400V three-phase for heater.' + (state.includeThermal ? ' 230V for M4 (3.5 kW).' : '') + ' Dedicated circuits.</div></div>';
+                html += '<div class="summary-spec-row"><div class="summary-spec-key">Timeline</div><div class="summary-spec-val">~8 weeks from confirmed order to installation.</div></div>';
+            } else {
+                html += '<div class="summary-spec-row"><div class="summary-spec-key">Scope</div><div class="summary-spec-val">Bespoke. Dimensions, materials, and configuration adapted to the architecture.</div></div>';
+                html += '<div class="summary-spec-row"><div class="summary-spec-key">Electrical</div><div class="summary-spec-val">400V three-phase for heater.' + (state.includeThermal ? ' 230V for M4 (3.5 kW).' : '') + '</div></div>';
+            }
+            html += '</div>';
+
+            // Process
+            html += '<div class="summary-section">';
+            html += '<div class="summary-label">process</div>';
+            html += '<div class="summary-step"><div class="summary-step-num">01</div><div class="summary-step-text"><span class="summary-step-title">Site Review</span> — we review your site and respond within 48 hours.</div></div>';
+            html += '<div class="summary-step"><div class="summary-step-num">02</div><div class="summary-step-text"><span class="summary-step-title">Project Page</span> — your configuration, M4 economics, heater sizing, open questions.</div></div>';
+            html += '<div class="summary-step"><div class="summary-step-num">03</div><div class="summary-step-text"><span class="summary-step-title">Design Phase</span> — we refine the configuration. Final pricing confirmed.</div></div>';
+            html += '<div class="summary-step"><div class="summary-step-num">04</div><div class="summary-step-text"><span class="summary-step-title">Manufacturing</span> — KOERNER produces the installation in Albstadt, Germany.</div></div>';
+            html += '<div class="summary-step"><div class="summary-step-num">05</div><div class="summary-step-text"><span class="summary-step-title">Delivery + Installation</span> — modules delivered and assembled on site.</div></div>';
+            html += '</div>';
+
+            // Pricing note
+            if (state.siteType === 'outdoor') {
+                html += '<p class="summary-note">configurations from EUR 55,000. pricing confirmed after design phase. excluding VAT.</p>';
+            } else {
+                html += '<p class="summary-note">bespoke pricing confirmed after design phase. excluding VAT.</p>';
+            }
+
+            // Actions
+            html += '<div class="summary-actions">';
+            html += '<button onclick="window.print()">download pdf</button>';
+            html += '<a href="https://lyn.page/productsheet.html">full product sheet</a>';
+            html += '</div>';
+
+            el.innerHTML = html;
+        }
+
+        function toggleSummaryModule(header) {
+            var mod = header.closest('.summary-module');
+            var toggle = mod.querySelector('.summary-module-toggle');
+            mod.classList.toggle('open');
+            toggle.textContent = mod.classList.contains('open') ? '- specs' : '+ specs';
         }
 
         function updateFormFields() {
-            const proFields = document.getElementById('professional-fields');
+            var proFields = document.getElementById('professional-fields');
             proFields.classList.toggle('hidden', state.audience !== 'professional');
-
             document.getElementById('form-audience').value = state.audience || '';
             document.getElementById('form-site-type').value = state.siteType || '';
             document.getElementById('form-configuration').value = JSON.stringify({
@@ -1316,84 +1235,61 @@
             });
         }
 
-        // === EVENT HANDLERS ===
+        // === EVENTS ===
         document.addEventListener('DOMContentLoaded', function() {
             preloadImages();
 
-            // Audience selection
-            document.querySelectorAll('[data-audience]').forEach(el => {
+            document.querySelectorAll('[data-audience]').forEach(function(el) {
                 el.addEventListener('click', function() {
                     state.audience = this.dataset.audience;
-                    document.querySelectorAll('[data-audience]').forEach(c => c.classList.remove('selected'));
+                    document.querySelectorAll('[data-audience]').forEach(function(c) { c.classList.remove('selected'); });
                     this.classList.add('selected');
-                    setTimeout(() => showStep('site-type'), 150);
+                    setTimeout(function() { showStep('site-type'); }, 150);
                 });
             });
 
-            // Site type selection
-            document.querySelectorAll('[data-site]').forEach(el => {
+            document.querySelectorAll('[data-site]').forEach(function(el) {
                 el.addEventListener('click', function() {
                     state.siteType = this.dataset.site;
-                    document.querySelectorAll('[data-site]').forEach(c => c.classList.remove('selected'));
+                    document.querySelectorAll('[data-site]').forEach(function(c) { c.classList.remove('selected'); });
                     this.classList.add('selected');
-                    setTimeout(() => {
-                        if (state.siteType === 'outdoor') {
-                            showStep('constraints');
-                        } else {
-                            showStep(state.audience === 'private' ? 'indoor-private' : 'indoor-professional');
-                        }
+                    setTimeout(function() {
+                        if (state.siteType === 'outdoor') { showStep('constraints'); }
+                        else { showStep(state.audience === 'private' ? 'indoor-private' : 'indoor-professional'); }
                     }, 150);
                 });
             });
 
-            // Constraint options
-            document.querySelectorAll('.constraint-options').forEach(group => {
+            document.querySelectorAll('.constraint-options').forEach(function(group) {
                 group.addEventListener('click', function(e) {
-                    const option = e.target.closest('.constraint-option');
+                    var option = e.target.closest('.constraint-option');
                     if (!option) return;
-
-                    group.querySelectorAll('.constraint-option').forEach(o => o.classList.remove('selected'));
+                    group.querySelectorAll('.constraint-option').forEach(function(o) { o.classList.remove('selected'); });
                     option.classList.add('selected');
-
-                    const constraint = group.dataset.constraint;
-                    const value = option.dataset.value;
-
-                    if (constraint === 'timeline') {
-                        state.timeline = value;
-                        document.getElementById('form-timeline').value = value;
-                    } else {
-                        state.constraints[constraint] = value;
-                    }
+                    var constraint = group.dataset.constraint;
+                    var value = option.dataset.value;
+                    if (constraint === 'timeline') { state.timeline = value; document.getElementById('form-timeline').value = value; }
+                    else { state.constraints[constraint] = value; }
                 });
             });
 
-            // Module selection
-            document.querySelectorAll('.module:not(.required)').forEach(el => {
+            document.querySelectorAll('.module:not(.required)').forEach(function(el) {
                 el.addEventListener('click', function() {
-                    const id = this.dataset.module;
+                    var id = this.dataset.module;
                     this.classList.toggle('selected');
-
-                    if (this.classList.contains('selected')) {
-                        if (!state.modules.includes(id)) state.modules.push(id);
-                    } else {
-                        state.modules = state.modules.filter(m => m !== id);
-                    }
+                    if (this.classList.contains('selected')) { if (state.modules.indexOf(id) === -1) state.modules.push(id); }
+                    else { state.modules = state.modules.filter(function(m) { return m !== id; }); }
                     updateSelectionStrip();
                 });
             });
 
-            // Text fields
-            document.querySelectorAll('[data-field]').forEach(el => {
-                el.addEventListener('input', function() {
-                    state.constraints[this.dataset.field] = this.value;
-                });
+            document.querySelectorAll('[data-field]').forEach(function(el) {
+                el.addEventListener('input', function() { state.constraints[this.dataset.field] = this.value; });
             });
 
-            // Action buttons
             document.addEventListener('click', function(e) {
-                const action = e.target.dataset.action;
+                var action = e.target.dataset.action;
                 if (!action) return;
-
                 switch (action) {
                     case 'next': nextStep(); break;
                     case 'back': prevStep(); break;
@@ -1402,19 +1298,14 @@
                 }
             });
 
-            // Form submission
             document.getElementById('lead-form').addEventListener('submit', function(e) {
                 e.preventDefault();
-                const formData = new FormData(this);
-                const endpoint = CONFIG.formEndpoint || '/';
-
-                fetch(endpoint, {
+                var formData = new FormData(this);
+                fetch('/', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams(formData).toString()
-                })
-                .then(() => showStep('success'))
-                .catch(() => showStep('success'));
+                }).then(function() { showStep('success'); }).catch(function() { showStep('success'); });
             });
         });
     </script>
