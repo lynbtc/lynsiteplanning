@@ -58,10 +58,9 @@ Every word earns its place. Every line of code earns its place. If it doesn't ad
 ## Nav pattern
 Contextual nav shared across lyn.page ecosystem. No border on `.nav-menu`. Uses `.nav-group` class for grouped `<ul>` lists (margin-separated, no dividers). Trigger is en dash `–`. Links use clean URLs (e.g. `https://lyn.page/sauna`, no `.html`).
 
-Siteplanning nav groups:
-1. Site pages: sauna, product sheet, documents
-2. Contextual actions: download pdf (`window.print()`), email (`mailto:julius@lyn.page`)
-3. Theme toggle (`.nav-muted` class)
+Siteplanning nav groups (mirrors main site pattern):
+1. All site pages: home, sauna, spa, residence, product sheet, documents (full absolute URLs to lyn.page)
+2. Contextual actions (all `.nav-muted`): download pdf, email, theme toggle
 
 ## Working conventions
 - Show proposed text copy before implementing in code.

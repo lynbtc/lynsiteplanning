@@ -12,14 +12,14 @@
     <style>
         :root {
             --bg: #fafafa;
-            --text: #37352f;
+            --text: #1a1a1a;
             --text-muted: #a0a0a0;
             --border: #e0e0e0;
         }
         [data-theme="dark"] {
             --bg: #1a1a1a;
-            --text: #e8e8e8;
-            --text-muted: #888888;
+            --text: #e0e0e0;
+            --text-muted: #666666;
             --border: #333333;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -399,7 +399,7 @@
             cursor: pointer;
             opacity: 1;
             transition: opacity 0.2s;
-            z-index: 100;
+            z-index: 10;
             min-width: 44px;
             min-height: 44px;
             display: flex;
@@ -418,7 +418,7 @@
             transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
             padding: 12px 16px;
             min-width: 140px;
-            z-index: 100;
+            z-index: 10;
         }
         .nav-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
         .nav-group { list-style: none; margin-bottom: 16px; }
@@ -439,7 +439,7 @@
             text-decoration: none;
         }
         .nav-menu a:hover, .nav-menu button:hover { opacity: 0.6; }
-        .nav-menu .nav-muted { color: var(--text-muted); font-size: 13px; }
+        .nav-menu .nav-muted { color: var(--text-muted); }
 
         /* Utilities */
         .hidden { display: none !important; }
@@ -905,15 +905,16 @@
     <button class="nav-trigger" onclick="toggleNav()" aria-label="Toggle navigation">&ndash;</button>
     <nav class="nav-menu" id="navMenu">
         <ul class="nav-group">
+            <li><a href="https://lyn.page">home</a></li>
             <li><a href="https://lyn.page/sauna">sauna</a></li>
+            <li><a href="https://lyn.page/spa">spa</a></li>
+            <li><a href="https://lyn.page/residence">residence</a></li>
             <li><a href="https://lyn.page/productsheet">product sheet</a></li>
             <li><a href="https://lyn.page/documents">documents</a></li>
         </ul>
         <ul class="nav-group">
-            <li><a href="#" onclick="window.print(); return false;">download pdf</a></li>
-            <li><a href="mailto:julius@lyn.page">email</a></li>
-        </ul>
-        <ul class="nav-group">
+            <li><a class="nav-muted" href="#" onclick="window.print(); return false;">download pdf</a></li>
+            <li><a class="nav-muted" href="mailto:julius@lyn.page">email</a></li>
             <li><button class="nav-muted" onclick="toggleTheme()" id="themeBtn"></button></li>
         </ul>
     </nav>
