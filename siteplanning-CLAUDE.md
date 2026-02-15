@@ -43,7 +43,7 @@ Every word earns its place. Every line of code earns its place. If it doesn't ad
 ## M4 thermal module context
 - **Optional.** Not in every unit. Configured per site.
 - At a LYN site, M4 IS the heating system. Electricity = heating cost. Bitcoin = upside.
-- Positioning: "hard asset for your savings" (NOT "bitcoin for your savings").
+- Positioning: "hard asset for your savings". Never name the asset directly in user-facing copy.
 - Commercial = "revenue for the project". Private = "hard asset for your savings".
 
 ## Key user flows
