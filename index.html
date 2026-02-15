@@ -891,7 +891,7 @@
         <div class="image-column">
             <div class="image-wrapper">
                 <img id="step-image-a" src="images/config-preview.png" alt="LYN sauna" class="invert-dark active">
-                <img id="step-image-b" src="" alt="LYN sauna">
+                <img id="step-image-b" alt="LYN sauna">
                 <div class="strip-builder" id="stripBuilder"></div>
             </div>
         </div>
@@ -1321,7 +1321,7 @@
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                     body: new URLSearchParams(formData).toString()
-                }).then(function() { showStep('success'); }).catch(function() { showStep('success'); });
+                }).then(function() { showStep('success'); }).catch(function() { alert('Something went wrong. Please email sauna@lyn.page directly.'); });
             });
         });
     </script>
