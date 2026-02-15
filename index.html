@@ -412,7 +412,6 @@
             top: 48px;
             right: 20px;
             background: var(--bg);
-            border: 1px solid var(--text-muted);
             opacity: 0;
             visibility: hidden;
             transform: translateY(-8px);
@@ -422,9 +421,10 @@
             z-index: 100;
         }
         .nav-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
-        .nav-menu ul { list-style: none; }
-        .nav-menu li { margin-bottom: 6px; }
-        .nav-menu li:last-child { margin-bottom: 0; }
+        .nav-group { list-style: none; margin-bottom: 16px; }
+        .nav-group:last-child { margin-bottom: 0; }
+        .nav-group li { margin-bottom: 5px; }
+        .nav-group li:last-child { margin-bottom: 0; }
         .nav-menu a, .nav-menu button {
             font-family: 'IBM Plex Sans', sans-serif;
             font-weight: 300;
@@ -439,8 +439,7 @@
             text-decoration: none;
         }
         .nav-menu a:hover, .nav-menu button:hover { opacity: 0.6; }
-        .nav-menu .divider { height: 1px; background: var(--text-muted); opacity: 0.3; margin: 10px 0; }
-        .nav-menu .theme-btn { color: var(--text-muted); font-size: 13px; }
+        .nav-menu .nav-muted { color: var(--text-muted); font-size: 13px; }
 
         /* Utilities */
         .hidden { display: none !important; }
@@ -899,21 +898,20 @@
 
     <footer class="footer">lynbtc aps copenhagen 2026 vat dk46170571</footer>
 
-    <button class="nav-trigger" onclick="toggleNav()" aria-label="Toggle navigation">-</button>
+    <button class="nav-trigger" onclick="toggleNav()" aria-label="Toggle navigation">&ndash;</button>
     <nav class="nav-menu" id="navMenu">
-        <ul>
+        <ul class="nav-group">
             <li><a href="https://lyn.page/sauna.html">sauna</a></li>
-            <li><a href="https://lyn.page/spa.html">spa</a></li>
-            <li><a href="https://lyn.page/residence.html">residence</a></li>
-            <li><a href="https://lyn.page/onepager.html">onepager</a></li>
-            <li><a href="https://lyn.page/collaborate.html">collaborate</a></li>
+            <li><a href="https://lyn.page/productsheet.html">product sheet</a></li>
             <li><a href="https://lyn.page/documents.html">documents</a></li>
-            <li><a href="https://lyn.page/">home</a></li>
         </ul>
-        <div class="divider"></div>
-        <span class="nav-external" style="opacity: 0.5;">siteplanning</span>
-        <div class="divider"></div>
-        <button class="theme-btn" onclick="toggleTheme()" id="themeBtn"></button>
+        <ul class="nav-group">
+            <li><a href="#" onclick="window.print(); return false;">download pdf</a></li>
+            <li><a href="mailto:julius@lyn.page">email</a></li>
+        </ul>
+        <ul class="nav-group">
+            <li><button class="nav-muted" onclick="toggleTheme()" id="themeBtn"></button></li>
+        </ul>
     </nav>
 
     <script>
