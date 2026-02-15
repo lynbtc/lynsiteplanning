@@ -494,26 +494,29 @@
 
         /* Print */
         @media print {
-            body { background: white !important; color: #1a1a1a !important; font-size: 10pt; }
+            html, body { height: auto !important; }
+            body { background: white !important; color: #1a1a1a !important; font-size: 9.5pt; line-height: 1.5; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
             .container { display: block !important; min-height: auto !important; }
-            .content-column { display: block !important; max-width: 100% !important; padding: 20px 0 !important; }
+            .content-column { display: block !important; max-width: 100% !important; padding: 0 !important; }
             .image-column, .nav-trigger, .nav-menu, .footer, .mobile-teaser { display: none !important; }
             .step { display: none !important; }
             .step[data-step="summary"] { display: block !important; }
-            .step-title { font-size: 14pt; margin-bottom: 16px; text-transform: capitalize; }
-            .print-header { display: block !important; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #e0e0e0; }
+            .step-title { font-size: 14pt; margin-bottom: 20px; text-transform: capitalize; }
+            .print-header { display: block !important; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid #e0e0e0; }
             .print-header-logo { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 18pt; letter-spacing: -0.02em; }
             .print-header-sub { font-family: 'IBM Plex Mono', monospace; font-size: 8pt; color: #a0a0a0; margin-top: 4px; }
-            .summary-section { page-break-inside: avoid; text-transform: capitalize; }
+            .summary-section { page-break-inside: avoid; text-transform: capitalize; margin-bottom: 20px; }
+            .summary-label { text-transform: uppercase; font-size: 8pt; letter-spacing: 0.05em; margin-bottom: 8px; }
             .summary-spec-val, .summary-flow-val, .summary-step-text, .summary-heater p, .summary-value, .summary-note { text-transform: none; }
             .summary-module { page-break-inside: avoid; }
             .summary-module-specs { max-height: none !important; overflow: visible !important; }
             .summary-module-toggle { display: none !important; }
             .summary-module-header { cursor: default; }
+            .summary-module-name { text-transform: none; }
             .summary-actions { display: none !important; }
-            .print-footer { display: block !important; margin-top: 32px; padding-top: 16px; border-top: 1px solid #e0e0e0; font-size: 8pt; color: #a0a0a0; line-height: 1.8; }
+            .print-footer { display: block !important; margin-top: 40px; padding-top: 16px; border-top: 1px solid #e0e0e0; font-size: 8pt; color: #a0a0a0; line-height: 1.8; }
             .step-nav { display: none !important; }
-            @page { margin: 1.8cm; size: A4; }
+            @page { margin: 2cm; size: A4; }
         }
 
         @media (max-width: 900px) {
