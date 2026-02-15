@@ -500,11 +500,12 @@
             .image-column, .nav-trigger, .nav-menu, .footer, .mobile-teaser { display: none !important; }
             .step { display: none !important; }
             .step[data-step="summary"] { display: block !important; }
-            .step-title { font-size: 14pt; margin-bottom: 16px; }
+            .step-title { font-size: 14pt; margin-bottom: 16px; text-transform: capitalize; }
             .print-header { display: block !important; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #e0e0e0; }
             .print-header-logo { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 18pt; letter-spacing: -0.02em; }
             .print-header-sub { font-family: 'IBM Plex Mono', monospace; font-size: 8pt; color: #a0a0a0; margin-top: 4px; }
-            .summary-section { page-break-inside: avoid; }
+            .summary-section { page-break-inside: avoid; text-transform: capitalize; }
+            .summary-spec-val, .summary-flow-val, .summary-step-text, .summary-heater p, .summary-value, .summary-note { text-transform: none; }
             .summary-module { page-break-inside: avoid; }
             .summary-module-specs { max-height: none !important; overflow: visible !important; }
             .summary-module-toggle { display: none !important; }
@@ -819,7 +820,7 @@
                 </nav>
                 <div class="summary-actions">
                     <button onclick="window.print()">download configuration</button>
-                    <a href="https://lyn.page/productsheet.html" target="_blank">sauna product sheet</a>
+                    <a href="https://lyn.page/productsheet" target="_blank">sauna product sheet</a>
                 </div>
             </section>
 
