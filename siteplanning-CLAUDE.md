@@ -55,6 +55,14 @@ Every word earns its place. Every line of code earns its place. If it doesn't ad
 6. Summary with configuration and pricing
 7. Request site review (Netlify Forms submission)
 
+## Nav pattern
+Contextual nav shared across lyn.page ecosystem. No border on `.nav-menu`. Uses `.nav-group` class for grouped `<ul>` lists (margin-separated, no dividers). Trigger is en dash `–`. Links use clean URLs (e.g. `https://lyn.page/sauna`, no `.html`).
+
+Siteplanning nav groups:
+1. Site pages: sauna, product sheet, documents
+2. Contextual actions: download pdf (`window.print()`), email (`mailto:julius@lyn.page`)
+3. Theme toggle (`.nav-muted` class)
+
 ## Working conventions
 - Show proposed text copy before implementing in code.
 - Deliver code changes as specific edits, not full file rewrites.
