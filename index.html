@@ -14,12 +14,14 @@
             --bg: #fafafa;
             --text: #1a1a1a;
             --text-muted: #a0a0a0;
+            --ghost: #efefef;
             --border: #e0e0e0;
         }
         [data-theme="dark"] {
             --bg: #1a1a1a;
             --text: #e0e0e0;
-            --text-muted: #666666;
+            --text-muted: #777777;
+            --ghost: #272727;
             --border: #333333;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -386,60 +388,66 @@
             opacity: 0.5;
         }
 
-        /* Nav */
-        .nav-trigger {
+        /* ---- site nav ---- */
+        .site-nav {
             position: fixed;
-            top: 12px;
-            right: 12px;
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            color: var(--text);
-            background: none;
-            border: none;
-            cursor: pointer;
-            opacity: 1;
-            transition: opacity 0.2s;
-            z-index: 10;
-            min-width: 44px;
-            min-height: 44px;
+            top: 0; left: 0; right: 0;
+            height: 60px;
             display: flex;
             align-items: center;
-            justify-content: center;
-        }
-        .nav-trigger:hover, .nav-trigger.active { opacity: 0.6; }
-        .nav-menu {
-            position: fixed;
-            top: 48px;
-            right: 20px;
-            background: var(--bg);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
-            padding: 12px 16px;
-            min-width: 140px;
+            padding: 0 max(24px, env(safe-area-inset-left));
             z-index: 10;
         }
-        .nav-menu.open { opacity: 1; visibility: visible; transform: translateY(0); }
-        .nav-group { list-style: none; margin-bottom: 16px; }
-        .nav-group:last-child { margin-bottom: 0; }
-        .nav-group li { margin-bottom: 5px; }
-        .nav-group li:last-child { margin-bottom: 0; }
-        .nav-menu a, .nav-menu button {
-            font-family: 'IBM Plex Sans', sans-serif;
-            font-weight: 300;
-            font-size: 14px;
+        .nav-logo {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.125rem;
+            letter-spacing: -0.02em;
             color: var(--text);
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: color 0.2s;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .nav-items.open { opacity: 1; visibility: visible; }
+        .nav-items {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+        }
+        @media (hover: hover) {
+            .site-nav:hover .nav-items { opacity: 1; visibility: visible; }
+        }
+        .nav-items a, .nav-items button {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 400;
+            font-size: 0.6875rem;
+            letter-spacing: 0.04em;
+            color: var(--text);
+            text-decoration: none;
             background: none;
             border: none;
             cursor: pointer;
             padding: 0;
+            white-space: nowrap;
             transition: opacity 0.15s;
-            display: block;
-            text-decoration: none;
         }
-        .nav-menu a:hover, .nav-menu button:hover { opacity: 0.6; }
-        .nav-menu .nav-muted { color: var(--text-muted); }
+        .nav-items a:hover, .nav-items button:hover { opacity: 0.6; }
+        .nav-items .nav-muted { color: var(--text-muted); }
+        .nav-sep {
+            width: 1px;
+            height: 12px;
+            background: var(--text-muted);
+            opacity: 0.3;
+            flex-shrink: 0;
+        }
 
         /* Utilities */
         .hidden { display: none !important; }
@@ -498,7 +506,7 @@
             body { background: white !important; color: #1a1a1a !important; font-size: 9.5pt; line-height: 1.5; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
             .container { display: block !important; min-height: auto !important; }
             .content-column { display: block !important; max-width: 100% !important; padding: 0 !important; }
-            .image-column, .nav-trigger, .nav-menu, .footer, .mobile-teaser { display: none !important; }
+            .image-column, .site-nav, .footer, .mobile-teaser { display: none !important; }
             .step { display: none !important; }
             .step[data-step="summary"] { display: block !important; }
             .step-title { font-size: 14pt; margin-bottom: 20px; text-transform: capitalize; }
@@ -519,7 +527,34 @@
             @page { margin: 2cm; size: A4; }
         }
 
+        @media (max-width: 768px) {
+            .nav-items {
+                position: fixed;
+                top: 52px;
+                left: 20px;
+                margin-left: 0;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+                background: var(--bg);
+                padding: 12px 16px;
+                min-width: 140px;
+                transform: translateY(-8px);
+                transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+            }
+            .nav-items.open {
+                opacity: 1 !important;
+                visibility: visible !important;
+                transform: translateY(0);
+            }
+            .nav-sep { display: none; }
+        }
+        @media (hover: none) and (min-width: 769px) {
+            .nav-items.open { opacity: 1 !important; visibility: visible !important; }
+        }
+
         @media (max-width: 900px) {
+            .site-nav { padding: 0 20px; }
             .container { display: none; }
             .mobile-teaser { display: flex; }
             .footer { display: none; }
@@ -591,7 +626,6 @@
         <div class="content-column">
             <!-- STEP: Intro -->
             <section class="step active" data-step="intro">
-                <div class="step-title">site planning</div>
                 <div class="step-description">
                     one sauna. seven modules. 2,100 sites.<br>
                     <span class="muted">2099 remaining</span>
@@ -902,29 +936,45 @@
 
     <footer class="footer">lynbtc aps copenhagen 2026 vat dk46170571</footer>
 
-    <button class="nav-trigger" onclick="toggleNav()" aria-label="Toggle navigation">&ndash;</button>
-    <nav class="nav-menu" id="navMenu">
-        <ul class="nav-group">
-            <li><a href="https://lyn.page">home</a></li>
-            <li><a href="https://sauna.lyn.page">product page</a></li>
-            <li><a href="https://lyn.page/documents">documents</a></li>
-            <li><a href="https://lyn.page/faq">about</a></li>
-        </ul>
-        <ul class="nav-group">
-            <li><a class="nav-muted" href="#" onclick="window.print(); return false;">download pdf</a></li>
-            <li><a class="nav-muted" href="mailto:julius@lyn.page">email</a></li>
-            <li><button class="nav-muted" onclick="toggleTheme()" id="themeBtn"></button></li>
-        </ul>
+    <nav class="site-nav" id="siteNav">
+        <div class="nav-logo" id="logo">SITE PLANNING.</div>
+        <div class="nav-items" id="navItems">
+            <a href="https://lyn.page">home</a>
+            <a href="https://sauna.lyn.page">sauna</a>
+            <a href="https://lyn.page/documents">documents</a>
+            <a href="https://lyn.page/faq">about</a>
+            <span class="nav-sep"></span>
+            <a href="https://lyn.page" class="nav-muted">lyn.page</a>
+            <button class="nav-muted" onclick="toggleTheme()" id="themeBtn"></button>
+        </div>
     </nav>
 
     <script>
         // Nav
-        const navMenu = document.getElementById('navMenu');
-        const navTrigger = document.querySelector('.nav-trigger');
-        function toggleNav() { navMenu.classList.toggle('open'); navTrigger.classList.toggle('active'); }
-        function updateThemeBtn() { var c = document.documentElement.getAttribute('data-theme'); document.getElementById('themeBtn').textContent = c === 'dark' ? 'light mode' : 'dark mode'; }
-        function toggleTheme() { var h = document.documentElement, c = h.getAttribute('data-theme'), n = c === 'dark' ? 'light' : 'dark'; h.setAttribute('data-theme', n); localStorage.setItem('lyn-theme', n); updateThemeBtn(); }
-        document.addEventListener('click', function(e) { if (!navMenu.contains(e.target) && !navTrigger.contains(e.target)) { navMenu.classList.remove('open'); navTrigger.classList.remove('active'); } });
+        var navItems = document.getElementById('navItems');
+        var navLogo = document.getElementById('logo');
+        var siteNav = document.getElementById('siteNav');
+
+        navLogo.addEventListener('click', function() {
+            navItems.classList.toggle('open');
+        });
+        document.addEventListener('click', function(e) {
+            if (siteNav.contains(e.target)) return;
+            navItems.classList.remove('open');
+        });
+
+        function updateThemeBtn() {
+            var current = document.documentElement.getAttribute('data-theme');
+            document.getElementById('themeBtn').textContent = current === 'dark' ? 'light mode' : 'dark mode';
+        }
+        function toggleTheme() {
+            var html = document.documentElement;
+            var current = html.getAttribute('data-theme');
+            var next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('lyn-theme', next);
+            updateThemeBtn();
+        }
         updateThemeBtn();
 
         // === MODULE DATA ===
