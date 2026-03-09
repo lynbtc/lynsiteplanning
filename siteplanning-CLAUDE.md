@@ -9,9 +9,8 @@ LYN is jsb's operating firm. Bitcoin-native. The sauna project is LYN's first ve
 This repo auto-deploys to Netlify on push to main. **This is a live production site.**
 
 ### Rules
-1. **Claude Code never pushes or commits.** Only make local file changes.
-2. jsb reviews changes locally, commits and pushes to main himself.
-3. If unsure about a change, **ask before editing.**
+1. **Claude Code may commit and push to main** when asked by jsb.
+2. If unsure about a change, **ask before editing.**
 
 ## Stack
 - Pure HTML / CSS / JS
